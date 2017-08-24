@@ -1,0 +1,37 @@
+ext{
+	repositories {
+		mavenLocal()
+	    maven {
+	        url 'https://repo.spring.io/libs-snapshot'
+	    }
+	}
+	dependencies {
+	    def springVersion = '3.1.2.RELEASE' 
+	    compile files('C:///Program Files///Java///jre1.8.0_101///lib///rt.jar')
+	    compile files('C:///Program Files///Java///jre1.8.0_101///lib///core.jar')
+	    compile files('D:///Eclipse///eclipse-luna///Workspaces///GradleEnvParaVariable///build///libs///GradleEnvParaVariable-1.0.jar')
+	    compile(
+		'org.slf4j:slf4j-api:1.7.1',
+	    'jstl:jstl:1.2',   
+	    'log4j:log4j:1.2.17',
+	    /* commons.io */
+	    'commons-io:commons-io:2.4',
+	    
+	    'javax.servlet.jsp:jsp-api:2.0',
+	    'javax.el:el-api:2.2',
+	    
+		/* spring */
+	    "org.springframework:spring-core:${springVersion}",
+	    "org.springframework:spring-aop:${springVersion}",
+	    "org.springframework:spring-context:${springVersion}",
+	    "org.springframework:spring-beans:${springVersion}",
+	    "org.springframework:spring-web:${springVersion}",
+	    "org.springframework:spring-webmvc:${springVersion}",
+	    "org.springframework:spring-tx:${springVersion}",
+	    "org.springframework:spring-jdbc:${springVersion}",
+	    "org.springframework:spring-test:${springVersion}",
+	    "org.springframework:spring-jms:${springVersion}"
+	    )
+		providedCompile 'javax.servlet:servlet-api:2.5' //编译期
+	}
+}
