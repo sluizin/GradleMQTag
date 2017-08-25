@@ -27,13 +27,13 @@ public class MQTagBasic extends SimpleTagSupport {
 	private boolean issavemerge=false;
 	private boolean iscache = false;
 	private boolean isBG = false;
-	private int laterStage = MQConst.ACC_NULL;
-	private Integer x = MQConst.ACC_NULL;
-	private Integer y = MQConst.ACC_NULL;
-	private Integer width = MQConst.ACC_NULL;
-	private Integer height = MQConst.ACC_NULL;
-	private Integer align = MQConst.ACC_NULL;
-	private Integer valign = MQConst.ACC_NULL;
+	private int laterStage = MQPOConst.ACC_NULL;
+	private Integer x = MQPOConst.ACC_NULL;
+	private Integer y = MQPOConst.ACC_NULL;
+	private Integer width = MQPOConst.ACC_NULL;
+	private Integer height = MQPOConst.ACC_NULL;
+	private Integer align = MQPOConst.ACC_NULL;
+	private Integer valign = MQPOConst.ACC_NULL;
 	private String color = null;
 	private String bgcolor = null;
 
@@ -88,13 +88,13 @@ public class MQTagBasic extends SimpleTagSupport {
 	protected final void getHtmlInputElement(StringBuilder sb, String key, Object obj) {
 		if (obj == null || isDefault(obj)) return;
 		sb.append(getHtmlInput(key, obj));
-		sb.append(MQConst.ACC_Enter);
+		sb.append(MQPOConst.ACC_Enter);
 	}
 
 	private final StringBuilder getHtmlInput(String key, Object obj) {
 		StringBuilder sb = new StringBuilder(100);
 		if (group == null || group.length() == 0 || key == null || key.length() == 0 || obj == null) return sb;
-		String inputKey = MQConst.ACC_ParaHeadKey + "_" + group + "_" + key;
+		String inputKey = MQPOConst.ACC_ParaHeadKey + "_" + group + "_" + key;
 		sb.append("<input type=\"hidden\"");
 		sb.append(" name=\"" + inputKey + "\"");
 		if (useid) sb.append(" id=\"" + inputKey + "\"");
@@ -110,7 +110,7 @@ public class MQTagBasic extends SimpleTagSupport {
 		if(obj==null)return true;
 		if(obj instanceof Integer){
 			int value=(Integer)obj;
-			if(value==MQConst.ACC_NULL)return true;
+			if(value==MQPOConst.ACC_NULL)return true;
 		}
 		return false;
 	}

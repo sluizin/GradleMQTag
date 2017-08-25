@@ -9,7 +9,7 @@ package com.maqiao.was.tag.po;
  * @since jdk1.7
  */
 public class MQTagPictureRendering extends MQTagPicture {
-	int id = MQConst.ACC_NULL;
+	int id = MQPOConst.ACC_NULL;
 	String colorarray = null;
 	boolean istransparent = false;
 	boolean iswhite = false;

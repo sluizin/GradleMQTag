@@ -9,11 +9,11 @@ package com.maqiao.was.tag.po;
  * @since jdk1.7
  */
 public class MQTagPictureSpecial_QRCODE extends MQTagPicture {
-	int spid = MQConst.ACC_NULL;
-	int size = MQConst.ACC_NULL;
+	int spid = MQPOConst.ACC_NULL;
+	int size = MQPOConst.ACC_NULL;
 	String url = null;
-	int margin = MQConst.ACC_NULL;
-	int style = MQConst.ACC_NULL;
+	int margin = MQPOConst.ACC_NULL;
+	int style = MQPOConst.ACC_NULL;
 	String colorarray = null;
 
 	/*

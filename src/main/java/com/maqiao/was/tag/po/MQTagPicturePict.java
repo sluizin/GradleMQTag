@@ -9,14 +9,14 @@ package com.maqiao.was.tag.po;
  * @since jdk1.7
  */
 public class MQTagPicturePict extends MQTagPicture {
-	Integer shape = MQConst.ACC_NULL;
+	Integer shape = MQPOConst.ACC_NULL;
 	boolean autoscale = false;
 	boolean intercept = false;
 	String url = null;
 	boolean isurl = false;
-	int shapewidth = MQConst.ACC_NULL;
-	int shapeheight = MQConst.ACC_NULL;
-	int shaperoundsize = MQConst.ACC_NULL;
+	int shapewidth = MQPOConst.ACC_NULL;
+	int shapeheight = MQPOConst.ACC_NULL;
+	int shaperoundsize = MQPOConst.ACC_NULL;
 
 	/*
 	 * (non-Javadoc)

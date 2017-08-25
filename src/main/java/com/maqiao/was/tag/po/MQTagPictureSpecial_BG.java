@@ -9,7 +9,7 @@ package com.maqiao.was.tag.po;
  * @since jdk1.7
  */
 public class MQTagPictureSpecial_BG extends MQTagPicture {
-	int spid = MQConst.ACC_NULL;
+	int spid = MQPOConst.ACC_NULL;
 
 	/*
 	 * (non-Javadoc)

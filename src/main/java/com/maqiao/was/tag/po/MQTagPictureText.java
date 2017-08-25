@@ -11,10 +11,10 @@ package com.maqiao.was.tag.po;
 public class MQTagPictureText extends MQTagPicture {
 	String text = null;
 	String name = null;
-	int style = MQConst.ACC_NULL;
-	int size = MQConst.ACC_NULL;
+	int style = MQPOConst.ACC_NULL;
+	int size = MQPOConst.ACC_NULL;
 	String color = null;
-	int linespacing = MQConst.ACC_NULL;
+	int linespacing = MQPOConst.ACC_NULL;
 	boolean issmooth = false;
 
 	/*

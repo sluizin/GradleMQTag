@@ -8,7 +8,7 @@ package com.maqiao.was.tag.po;
  * @version 1.0
  * @since jdk1.7
  */
-public class MQConst {
+public class MQPOConst {
 	/**
 	 * 参数名称头部关键字，即 XX_1_pictype
 	 */
