@@ -45,6 +45,13 @@
 			<type>boolean</type>
 		</attribute>
 		<attribute>
+			<description>设置 是否保存独立的合并以后的文件</description>
+			<name>issavemerge</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
 			<description>设置 缓存BufferedImage</description>
 			<name>iscache</name>
 			<required>false</required>

@@ -24,6 +24,7 @@ public class MQTagBasic extends SimpleTagSupport {
 	protected boolean useid = false;
 	private boolean valid = true;
 	private boolean issave = false;
+	private boolean issavemerge=false;
 	private boolean iscache = false;
 	private boolean isBG = false;
 	private int laterStage = MQConst.ACC_NULL;
@@ -65,6 +66,7 @@ public class MQTagBasic extends SimpleTagSupport {
 		getHtmlInputElement(sb, "valid", valid);
 		getHtmlInputElement(sb, "issave", issave);
 		getHtmlInputElement(sb, "iscache", iscache);
+		getHtmlInputElement(sb, "issavemerge", issavemerge);
 		getHtmlInputElement(sb, "isBG", isBG);
 		getHtmlInputElement(sb, "laterStage", laterStage);
 		getHtmlInputElement(sb, "x", x);
@@ -248,6 +250,14 @@ public class MQTagBasic extends SimpleTagSupport {
 
 	public final void setLaterStage(int laterStage) {
 		this.laterStage = laterStage;
+	}
+
+	public final boolean isIssavemerge() {
+		return issavemerge;
+	}
+
+	public final void setIssavemerge(boolean issavemerge) {
+		this.issavemerge = issavemerge;
 	}
 
 
