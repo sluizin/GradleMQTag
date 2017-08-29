@@ -14,7 +14,7 @@
 	<tag>
 		<description>设置基本参数，如x,y,width,height等</description>
 		<name>Basic</name>
-		<tag-class>com.maqiao.was.tag.po.MQTagBasic</tag-class>
+		<tag-class>com.maqiao.was.tag.pictureOverlay.MQTagBasic</tag-class>
 		<body-content>scriptless</body-content><!-- empty scriptless -->
 		<attribute>
 			<description>设置是否使用input中的id 与name相同</description>
@@ -132,13 +132,13 @@
 	<tag>
 		<description>空图片</description>
 		<name>Null</name>
-		<tag-class>com.maqiao.was.tag.po.MQTagPictureNull</tag-class>
+		<tag-class>com.maqiao.was.tag.pictureOverlay.MQTagPictureNull</tag-class>
 		<body-content>empty</body-content><!-- empty scriptless -->
 	</tag>
 	<tag>
 		<description>设置图片参数</description>
 		<name>Pict</name>
-		<tag-class>com.maqiao.was.tag.po.MQTagPicturePict</tag-class>
+		<tag-class>com.maqiao.was.tag.pictureOverlay.MQTagPicturePict</tag-class>
 		<body-content>empty</body-content><!-- empty scriptless -->
 		<attribute>
 			<description>设置 特殊图形，如圆形等</description>
@@ -201,7 +201,7 @@
 	<tag>
 		<description>设置文字图片参数</description>
 		<name>Font</name>
-		<tag-class>com.maqiao.was.tag.po.MQTagPictureText</tag-class>
+		<tag-class>com.maqiao.was.tag.pictureOverlay.MQTagPictureText</tag-class>
 		<body-content>empty</body-content><!-- empty scriptless -->
 		<attribute>
 			<description>设置 文本内容</description>
@@ -257,7 +257,7 @@
 	<tag>
 		<description>设置 特殊图片参数 背景图</description>
 		<name>SP_BG</name>
-		<tag-class>com.maqiao.was.tag.po.MQTagPictureSpecial_BG</tag-class>
+		<tag-class>com.maqiao.was.tag.pictureOverlay.MQTagPictureSpecial_BG</tag-class>
 		<body-content>empty</body-content><!-- empty scriptless -->
 		<attribute>
 			<description>设置 特殊图片标号 背景图:1</description>
@@ -271,7 +271,7 @@
 	<tag>
 		<description>设置 特殊图片参数 二维码</description>
 		<name>SP_QRCODE</name>
-		<tag-class>com.maqiao.was.tag.po.MQTagPictureSpecial_QRCODE</tag-class>
+		<tag-class>com.maqiao.was.tag.pictureOverlay.MQTagPictureSpecial_QRCODE</tag-class>
 		<body-content>empty</body-content><!-- empty scriptless -->
 		<attribute>
 			<description>设置 特殊图片标号 二维码:2</description>
@@ -320,7 +320,7 @@
 	<tag>
 		<description>设置 图片的后期渲染</description>
 		<name>rendering</name>
-		<tag-class>com.maqiao.was.tag.po.MQTagPictureRendering</tag-class>
+		<tag-class>com.maqiao.was.tag.pictureOverlay.MQTagPictureRendering</tag-class>
 		<body-content>empty</body-content><!-- empty scriptless -->
 		<attribute>
 			<description>

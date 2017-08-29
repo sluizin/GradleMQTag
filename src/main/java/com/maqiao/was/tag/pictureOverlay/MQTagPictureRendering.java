@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.maqiao.was.tag.po;
+package com.maqiao.was.tag.pictureOverlay;
 
 /**
  * @author Sunjian
