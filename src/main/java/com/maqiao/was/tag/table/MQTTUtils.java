@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,6 +18,9 @@ import java.util.regex.Pattern;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+
+//import com.maqiao.was.envParaVariable.MQEnvParaVariable;
+//import com.maqiao.was.envParaVariable.MQEnvParaVariable.Env;
 
 /**
  * @author Sunjian
@@ -106,7 +110,7 @@ public class MQTTUtils {
 	 * @return boolean
 	 */
 	public static final boolean test(String[] array, String test) {
-		if (array == null || array.length == 0 || test == null || test.length() == 0) return false;
+		if (array == null || array.length == 0 || test == null || test.length() == 0) return true;
 		try {
 			ScriptEngineManager manager = new ScriptEngineManager();
 			ScriptEngine se = manager.getEngineByName("js");
@@ -227,6 +231,20 @@ public class MQTTUtils {
 		}
 	}
 
+	/**
+	 * 把字符串转成中文
+	 * @param value String
+	 * @return String
+	 */
+	static final String changeUtf8(String value) {
+		if (value == null || value.length() == 0) return value;
+		try {
+			//if (MQEnvParaVariable.ACC_ENV == Env.DEV) return value;
+			return URLDecoder.decode(value, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return value;
+		}
+	}
 	/**
 	 * 把字符串按规则进行转化<br>
 	 * autoChange: "iso-8859-1 to utf-8"

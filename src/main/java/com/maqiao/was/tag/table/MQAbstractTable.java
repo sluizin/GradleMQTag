@@ -10,43 +10,71 @@ import java.util.List;
 
 import javax.servlet.jsp.JspContext;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.PageContext;
+import javax.servlet.jsp.tagext.BodyContent;
+import javax.servlet.jsp.tagext.BodyTag;
+import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.JspFragment;
-import javax.servlet.jsp.tagext.JspTag;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+import javax.servlet.jsp.tagext.Tag;
 
 /**
  * @author Sunjian
  * @version 1.0
  * @since jdk1.7
  */
-public abstract class MQAbstractTable extends SimpleTagSupport {
-	JspContext jspContext;
+public abstract class MQAbstractTable extends BodyTagSupport {
 
-	public JspContext getJspContext() {
-		return jspContext;
-	}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private PageContext pageContext;
 
-	public void setJspContext(JspContext pc) {
-		this.jspContext = pc;
+	@Override
+	public void setPageContext(PageContext pageContext) {
+		this.pageContext = pageContext;
 	}
 
 	@Override
-	//当遇到标签时就会执行这个方法
-	public void doTag() throws JspException, IOException {
-		StringWriter writer = new StringWriter();
-		JspFragment jspBody = this.getJspBody();
-		final String content = writer.toString();
-		List<String[]> list=getSelectList();
-		jspBody.invoke(writer);
-		jspContext.getOut().write(MQTTUtils.contentChange(content, list).toString());
+	public int doStartTag() throws JspException {
+		//返回BodyTag.EVAL_BODY_BUFFERED，表示输出标签体内容
+		//返回Tag.SKIP_BODY,表示不输出内容
+		return BodyTag.EVAL_BODY_BUFFERED;
 	}
+
+	@Override
+	public int doAfterBody() throws JspException {
+		return BodyTag.SKIP_BODY;
+	}
+
+	@Override
+	public int doEndTag() throws JspException {
+		if (bodyContent == null) return super.doEndTag();
+		String content = bodyContent.getString();
+		List<String[]> list = getSelectList();
+		try {
+			String html = MQTTUtils.contentChange(content, list).toString();
+			((BodyContent) pageContext.getOut()).getEnclosingWriter().println(html);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return super.doEndTag();
+	}
+
+	BodyContent bodyContent;
+
+	public void setBodyContent(BodyContent b) {
+		bodyContent = b;
+	}
+
 	/**
 	 * 得到过滤的数据表
-	 * @return  List<String[]>
+	 * @return List<String[]>
 	 */
 	private List<String[]> getFilterList() {
 		List<String[]> list = getDataTable();
-		for (int i = 0; i < list.size(); i++) 
+		for (int i = 0; i < list.size(); i++)
 			if (!mqTagTable.isFilter(list.get(i))) list.remove(i--);
 		return list;
 	}
@@ -67,8 +95,8 @@ public abstract class MQAbstractTable extends SimpleTagSupport {
 		if (mqTagTable.psize > 0 && mqTagTable.p >= 0) {
 			int a = mqTagTable.p * mqTagTable.psize;
 			if (a >= list.size()) return newList;
-			int b = (mqTagTable.p + 1) * mqTagTable.psize - 1;
-			if (b >= list.size()) b = list.size() - 1;
+			int b = (mqTagTable.p + 1) * mqTagTable.psize;
+			if (b >= list.size()) b = list.size();
 			newList = list.subList(a, b);
 			return newList;
 		}
@@ -77,9 +105,8 @@ public abstract class MQAbstractTable extends SimpleTagSupport {
 
 	MQTagTable mqTagTable = null;
 
-	@Override
-	public void setParent(JspTag parent) {
-		if (parent != null) mqTagTable = (MQTagTable) parent;
+	public void setParent(Tag t) {
+		if (t != null) mqTagTable = (MQTagTable) t;
 	}
 
 	/**
@@ -87,4 +114,5 @@ public abstract class MQAbstractTable extends SimpleTagSupport {
 	 * @return List<String[]>
 	 */
 	public abstract List<String[]> getDataTable();
+
 }

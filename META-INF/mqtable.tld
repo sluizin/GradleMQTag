@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+	version="2.1">
+	<description>MQTable 1.1 core library</description>
+	<display-name>MQTable core</display-name>
+	<tlib-version>1.1</tlib-version>
+	<short-name>mqtable</short-name>
+	<uri>/MQTable</uri>
+	<tag>
+		<description>设置基本参数，如 psize(每页数量) p(当前页0开始) range(范围) test(条件例: "v0 == 'a1' || v1=v0+'ac'")</description>
+		<name>Basic</name>
+		<tag-class>com.maqiao.was.tag.table.MQTagTable</tag-class>
+		<body-content>JSP</body-content><!-- empty scriptless -->
+		<attribute>
+			<description>设置每页数量</description>
+			<name>psize</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>int</type>
+		</attribute>
+		<attribute>
+			<description>设置当前页以0为第一页</description>
+			<name>p</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>int</type>
+		</attribute>
+		<attribute>
+			<description>设置随机下标标号 0,1,5,8,9,12 或 1,5,7,9-15,20-25,5-2</description>
+			<name>range</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>设置筛选条件</description>
+			<name>test</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
+		<description>设置来源于url的数据</description>
+		<name>url</name>
+		<tag-class>com.maqiao.was.tag.table.MQTableSourceUrl</tag-class>
+		<body-content>JSP</body-content><!-- empty scriptless -->
+		<attribute>
+			<description>设置 url数据源 http://xxxx/xx.txt</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>设置 换行符</description>
+			<name>linesign</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>设置 列标志</description>
+			<name>columnsign</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>设置 是否自动换编码</description>
+			<name>codechange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+</taglib>

@@ -3,17 +3,20 @@
  */
 package com.maqiao.was.tag.table;
 
-import java.io.IOException;
-
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+import javax.servlet.jsp.tagext.BodyTag;
+import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
  * @author Sunjian
  * @version 1.0
  * @since jdk1.7
  */
-public class MQTagTable extends SimpleTagSupport {
+public class MQTagTable extends BodyTagSupport {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 条件 v1=='test' || v2==v1+'st'
 	 */
@@ -31,21 +34,51 @@ public class MQTagTable extends SimpleTagSupport {
 	 */
 	String range = null;
 
-	@Override
 	//当遇到标签时就会执行这个方法
-	public void doTag() throws JspException, IOException {
-		getJspBody().invoke(null);
+	@Override
+	public int doStartTag() throws JspException {
+		return BodyTag.EVAL_BODY_BUFFERED;
 	}
+
 	/**
 	 * 对字符串数组过滤
 	 * @param array String[]
 	 * @return boolean
 	 */
-	public boolean isFilter(String[] array){
+	public boolean isFilter(String[] array) {
 		return MQTTUtils.test(array, test);
 	}
+
 	public final void setTest(String test) {
 		this.test = test;
+	}
+
+	public final int getPsize() {
+		return psize;
+	}
+
+	public final void setPsize(int psize) {
+		this.psize = psize;
+	}
+
+	public final int getP() {
+		return p;
+	}
+
+	public final void setP(int p) {
+		this.p = p;
+	}
+
+	public final String getRange() {
+		return range;
+	}
+
+	public final void setRange(String range) {
+		this.range = range;
+	}
+
+	public final String getTest() {
+		return test;
 	}
 
 }
