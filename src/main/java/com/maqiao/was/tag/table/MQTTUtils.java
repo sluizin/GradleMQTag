@@ -53,7 +53,7 @@ public class MQTTUtils {
 	 * @param array String[]
 	 * @return String
 	 */
-	public static final String contentChange(String content, String[] array) {
+	public static final String contentChange(String content, String... array) {
 		if (content == null || content.length() == 0 || array == null || array.length == 0) return "";
 		String regEx = "\\{[\\s]?(v[0123456789]+)[\\s]?(,[\\s]?(\\\"[\\S\\s]*?\\\"))?[\\s]?\\}";
 		Pattern p = Pattern.compile(regEx);

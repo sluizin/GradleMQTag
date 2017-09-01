@@ -42,10 +42,54 @@
 		</attribute>
 	</tag>
 	<tag>
-		<description>设置来源于url的数据</description>
+		<description>设置来源于url的数据 现只支持{v0,"default"}</description>
 		<name>url</name>
 		<tag-class>com.maqiao.was.tag.table.MQTableSourceUrl</tag-class>
 		<body-content>JSP</body-content><!-- empty scriptless -->
+		<dynamic-attributes>true</dynamic-attributes>
+		<variable>
+			<description>设置总记录数变量</description>
+			<name-from-attribute>c1</name-from-attribute>
+			<variable-class>java.lang.String</variable-class>
+			<declare>true</declare>
+			<scope>AT_BEGIN</scope>
+		</variable>
+		<attribute>
+			<description>设置总记录数变量</description>
+			<name>c1</name>
+			<required>true</required>
+		</attribute>
+		<variable>
+			<description>设置筛选后的记录数变量</description>
+			<name-from-attribute>c2</name-from-attribute>
+			<variable-class>java.lang.String</variable-class>
+			<declare>true</declare>
+			<scope>AT_BEGIN</scope>
+		</variable>
+		<attribute>
+			<description>设置筛选后的记录数变量</description>
+			<name>c2</name>
+			<required>true</required>
+		</attribute>
+		<variable>
+			<description>设置分页后的当前页的记录数变量</description>
+			<name-from-attribute>c3</name-from-attribute>
+			<variable-class>java.lang.String</variable-class>
+			<declare>true</declare>
+			<scope>AT_BEGIN</scope>
+		</variable>
+		<attribute>
+			<description>设置分页后的当前页的记录数变量</description>
+			<name>c3</name>
+			<required>true</required>
+		</attribute>
+		<attribute>
+			<description>设置 是否使用动态值 是否支持 ${v0}</description>
+			<name>isdynamic</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
 		<attribute>
 			<description>设置 url数据源 http://xxxx/xx.txt</description>
 			<name>url</name>
