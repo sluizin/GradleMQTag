@@ -48,39 +48,51 @@
 		<body-content>JSP</body-content><!-- empty scriptless -->
 		<dynamic-attributes>true</dynamic-attributes>
 		<variable>
+			<description>设置当前记录下标变量</description>
+			<name-from-attribute>n0</name-from-attribute>
+			<variable-class>java.lang.String</variable-class>
+			<declare>true</declare>
+			<scope>AT_BEGIN</scope>
+		</variable>
+		<attribute>
+			<description>设置当前记录下标变量</description>
+			<name>n0</name>
+			<required>true</required>
+		</attribute>
+		<variable>
 			<description>设置总记录数变量</description>
-			<name-from-attribute>c1</name-from-attribute>
+			<name-from-attribute>n1</name-from-attribute>
 			<variable-class>java.lang.String</variable-class>
 			<declare>true</declare>
 			<scope>AT_BEGIN</scope>
 		</variable>
 		<attribute>
 			<description>设置总记录数变量</description>
-			<name>c1</name>
+			<name>n1</name>
 			<required>true</required>
 		</attribute>
 		<variable>
 			<description>设置筛选后的记录数变量</description>
-			<name-from-attribute>c2</name-from-attribute>
+			<name-from-attribute>n2</name-from-attribute>
 			<variable-class>java.lang.String</variable-class>
 			<declare>true</declare>
 			<scope>AT_BEGIN</scope>
 		</variable>
 		<attribute>
 			<description>设置筛选后的记录数变量</description>
-			<name>c2</name>
+			<name>n2</name>
 			<required>true</required>
 		</attribute>
 		<variable>
 			<description>设置分页后的当前页的记录数变量</description>
-			<name-from-attribute>c3</name-from-attribute>
+			<name-from-attribute>n3</name-from-attribute>
 			<variable-class>java.lang.String</variable-class>
 			<declare>true</declare>
 			<scope>AT_BEGIN</scope>
 		</variable>
 		<attribute>
 			<description>设置分页后的当前页的记录数变量</description>
-			<name>c3</name>
+			<name>n3</name>
 			<required>true</required>
 		</attribute>
 		<attribute>
@@ -115,6 +127,20 @@
 			<description>设置 是否自动换编码</description>
 			<name>codechange</name>
 			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<description>判断记录 test(条件例: "v0 == 'a1' || v1=v0+'ac'")</description>
+		<name>If</name>
+		<tag-class>com.maqiao.was.tag.table.MQTagIf</tag-class>
+		<body-content>JSP</body-content><!-- empty scriptless -->
+		<attribute>
+			<description>设置筛选条件</description>
+			<name>test</name>
+			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>

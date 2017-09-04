@@ -45,8 +45,8 @@ public class MQTagTable extends BodyTagSupport {
 	 * @param array String[]
 	 * @return boolean
 	 */
-	public boolean isFilter(String[] array) {
-		return MQTTUtils.test(array, test);
+	public boolean isFilter(String... array) {
+		return MQTTUtils.test(test,array);
 	}
 
 	public final void setTest(String test) {

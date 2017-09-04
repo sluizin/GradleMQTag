@@ -31,7 +31,7 @@ public class MQTableSourceUrl extends MQAbstractTable {
 	 */
 	private String columnsign = "\t";
 	/**
-	 * 是否需要修改信息编码
+	 * 是否需要修改信息编码 "iso-8859-1 to utf-8"
 	 */
 	private String codechange = null;
 
@@ -48,9 +48,8 @@ public class MQTableSourceUrl extends MQAbstractTable {
 			if (content == null || content.length() == 0) return null;
 			String[] array = content.split(linesign);
 			List<String[]> list = new ArrayList<String[]>(array.length);
-			for (int i = 0; i < array.length; i++){
+			for (int i = 0; i < array.length; i++)
 				list.add(array[i].split(columnsign));
-			}
 			return list;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

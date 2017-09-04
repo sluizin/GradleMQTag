@@ -10,10 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTag;
-import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.Tag;
 
@@ -22,31 +20,26 @@ import javax.servlet.jsp.tagext.Tag;
  * @version 1.0
  * @since jdk1.7
  */
-public abstract class MQAbstractTable extends BodyTagSupport implements DynamicAttributes {
+public abstract class MQAbstractTable extends MQAbstractBody implements DynamicAttributes, InterfaceData {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private PageContext pageContext;
-
-	@Override
-	public void setPageContext(PageContext pageContext) {
-		System.out.println("setPageContext:");
-		this.pageContext = pageContext;
-	}
-
 	List<String[]> list = null;
 	int point = 0;
 	StringBuilder sb = new StringBuilder();
 
 	@Override
 	public int doStartTag() throws JspException {
-		System.out.println("doStartTag");
+		System.out.println("Table--doStartTag:" + point);
 		if (list == null) list = getSelectList();
-		pageContext.getRequest().setAttribute(c3, list.size() + "");
-		if (list == null || list.size() == 0) { return SKIP_BODY; }
-		if (isdynamic) { return BodyTag.EVAL_BODY_BUFFERED; }
+		pageContext.getRequest().setAttribute(n3, list.size() + "");
+		if (list == null || list.size() == 0) return SKIP_BODY;
+		if (isdynamic) {
+			putAttrHtml();
+			return BodyTag.EVAL_BODY_BUFFERED;
+		}
 		HttpSession session = pageContext.getSession();
 		String username = (String) session.getAttribute("username");
 		HttpServletRequest req = (HttpServletRequest) pageContext.getRequest();
@@ -55,58 +48,45 @@ public abstract class MQAbstractTable extends BodyTagSupport implements DynamicA
 		return BodyTag.EVAL_BODY_BUFFERED;
 	}
 
-	@Override
-	public void doInitBody() {
-		System.out.println("doInitBody");
-	}
-
 	/**
 	 * 把参数放入到标签内容中
 	 */
 	void putAttrHtml() {
+		pageContext.getRequest().setAttribute(n0, point + "");
 		if (point >= list.size()) return;
-		String[] array = list.get(point);
+		String[] array = (String[]) getDataArray();
 		putAttribute(array);
-		try {
-			bodyContent.clearBuffer();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**
 	 * 把转换后的标签内容存入StringBuilder中
 	 */
 	void getContent() {
-		String content = bodyContent.getString();
-		content = MQTTUtils.contentChange(content, list.get(point - 1));
+		String content = getContentString(list.get(point - 1));
 		sb.append(content);
 	}
 
 	@Override
 	public int doAfterBody() throws JspException {
-		System.out.println("doAfterBody:" + point + "/" + list.size());
+		System.out.println("Table--doAfterBody:" + point + "/" + list.size());
 		if (!isdynamic) return BodyTag.SKIP_BODY;
 		if (list.size() == 0 || point > list.size()) return SKIP_BODY;
 		if (point > 0 && point <= list.size()) getContent();
-		if (point < list.size()) putAttrHtml();
-		point++;
+		if (point <= list.size()) {
+			putAttrHtml();
+			point++;
+		}
+		try {
+			bodyContent.clearBuffer();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return EVAL_BODY_AGAIN;// 循环
-	}
-
-	/**
-	 * 当isdynamic为真时，使用 "%{v0}" 显示内容
-	 * @param array String[]
-	 */
-	void putAttribute(String[] array) {
-		if (array == null) return;
-		for (int i = 0; i < array.length; i++)
-			pageContext.setAttribute("v" + i, array[i]);
 	}
 
 	@Override
 	public int doEndTag() throws JspException {
-		System.out.println("doEndTag");
+		System.out.println("Table--doEndTag");
 		if (bodyContent == null) return super.doEndTag();
 		String content;
 		if (isdynamic) {
@@ -116,31 +96,19 @@ public abstract class MQAbstractTable extends BodyTagSupport implements DynamicA
 		content = bodyContent.getString();
 		String html = MQTTUtils.contentChange(content, list).toString();
 		write(html);
-		return super.doEndTag();
-	}
-
-	void write(String content) {
 		try {
-			JspWriter jspWriter = ((BodyContent) pageContext.getOut()).getEnclosingWriter();
-			jspWriter.println(content);
+			bodyContent.clearBuffer();
+			bodyContent.clearBody();
+			bodyContent.clear();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		return super.doEndTag();
 	}
 
 	@Override
 	public void release() {
-		System.out.println("release");
-
-	}
-
-	BodyContent bodyContent;
-
-	@Override
-	public void setBodyContent(BodyContent bodyContent) {
-		System.out.println("setBodyContent");
-		this.bodyContent = bodyContent;
+		System.out.println("Table--release");
 	}
 
 	/**
@@ -149,7 +117,7 @@ public abstract class MQAbstractTable extends BodyTagSupport implements DynamicA
 	 */
 	private List<String[]> getFilterList() {
 		List<String[]> list = getDataTable();
-		pageContext.getRequest().setAttribute(c1, list.size() + "");
+		pageContext.getRequest().setAttribute(n1, list.size() + "");
 		for (int i = 0; i < list.size(); i++)
 			if (!mqTagTable.isFilter(list.get(i))) list.remove(i--);
 		return list;
@@ -161,7 +129,7 @@ public abstract class MQAbstractTable extends BodyTagSupport implements DynamicA
 	 */
 	private List<String[]> getSelectList() {
 		List<String[]> list = getFilterList();
-		pageContext.getRequest().setAttribute(c2, list.size() + "");
+		pageContext.getRequest().setAttribute(n2, list.size() + "");
 		if (mqTagTable == null) return list;
 		List<String[]> newList = new ArrayList<String[]>();
 		if (mqTagTable.range != null && mqTagTable.range.length() > 0) {
@@ -183,7 +151,6 @@ public abstract class MQAbstractTable extends BodyTagSupport implements DynamicA
 	MQTagTable mqTagTable = null;
 
 	public void setParent(Tag t) {
-		System.out.println("setParent");
 		if (t != null) mqTagTable = (MQTagTable) t;
 	}
 
@@ -228,20 +195,37 @@ public abstract class MQAbstractTable extends BodyTagSupport implements DynamicA
 		}
 	}
 
-	private String c1 = "countdata";
-	private String c2 = "countfilter";
-	private String c3 = "countcurrent";
+	private String n0 = "index";
+	private String n1 = "countdata";
+	private String n2 = "countfilter";
+	private String n3 = "countcurrent";
 
-	public final void setC1(String c1) {
-		this.c1 = c1;
+	public final void setN0(String n0) {
+		this.n0 = n0;
 	}
 
-	public final void setC2(String c2) {
-		this.c2 = c2;
+	public final void setN1(String n1) {
+		this.n1 = n1;
 	}
 
-	public final void setC3(String c3) {
-		this.c3 = c3;
+	public final void setN2(String n2) {
+		this.n2 = n2;
+	}
+
+	public final void setN3(String n3) {
+		this.n3 = n3;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.maqiao.was.tag.table.InterfaceData#getDataArray()
+	 */
+	@Override
+	public Object[] getDataArray() {
+		if (point == 0) return list.get(0);
+		int p = point - 1;
+		if (p < 0 || p >= list.size()) return null;
+		return list.get(p);
 	}
 
 	/**

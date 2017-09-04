@@ -14,13 +14,9 @@ import java.net.URLDecoder;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-
-//import com.maqiao.was.envParaVariable.MQEnvParaVariable;
-//import com.maqiao.was.envParaVariable.MQEnvParaVariable.Env;
 
 /**
  * @author Sunjian
@@ -105,11 +101,31 @@ public class MQTTUtils {
 
 	/**
 	 * 测试条件，如果无效，则返回false
-	 * @param array String[]
 	 * @param test String
+	 * @param array String[]
 	 * @return boolean
 	 */
-	public static final boolean test(String[] array, String test) {
+	public static final boolean test(String test, String... array) {
+		if (array == null || array.length == 0 || test == null || test.length() == 0) return true;
+		try {
+			ScriptEngineManager manager = new ScriptEngineManager();
+			ScriptEngine se = manager.getEngineByName("js");
+			for (int i = 0; i < array.length; i++)
+				se.put("v" + i, array[i]);
+			return test(se, test);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	/**
+	 * 测试条件，如果无效，则返回false
+	 * @param test String
+	 * @param array Object[]
+	 * @return boolean
+	 */
+	public static final boolean test(String test, Object... array) {
 		if (array == null || array.length == 0 || test == null || test.length() == 0) return true;
 		try {
 			ScriptEngineManager manager = new ScriptEngineManager();
@@ -245,6 +261,7 @@ public class MQTTUtils {
 			return value;
 		}
 	}
+
 	/**
 	 * 把字符串按规则进行转化<br>
 	 * autoChange: "iso-8859-1 to utf-8"
