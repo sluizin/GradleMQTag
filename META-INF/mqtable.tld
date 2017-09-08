@@ -145,4 +145,32 @@
 			<type>java.lang.String</type>
 		</attribute>
 	</tag>
+	<tag>
+		<description>跳出循环标签 在循环标签内部任何地方出现，则标签内不输出。
+		只跳出离本标签最近的父循环标签</description>
+		<name>Break</name>
+		<tag-class>com.maqiao.was.tag.table.MQTagBreak</tag-class>
+		<body-content>empty</body-content><!-- empty scriptless -->
+		<attribute>
+			<description>设置筛选条件</description>
+			<name>test</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
+		<description>跳出本次循环标签 在循环标签内部任何地方出现，则本次循环标签不输出。
+		只跳出离本标签最近的父循环标签</description>
+		<name>Continue</name>
+		<tag-class>com.maqiao.was.tag.table.MQTagContinue</tag-class>
+		<body-content>empty</body-content><!-- empty scriptless -->
+		<attribute>
+			<description>设置筛选条件</description>
+			<name>test</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
 </taglib>

@@ -89,4 +89,5 @@ public class MQTableSourceUrl extends MQAbstractTable {
 		this.codechange = codechange;
 	}
 
+
 }

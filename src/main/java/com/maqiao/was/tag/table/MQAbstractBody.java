@@ -4,13 +4,12 @@
 package com.maqiao.was.tag.table;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+import javax.servlet.jsp.tagext.Tag;
 
 /**
  * @author Sunjian
@@ -40,6 +39,18 @@ public class MQAbstractBody extends BodyTagSupport {
 	public void doInitBody() {
 	}
 
+	Tag t;
+
+	@Override
+	public void setParent(Tag t) {
+		this.t = t;
+	}
+
+	@Override
+	public Tag getParent() {
+		return t;
+	}
+
 	/**
 	 * 把内容提出
 	 */
@@ -56,7 +67,7 @@ public class MQAbstractBody extends BodyTagSupport {
 		String content = bodyContent.getString();
 		if (arr == null || arr.length == 0) return content;
 		try {
-			return MQTTUtils.contentChange(content,(String[])arr);//content, MQTTUtils.changeArray(arr)
+			return MQTTUtils.contentChange(content, (String[]) arr);//content, MQTTUtils.changeArray(arr)
 		} catch (Exception e) {
 			e.printStackTrace();
 			return content;

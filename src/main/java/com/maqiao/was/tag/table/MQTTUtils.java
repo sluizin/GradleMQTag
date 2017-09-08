@@ -14,9 +14,12 @@ import java.net.URLDecoder;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+import javax.servlet.jsp.tagext.Tag;
+import javax.servlet.jsp.tagext.TagSupport;
 
 /**
  * @author Sunjian
@@ -32,11 +35,7 @@ public class MQTTUtils {
 	 */
 	public static final StringBuilder contentChange(String content, List<String[]> list) {
 		if (content == null || content.length() == 0) return new StringBuilder(0);
-		if (list == null || list.size() == 0) {
-			StringBuilder sb = new StringBuilder(content.length());
-			sb.append(content);
-			return sb;
-		}
+		if (list == null || list.size() == 0) return new StringBuilder(content);
 		StringBuilder sb = new StringBuilder(content.length() * list.size());
 		for (int i = 0, len = list.size(); i < len; i++)
 			sb.append(contentChange(content, list.get(i)));
@@ -289,5 +288,84 @@ public class MQTTUtils {
 		} catch (UnsupportedEncodingException e) {
 		}
 		return string;
+	}
+
+	/**
+	 * 对字符串数组过滤
+	 * @param test String
+	 * @param data InterfaceData
+	 * @return boolean
+	 */
+	public static final boolean isFilter(String test, InterfaceData data) {
+		if (data == null) return false;
+		Object[] arr = data.getDataArray();
+		if (arr == null) return false;
+		return MQTTUtils.test(test, arr);
+	}
+
+	/**
+	 * 判断标签多级父级标签的IF 状态与的关系，如果有一级为false，则返回false,其它为true
+	 * @param t Tag
+	 * @return boolean
+	 */
+	public static final boolean getParentIFCondition(Tag t) {
+		if (t == null) return true;
+		if (t instanceof MQTagIf) {
+			MQTagIf f = (MQTagIf) t;
+			if (!f.condition) return false;
+			return getParentIFCondition(f.getParent());
+		}
+		return true;
+	}
+
+	/**
+	 * 得到对象的父级标签的状态对象
+	 * @param t Tag
+	 * @return InterfaceSetState
+	 */
+	public static final InterfaceSetState getParentState(Tag t) {
+		if (t == null) {
+			System.out.println("getParentState t NUll");
+			return null;
+		}
+		if (t instanceof InterfaceSetState) return (InterfaceSetState) t;
+		if (!TagSupport.class.isAssignableFrom(t.getClass())) {
+			System.out.println("TagSupport:not isAssignableFrom");
+			return null;
+		}
+		//TagSupport e = (TagSupport) t;
+		//Tag f = e.getParent();
+		return getParentState(t.getParent());
+	}
+
+	@SuppressWarnings("unchecked")
+	public static final <T> T getParentObj(Tag t, T classzz) {
+		if (t == null) return null;
+		if (!t.getClass().isAssignableFrom(classzz.getClass())) return (T) t;
+		return getParentObj(t.getParent(), classzz);
+	}
+
+	public static final InterfaceData getParentObj(Tag t) {
+		if (t == null) return null;
+		if (t instanceof InterfaceData) return (InterfaceData) t;
+		return getParentObj(t.getParent());
+	}
+
+	public static final int getDeep(Tag t, int point) {
+		if (t == null) return point;
+		return getDeep(t.getParent(), point + 1);
+	}
+
+	public static final String getPrefix(Tag t) {
+		if (t == null) return "";
+		return getPrefix(t.getParent(), 0);
+	}
+
+	public static final String getPrefix(Tag t, int point) {
+		int len = getDeep(t.getParent(), point);
+		char[] arr = new char[len];
+		for (int i = 0; i < len; i++)
+			arr[i] = '\t';
+		return new String(arr);
 	}
 }

@@ -6,6 +6,7 @@ package com.maqiao.was.tag.table;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
@@ -20,7 +21,7 @@ import javax.servlet.jsp.tagext.Tag;
  * @version 1.0
  * @since jdk1.7
  */
-public abstract class MQAbstractTable extends MQAbstractBody implements DynamicAttributes, InterfaceData {
+public abstract class MQAbstractTable extends MQAbstractBody implements DynamicAttributes, InterfaceData, InterfaceSetState {
 
 	/**
 	 * 
@@ -30,16 +31,19 @@ public abstract class MQAbstractTable extends MQAbstractBody implements DynamicA
 	int point = 0;
 	StringBuilder sb = new StringBuilder();
 
+	/**
+	 * 状态 NORMAL continue break;
+	 */
+	EnumState isState = EnumState.NORMAL;
+
+	@SuppressWarnings("unused")
 	@Override
 	public int doStartTag() throws JspException {
-		System.out.println("Table--doStartTag:" + point);
+		if (t != null) mqTagTable = (MQTagTable) t;
 		if (list == null) list = getSelectList();
 		pageContext.getRequest().setAttribute(n3, list.size() + "");
 		if (list == null || list.size() == 0) return SKIP_BODY;
-		if (isdynamic) {
-			putAttrHtml();
-			return BodyTag.EVAL_BODY_BUFFERED;
-		}
+		if (isState == EnumState.BREAK) return BodyTag.SKIP_PAGE;
 		HttpSession session = pageContext.getSession();
 		String username = (String) session.getAttribute("username");
 		HttpServletRequest req = (HttpServletRequest) pageContext.getRequest();
@@ -48,12 +52,19 @@ public abstract class MQAbstractTable extends MQAbstractBody implements DynamicA
 		return BodyTag.EVAL_BODY_BUFFERED;
 	}
 
+	@Override
+	public void doInitBody() {
+		//System.out.println("Table--doInitBody");
+		putAttrHtml();
+	}
+
 	/**
-	 * 把参数放入到标签内容中
+	 * 把参数放入到标签内容中 当isdynamic为true时，支持${v0}
 	 */
 	void putAttrHtml() {
 		pageContext.getRequest().setAttribute(n0, point + "");
-		if (point >= list.size()) return;
+		if (!isdynamic) return;
+		if (point < 0 || point >= list.size()) return;
 		String[] array = (String[]) getDataArray();
 		putAttribute(array);
 	}
@@ -61,49 +72,43 @@ public abstract class MQAbstractTable extends MQAbstractBody implements DynamicA
 	/**
 	 * 把转换后的标签内容存入StringBuilder中
 	 */
-	void getContent() {
-		String content = getContentString(list.get(point - 1));
-		sb.append(content);
+	void putStringBuilder() {
+		String content = getContentString(list.get(point));
+		if (content != null) sb.append(content);
 	}
 
 	@Override
 	public int doAfterBody() throws JspException {
+		if (isState == EnumState.BREAK) return BodyTag.SKIP_BODY;
 		System.out.println("Table--doAfterBody:" + point + "/" + list.size());
-		if (!isdynamic) return BodyTag.SKIP_BODY;
-		if (list.size() == 0 || point > list.size()) return SKIP_BODY;
-		if (point > 0 && point <= list.size()) getContent();
-		if (point <= list.size()) {
-			putAttrHtml();
-			point++;
-		}
-		try {
-			bodyContent.clearBuffer();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return EVAL_BODY_AGAIN;// 循环
+		if (list.size() == 0 || point < 0 || point >= list.size()) return BodyTag.SKIP_BODY;
+		if (isState == EnumState.NORMAL) putStringBuilder(); /* 输出 */
+		if (isState == EnumState.CONTINUE) isState = EnumState.NORMAL;
+		point++;
+		if (point >= list.size()) return BodyTag.SKIP_BODY;
+		clean();
+		putAttrHtml();
+		return BodyTag.EVAL_BODY_AGAIN;// 循环
 	}
 
 	@Override
 	public int doEndTag() throws JspException {
-		System.out.println("Table--doEndTag");
-		if (bodyContent == null) return super.doEndTag();
-		String content;
-		if (isdynamic) {
-			write(sb.toString());
-			return super.doEndTag();
-		}
-		content = bodyContent.getString();
-		String html = MQTTUtils.contentChange(content, list).toString();
-		write(html);
+		//System.out.println("Table--doEndTag");
+		this.write(sb.toString());
+		return EVAL_PAGE;
+	}
+
+	/**
+	 * 清除缓存
+	 */
+	private void clean() {
 		try {
 			bodyContent.clearBuffer();
-			bodyContent.clearBody();
-			bodyContent.clear();
+			//bodyContent.clearBody();
+			//bodyContent.clear();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return super.doEndTag();
 	}
 
 	@Override
@@ -150,10 +155,13 @@ public abstract class MQAbstractTable extends MQAbstractBody implements DynamicA
 
 	MQTagTable mqTagTable = null;
 
-	public void setParent(Tag t) {
-		if (t != null) mqTagTable = (MQTagTable) t;
+	@Override
+	public Tag getParent() {
+		return mqTagTable;
 	}
-
+	/**
+	 * 支持{v0,"default"}
+	 */
 	private boolean isdynamic = false;
 
 	public final boolean isIsdynamic() {
@@ -222,10 +230,18 @@ public abstract class MQAbstractTable extends MQAbstractBody implements DynamicA
 	 */
 	@Override
 	public Object[] getDataArray() {
-		if (point == 0) return list.get(0);
-		int p = point - 1;
-		if (p < 0 || p >= list.size()) return null;
-		return list.get(p);
+		if (point < 0 || point >= list.size()) return null;
+		return list.get(point);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.maqiao.was.tag.table.InterfaceSetState#setState(com.maqiao.was.tag.table.EnumState)
+	 */
+	@Override
+	public void setState(EnumState state) {
+		this.isState = state;
+
 	}
 
 	/**
