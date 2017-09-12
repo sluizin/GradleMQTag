@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
-	version="2.1">
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_1.xsd"
+    version="2.1">
 	<description>MQTable 1.1 core library</description>
 	<display-name>MQTable core</display-name>
 	<tlib-version>1.1</tlib-version>
@@ -44,9 +45,14 @@
 	<tag>
 		<description>设置来源于url的数据 现只支持{v0,"default"}</description>
 		<name>url</name>
+		<dynamic-attributes>true</dynamic-attributes>
 		<tag-class>com.maqiao.was.tag.table.MQTableSourceUrl</tag-class>
 		<body-content>JSP</body-content><!-- empty scriptless -->
-		<dynamic-attributes>true</dynamic-attributes>
+		<attribute>
+			<description>设置当前记录下标变量</description>
+			<name>n0</name>
+			<required>true</required>
+		</attribute>
 		<variable>
 			<description>设置当前记录下标变量</description>
 			<name-from-attribute>n0</name-from-attribute>
@@ -54,11 +60,6 @@
 			<declare>true</declare>
 			<scope>AT_BEGIN</scope>
 		</variable>
-		<attribute>
-			<description>设置当前记录下标变量</description>
-			<name>n0</name>
-			<required>true</required>
-		</attribute>
 		<variable>
 			<description>设置总记录数变量</description>
 			<name-from-attribute>n1</name-from-attribute>

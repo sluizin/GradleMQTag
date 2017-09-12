@@ -80,7 +80,7 @@ public abstract class MQAbstractTable extends MQAbstractBody implements DynamicA
 	@Override
 	public int doAfterBody() throws JspException {
 		if (isState == EnumState.BREAK) return BodyTag.SKIP_BODY;
-		System.out.println("Table--doAfterBody:" + point + "/" + list.size());
+		//System.out.println("Table--doAfterBody:" + point + "/" + list.size());
 		if (list.size() == 0 || point < 0 || point >= list.size()) return BodyTag.SKIP_BODY;
 		if (isState == EnumState.NORMAL) putStringBuilder(); /* 输出 */
 		if (isState == EnumState.CONTINUE) isState = EnumState.NORMAL;
