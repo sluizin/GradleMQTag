@@ -41,6 +41,27 @@
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>结果列表保存对象</description>
+			<name>datasave</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>设置 是否输出(是否在提出数据时输出，如果为false，则只保存到session中)[默认为true]</description>
+			<name>isPrint</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description>保存对象位置 session或application 默认为空或session</description>
+			<name>scope</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 	</tag>
 	<tag>
 		<description>设置来源于url的数据 现只支持{v0,"default"}</description>

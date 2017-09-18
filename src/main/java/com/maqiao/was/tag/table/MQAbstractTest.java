@@ -29,8 +29,6 @@ public class MQAbstractTest extends MQAbstractBody {
 	 */
 	public void conditionAfter() {
 		boolean tt = MQTTUtils.getParentIFCondition(t);
-		System.out.println("tt:" + tt);
-		System.out.println("tt:" + this.toString());
 		condition = tt;
 	}
 

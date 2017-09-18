@@ -6,7 +6,6 @@ package com.maqiao.was.tag.table;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTag;
 
@@ -59,14 +58,15 @@ public class MQTagIf extends MQAbstractTest {
 		try {
 			while ((line = r.readLine()) != null) /* { */
 				b.append(line);
-				/* b.append('\n');} */
+			/* b.append('\n');} */
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return b.toString();
 		/*
-		if(content.length()==0)return content;
-		return content.substring(0,content.length()-1);*/
+		 * if(content.length()==0)return content;
+		 * return content.substring(0,content.length()-1);
+		 */
 	}
 
 	@Override

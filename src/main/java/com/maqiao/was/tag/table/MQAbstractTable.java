@@ -6,8 +6,7 @@ package com.maqiao.was.tag.table;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
@@ -27,8 +26,17 @@ public abstract class MQAbstractTable extends MQAbstractBody implements DynamicA
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 结果列表
+	 */
 	List<String[]> list = null;
+	/**
+	 * 循环下标
+	 */
 	int point = 0;
+	/**
+	 * 输出结果html
+	 */
 	StringBuilder sb = new StringBuilder();
 
 	/**
@@ -36,17 +44,26 @@ public abstract class MQAbstractTable extends MQAbstractBody implements DynamicA
 	 */
 	EnumState isState = EnumState.NORMAL;
 
-	@SuppressWarnings("unused")
 	@Override
 	public int doStartTag() throws JspException {
 		if (t != null) mqTagTable = (MQTagTable) t;
-		if (list == null) list = getSelectList();
+		if (mqTagTable == null) return BodyTag.SKIP_PAGE;
+		if (list == null) {
+			list = getCacheList();
+			if (list == null) {
+				list = getSelectList();
+				saveSession(list);
+			}
+		} else {
+			System.out.println("init session:" + list.size());
+		}
 		pageContext.getRequest().setAttribute(n3, list.size() + "");
 		if (list == null || list.size() == 0) return SKIP_BODY;
+		if (!mqTagTable.isPrint) return BodyTag.SKIP_BODY;
 		if (isState == EnumState.BREAK) return BodyTag.SKIP_PAGE;
-		HttpSession session = pageContext.getSession();
-		String username = (String) session.getAttribute("username");
-		HttpServletRequest req = (HttpServletRequest) pageContext.getRequest();
+		//HttpSession session = pageContext.getSession();
+		//String username = (String) session.getAttribute("username");
+		//HttpServletRequest req = (HttpServletRequest) pageContext.getRequest();
 		//返回BodyTag.EVAL_BODY_BUFFERED，表示输出标签体内容
 		//返回Tag.SKIP_BODY,表示不输出内容
 		return BodyTag.EVAL_BODY_BUFFERED;
@@ -79,11 +96,20 @@ public abstract class MQAbstractTable extends MQAbstractBody implements DynamicA
 
 	@Override
 	public int doAfterBody() throws JspException {
+		if (!mqTagTable.isPrint) return BodyTag.SKIP_BODY;
 		if (isState == EnumState.BREAK) return BodyTag.SKIP_BODY;
 		//System.out.println("Table--doAfterBody:" + point + "/" + list.size());
 		if (list.size() == 0 || point < 0 || point >= list.size()) return BodyTag.SKIP_BODY;
-		if (isState == EnumState.NORMAL) putStringBuilder(); /* 输出 */
-		if (isState == EnumState.CONTINUE) isState = EnumState.NORMAL;
+		switch (isState) {
+		case NORMAL:
+			putStringBuilder(); /* 输出 */
+			break;
+		case CONTINUE:
+			isState = EnumState.NORMAL;
+			break;
+		default:
+			putStringBuilder(); /* 输出 */
+		}
 		point++;
 		if (point >= list.size()) return BodyTag.SKIP_BODY;
 		clean();
@@ -159,6 +185,7 @@ public abstract class MQAbstractTable extends MQAbstractBody implements DynamicA
 	public Tag getParent() {
 		return mqTagTable;
 	}
+
 	/**
 	 * 支持{v0,"default"}
 	 */
@@ -203,9 +230,56 @@ public abstract class MQAbstractTable extends MQAbstractBody implements DynamicA
 		}
 	}
 
+	/**
+	 * 把list保存到session中
+	 * @param list List<String[]>
+	 */
+	private void saveSession(List<String[]> list) {
+		if (mqTagTable.datasave == null || mqTagTable.datasave.length() == 0) return;
+		String key = MQTTConst.ACC_SaveSessionKeyHead + mqTagTable.datasave;
+		if (mqTagTable.scope == null || mqTagTable.scope.length() == 0 || "session".equals(mqTagTable.scope)) {
+			HttpSession session = pageContext.getSession();
+			session.setAttribute(key, list);
+		} else {
+			ServletContext application = pageContext.getServletContext();
+			application.setAttribute(key, list);
+		}
+	}
+
+	/**
+	 * 从session提取数据集
+	 * @return List<String[]>
+	 */
+	@SuppressWarnings("unchecked")
+	private List<String[]> getCacheList() {
+		if (mqTagTable.datasave == null || mqTagTable.datasave.length() == 0) return null;
+		Object obj = null;
+		String key = MQTTConst.ACC_SaveSessionKeyHead + mqTagTable.datasave;
+		if (mqTagTable.scope == null || mqTagTable.scope.length() == 0 || "session".equals(mqTagTable.scope)) {
+			HttpSession session = pageContext.getSession();
+			obj = session.getAttribute(key);
+		} else {
+			ServletContext application = pageContext.getServletContext();
+			obj = application.getAttribute(key);
+		}
+		if (obj == null) return null;
+		return (List<String[]>) obj;
+	}
+	/**
+	 * 下标
+	 */
 	private String n0 = "index";
+	/**
+	 * 总数
+	 */
 	private String n1 = "countdata";
+	/**
+	 * 过滤后的总数
+	 */
 	private String n2 = "countfilter";
+	/**
+	 * 当前页的信息量
+	 */
 	private String n3 = "countcurrent";
 
 	public final void setN0(String n0) {

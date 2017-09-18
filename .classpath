@@ -8,5 +8,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="lib" path="E:/Service/Tomcat 7.0/lib/jsp-api.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

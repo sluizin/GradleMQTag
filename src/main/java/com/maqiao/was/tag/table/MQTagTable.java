@@ -33,6 +33,18 @@ public class MQTagTable extends BodyTagSupport {
 	 * 范围 0,1,5,8,9,12 或 1,5,7,9-15,20-25,5-2
 	 */
 	String range = null;
+	/**
+	 * 结果列表保存对象
+	 */
+	String datasave = null;
+	/**
+	 * 是否输出列表，如果为true，则为输出页面，如果为false，则跳过输出，只保存到session中，默认为true
+	 */
+	boolean isPrint = true;
+	/**
+	 * 保存对象位置 默认session 或application
+	 */
+	String scope = null;
 
 	//当遇到标签时就会执行这个方法
 	@Override
@@ -46,7 +58,7 @@ public class MQTagTable extends BodyTagSupport {
 	 * @return boolean
 	 */
 	public boolean isFilter(String... array) {
-		return MQTTUtils.test(test,array);
+		return MQTTUtils.test(test, array);
 	}
 
 	public final void setTest(String test) {
@@ -79,6 +91,34 @@ public class MQTagTable extends BodyTagSupport {
 
 	public final String getTest() {
 		return test;
+	}
+
+	public void setDatasave(String datasave) {
+		this.datasave = datasave;
+	}
+
+	public boolean isPrint() {
+		return isPrint;
+	}
+
+	public void setPrint(boolean isPrint) {
+		this.isPrint = isPrint;
+	}
+
+	public void setIsPrint(boolean isPrint) {
+		this.isPrint = isPrint;
+	}
+
+	public String getDatasave() {
+		return datasave;
+	}
+
+	public String getScope() {
+		return scope;
+	}
+
+	public void setScope(String scope) {
+		this.scope = scope;
 	}
 
 }

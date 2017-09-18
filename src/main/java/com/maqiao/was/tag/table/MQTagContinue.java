@@ -31,7 +31,6 @@ public class MQTagContinue extends MQAbstractTest {
 	@Override
 	public int doEndTag() throws JspException {
 		condition = getConditionTest();
-		//System.out.println(MQTTUtils.getPrefix(this)+"Continue doEndTag:" + this.toString());
 		if (!condition) return SKIP_BODY;
 		InterfaceSetState e = MQTTUtils.getParentState(t);
 		if (e == null) return SKIP_BODY;
