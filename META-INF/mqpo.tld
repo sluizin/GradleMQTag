@@ -309,6 +309,13 @@
 			<type>int</type>
 		</attribute>
 		<attribute>
+			<description>设置 容错率</description>
+			<name>errorlevel</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>int</type>
+		</attribute>
+		<attribute>
 			<description>设置 多个颜色字符组串以 | 连接</description>
 			<name>colorarray</name>
 			<required>false</required>

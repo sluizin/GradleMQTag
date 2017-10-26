@@ -5,14 +5,13 @@ package com.maqiao.was.tag.table;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTag;
-import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
  * @author Sunjian
  * @version 1.0
  * @since jdk1.7
  */
-public class MQTagTable extends BodyTagSupport {
+public class MQTagTable extends MQAbstractBody {
 	/**
 	 * 
 	 */
@@ -41,10 +40,6 @@ public class MQTagTable extends BodyTagSupport {
 	 * 是否输出列表，如果为true，则为输出页面，如果为false，则跳过输出，只保存到session中，默认为true
 	 */
 	boolean isPrint = true;
-	/**
-	 * 保存对象位置 默认session 或application
-	 */
-	String scope = null;
 
 	//当遇到标签时就会执行这个方法
 	@Override
@@ -111,14 +106,6 @@ public class MQTagTable extends BodyTagSupport {
 
 	public String getDatasave() {
 		return datasave;
-	}
-
-	public String getScope() {
-		return scope;
-	}
-
-	public void setScope(String scope) {
-		this.scope = scope;
 	}
 
 }

@@ -6,8 +6,6 @@ package com.maqiao.was.tag.table;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyContent;
@@ -237,13 +235,7 @@ public abstract class MQAbstractTable extends MQAbstractBody implements DynamicA
 	private void saveSession(List<String[]> list) {
 		if (mqTagTable.datasave == null || mqTagTable.datasave.length() == 0) return;
 		String key = MQTTConst.ACC_SaveSessionKeyHead + mqTagTable.datasave;
-		if (mqTagTable.scope == null || mqTagTable.scope.length() == 0 || "session".equals(mqTagTable.scope)) {
-			HttpSession session = pageContext.getSession();
-			session.setAttribute(key, list);
-		} else {
-			ServletContext application = pageContext.getServletContext();
-			application.setAttribute(key, list);
-		}
+		this.valueSave(key, list);
 	}
 
 	/**
@@ -255,16 +247,11 @@ public abstract class MQAbstractTable extends MQAbstractBody implements DynamicA
 		if (mqTagTable.datasave == null || mqTagTable.datasave.length() == 0) return null;
 		Object obj = null;
 		String key = MQTTConst.ACC_SaveSessionKeyHead + mqTagTable.datasave;
-		if (mqTagTable.scope == null || mqTagTable.scope.length() == 0 || "session".equals(mqTagTable.scope)) {
-			HttpSession session = pageContext.getSession();
-			obj = session.getAttribute(key);
-		} else {
-			ServletContext application = pageContext.getServletContext();
-			obj = application.getAttribute(key);
-		}
+		obj = this.valueGet(key);
 		if (obj == null) return null;
 		return (List<String[]>) obj;
 	}
+
 	/**
 	 * 下标
 	 */

@@ -7,7 +7,7 @@ package com.maqiao.was.tag.table;
  * 允许设置流程控制
  * @author Sunjian
  * @version 1.0
- * @since jdk1.7
+ * @since jdk1.8
  */
 public interface InterfaceSetState {
 	/**

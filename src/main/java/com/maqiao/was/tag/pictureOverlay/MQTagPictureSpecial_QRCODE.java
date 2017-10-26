@@ -14,6 +14,7 @@ public class MQTagPictureSpecial_QRCODE extends MQTagPicture {
 	String url = null;
 	int margin = MQPOConst.ACC_NULL;
 	int style = MQPOConst.ACC_NULL;
+	int errorlevel = MQPOConst.ACC_NULL;
 	String colorarray = null;
 
 	/*
@@ -31,6 +32,7 @@ public class MQTagPictureSpecial_QRCODE extends MQTagPicture {
 		getHtmlInputElement(sb, "sp.qrcode.url", url);
 		getHtmlInputElement(sb, "sp.qrcode.margin", margin);
 		getHtmlInputElement(sb, "sp.qrcode.style", style);
+		getHtmlInputElement(sb, "sp.qrcode.errorlevel", errorlevel);
 		getHtmlInputElement(sb, "sp.qrcode.colorarray", colorarray);
 		return sb.toString();
 	}
@@ -81,6 +83,14 @@ public class MQTagPictureSpecial_QRCODE extends MQTagPicture {
 
 	public final void setColorarray(String colorarray) {
 		this.colorarray = colorarray;
+	}
+
+	public int getErrorlevel() {
+		return errorlevel;
+	}
+
+	public void setErrorlevel(int errorlevel) {
+		this.errorlevel = errorlevel;
 	}
 
 }

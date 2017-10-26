@@ -350,6 +350,7 @@ public class MQTTUtils {
 		if (t instanceof InterfaceData) return (InterfaceData) t;
 		return getParentObj(t.getParent());
 	}
+
 	/**
 	 * 得到标签的深度
 	 * @param t Tag
@@ -360,6 +361,7 @@ public class MQTTUtils {
 		if (t == null) return point;
 		return getDeep(t.getParent(), point + 1);
 	}
+
 	/**
 	 * 得到标签的深度
 	 * @param t Tag
@@ -369,7 +371,6 @@ public class MQTTUtils {
 		if (t == null) return 0;
 		return getDeep(t.getParent(), 0);
 	}
-
 
 	public static final String getPrefix(Tag t) {
 		if (t == null) return "";
