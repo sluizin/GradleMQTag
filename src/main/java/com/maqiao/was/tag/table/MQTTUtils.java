@@ -230,7 +230,7 @@ public class MQTTUtils {
 			String returnCode = new Integer(urlcon.getResponseCode()).toString();
 			if (!returnCode.startsWith("2")) return null;
 			InputStream is = urlcon.getInputStream();
-			BufferedReader buffer = new BufferedReader(new InputStreamReader(is));
+			BufferedReader buffer = new BufferedReader(new InputStreamReader(is,"utf-8"));
 			String l = null;
 			while ((l = buffer.readLine()) != null) {
 				if (delnotes && l.indexOf('#') >= 0) l = l.substring(0, l.indexOf('#'));
@@ -247,14 +247,13 @@ public class MQTTUtils {
 	}
 
 	/**
-	 * 把字符串转成中文
+	 * 把字符串转成中文  URLDecoder.decode
 	 * @param value String
 	 * @return String
 	 */
 	static final String changeUtf8(String value) {
 		if (value == null || value.length() == 0) return value;
 		try {
-			//if (MQEnvParaVariable.ACC_ENV == Env.DEV) return value;
 			return URLDecoder.decode(value, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			return value;

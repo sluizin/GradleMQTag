@@ -146,6 +146,13 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>设置 是否使用URLDecoder.decode</description>
+			<name>isdecode</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
 			<description>设置 是否自动换编码</description>
 			<name>codechange</name>
 			<required>false</required>

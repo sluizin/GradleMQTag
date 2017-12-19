@@ -3,8 +3,6 @@
  */
 package com.maqiao.was.tag.table;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +17,7 @@ public class MQTableSourceUrl extends MQAbstractTable {
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * 远程文件名，一般为 http://xxxx/yy.txt
+	 * 远程文件名，一般为 http://xxxx/yy.txt 或 index.txt
 	 */
 	private String url = null;
 	/**
@@ -34,6 +32,8 @@ public class MQTableSourceUrl extends MQAbstractTable {
 	 * 是否需要修改信息编码 "iso-8859-1 to utf-8"
 	 */
 	private String codechange = null;
+	
+	private boolean isdecode = false;
 
 	/*
 	 * (non-Javadoc)
@@ -42,16 +42,19 @@ public class MQTableSourceUrl extends MQAbstractTable {
 	@Override
 	public List<String[]> getDataTable() {
 		try {
-			String content = MQTTUtils.readFile(new URL(url), "\n", false).toString();
-			if (codechange == null || codechange.length() == 0) content = MQTTUtils.changeUtf8(content);
-			else content = MQTTUtils.autoChange(content, codechange);
+			/* new URL(url) */
+			String content = MQTTUtils.readFile(MQURL.getURL(request, url), "\n", false).toString();
+			//System.out.println("content:"+content);
+			if(isdecode)content = MQTTUtils.changeUtf8(content);
+			if (codechange != null && codechange.length() > 0)  content = MQTTUtils.autoChange(content, codechange);
 			if (content == null || content.length() == 0) return null;
+			//System.out.println("content:"+content);
 			String[] array = content.split(linesign);
 			List<String[]> list = new ArrayList<String[]>(array.length);
 			for (int i = 0; i < array.length; i++)
 				list.add(array[i].split(columnsign));
 			return list;
-		} catch (MalformedURLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -87,6 +90,20 @@ public class MQTableSourceUrl extends MQAbstractTable {
 
 	public final void setCodechange(String codechange) {
 		this.codechange = codechange;
+	}
+
+	public boolean isDecode() {
+		return isdecode;
+	}
+
+	public void setDecode(boolean isDecode) {
+		this.isdecode = isDecode;
+	}
+	public void setIsdecode(boolean isDecode) {
+		this.isdecode = isDecode;
+	}
+	public void setisdecode(boolean isDecode) {
+		this.isdecode = isDecode;
 	}
 
 

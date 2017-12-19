@@ -6,6 +6,8 @@ package com.maqiao.was.tag.table;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.ServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyContent;
@@ -19,7 +21,7 @@ import javax.servlet.jsp.tagext.Tag;
  * @since jdk1.7
  */
 public abstract class MQAbstractTable extends MQAbstractBody implements DynamicAttributes, InterfaceData, InterfaceSetState {
-
+	ServletRequest request=null;
 	/**
 	 * 
 	 */
@@ -44,6 +46,9 @@ public abstract class MQAbstractTable extends MQAbstractBody implements DynamicA
 
 	@Override
 	public int doStartTag() throws JspException {
+		if(pageContext!=null) {
+			request=pageContext.getRequest();
+		}
 		if (t != null) mqTagTable = (MQTagTable) t;
 		if (mqTagTable == null) return BodyTag.SKIP_PAGE;
 		if (list == null) {
@@ -55,7 +60,7 @@ public abstract class MQAbstractTable extends MQAbstractBody implements DynamicA
 		} else {
 			System.out.println("init session:" + list.size());
 		}
-		pageContext.getRequest().setAttribute(n3, list.size() + "");
+		if(request!=null)request.setAttribute(n3, list.size() + "");
 		if (list == null || list.size() == 0) return SKIP_BODY;
 		if (!mqTagTable.isPrint) return BodyTag.SKIP_BODY;
 		if (isState == EnumState.BREAK) return BodyTag.SKIP_PAGE;
@@ -146,6 +151,7 @@ public abstract class MQAbstractTable extends MQAbstractBody implements DynamicA
 	 */
 	private List<String[]> getFilterList() {
 		List<String[]> list = getDataTable();
+		if(list==null)return new ArrayList<String[]>();
 		pageContext.getRequest().setAttribute(n1, list.size() + "");
 		for (int i = 0; i < list.size(); i++)
 			if (!mqTagTable.isFilter(list.get(i))) list.remove(i--);
