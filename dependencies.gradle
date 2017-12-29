@@ -7,9 +7,6 @@ ext{
 	}
 	dependencies {
 	    def springVersion = '3.1.2.RELEASE' 
-	    compile files('C:///Program Files///Java///jre1.8.0_101///lib///rt.jar')
-	    compile files('C:///Program Files///Java///jre1.8.0_101///lib///core.jar')
-	    compile files('D:///Eclipse///eclipse-luna///Workspaces///GradleEnvParaVariable///build///libs///GradleEnvParaVariable-1.0.jar')
 	    compile(
 		'org.slf4j:slf4j-api:1.7.1',
 	    'jstl:jstl:1.2',   
@@ -19,6 +16,9 @@ ext{
 	    
 	    'javax.servlet.jsp:jsp-api:2.0',
 	    'javax.el:el-api:2.2',
+	    /* freemarker */
+	    'org.freemarker:freemarker:2.3.19',    
+	    "javax.servlet.jsp:javax.servlet.jsp-api:2.3.2-b02",
 	    
 		/* spring */
 	    "org.springframework:spring-core:${springVersion}",
