@@ -16,10 +16,7 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
 import com.maqiao.was.fmktag.table.dbtxt.BeanLine;
-import com.maqiao.was.fmktag.table.dbtxt.DbtxtUtils;
-
 import freemarker.core.Environment;
 import freemarker.template.SimpleScalar;
 import freemarker.template.TemplateBooleanModel;
@@ -33,23 +30,13 @@ import freemarker.template.WrappingTemplateModel;
 
 /**
  * * FreeMarker 自定义标签实现输出内容体。
- * 参数:
- * type: <br>
- * 0:本地工程下的目录资源[与index.html同级]<br>
- * 1:外部资源路径文件[http://static.99114.com/static/zhuanti/XXXX/db/YYYY.txt] <br>
- * sourcefile: 资源文件路径与文件名 <br>
  * @author Sunjian
  * @version 1.0
  * @since jdk1.7
  */
 @SuppressWarnings("rawtypes")
 public final class SjFreemarkerActive implements TemplateDirectiveModel {
-	private static final String PARAM_Type = "type";
-	private static final String PARAM_Sourcefile = "sourcefile";
-	private static final String PARAM_Autochange = "autochange";
-	private static final String PARAM_Readutf8 = "readutf8";
 	private static final String PARAM_OrderByExp = "^[\\s]?(v\\d+)[\\s]?([\\s]+((desc)|(asc))[\\s]?)?$";
-	private static final String PARAM_OrderBy = "orderby";
 
 	/*
 	 * (non-Javadoc)
@@ -58,28 +45,9 @@ public final class SjFreemarkerActive implements TemplateDirectiveModel {
 	 */
 	@Override
 	public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body) throws TemplateException, IOException {
-		int type = -1;
-		String sourcefile = "";
-		String autochange = "";
-		boolean isReadUtf8 = false;
-		String orderby = "";
-
-		/* 来源类型 0:本地绝对地址 1:网络地址 */
-		type = getInt(params, PARAM_Type);
-
-		/* 数据源链接 */
-		sourcefile = getString(params, PARAM_Sourcefile);
-
-		/* 是否进行编码转换 */
-		autochange = getString(params, PARAM_Autochange);
-
-		/* 读出是否进行utf-8编码 */
-		isReadUtf8 = getBoolean(params, PARAM_Readutf8);
-
-		/* 排序 */
-		orderby = getString(params, PARAM_OrderBy);
+		String format=getString(params, "format");
 		/* 初步判断 */
-		if (type == -1 || sourcefile == null || sourcefile.length() == 0) {
+		if (format == null || format.length() == 0) {
 			body.render(env.getOut());
 			return;
 		}
@@ -87,6 +55,15 @@ public final class SjFreemarkerActive implements TemplateDirectiveModel {
 		if (body == null) throw new RuntimeException("标签内部至少要加一个空格 missing body");
 		List<BeanLine> list = new ArrayList<BeanLine>();
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		if(format==null || format.length()==0 || "text".equals(format)) {
+			DBCharacterText dbCharachterText=new DBCharacterText(request,params);
+			list=dbCharachterText.getList();
+		}else {
+			
+			
+			
+		}
+		/*
 		switch (type) {
 		case 0:
 			final String sourceDBPath = request.getSession().getServletContext().getRealPath("") + "/" + sourcefile;
@@ -98,8 +75,10 @@ public final class SjFreemarkerActive implements TemplateDirectiveModel {
 			break;
 		default:
 			break;
-		}
+		}*/
 		if (list != null && list.size() > 0) {
+			/* 排序 */
+			String orderby = getString(params, "orderby");
 			if (orderby != null && orderby.length() > 0 && orderby.matches(PARAM_OrderByExp)) list = orderby(list, orderby);
 			for(int i=0,len=list.size();i<len;i++)
 				list.get(i).setRequest(request);
