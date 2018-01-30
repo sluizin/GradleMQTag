@@ -21,6 +21,9 @@ import freemarker.template.TemplateNumberModel;
  */
 @SuppressWarnings("rawtypes")
 public abstract class DBAbstract {
+	/* 属性列如果为小于0则无，如果大于等于，则某行记录为属性列 */
+	int attrcolumn = -1;
+
 	/**
 	 * 得到结果数据
 	 * @return List<BeanLine>
@@ -31,12 +34,18 @@ public abstract class DBAbstract {
 	Map params;
 	/** request */
 	HttpServletRequest request;
+	/**
+	 * 初始化
+	 */
+	protected void Init() {
+		attrcolumn = getInt("attrcolumn");
+	}
 
 	/**
 	 * @param key String
 	 * @return Object
 	 */
-	Object getParams(final String key) {
+	protected Object getParams(final String key) {
 		if (params == null || key == null) return null;
 		Iterator paramIter = params.entrySet().iterator();
 		while (paramIter.hasNext()) {
@@ -53,7 +62,7 @@ public abstract class DBAbstract {
 	 * @param key String
 	 * @return String
 	 */
-	String getString(String key) {
+	protected String getString(String key) {
 		Object obj = getParams(key);
 		if (obj == null) return null;
 		String result = ((SimpleScalar) obj).getAsString();
@@ -66,7 +75,7 @@ public abstract class DBAbstract {
 	 * @param key String
 	 * @return boolean
 	 */
-	boolean getBoolean(String key) {
+	protected boolean getBoolean(String key) {
 		Object obj = getParams(key);
 		if (obj == null) return false;
 		try {
@@ -82,7 +91,7 @@ public abstract class DBAbstract {
 	 * @param key String
 	 * @return int
 	 */
-	int getInt(String key) {
+	protected int getInt(String key) {
 		Object obj = getParams(key);
 		if (obj == null) return -1;
 		try {

@@ -17,7 +17,11 @@ ext{
 	    'javax.servlet.jsp:jsp-api:2.0',
 	    'javax.el:el-api:2.2',
 	    /* freemarker */
-	    'org.freemarker:freemarker:2.3.19',    
+	    'org.freemarker:freemarker:2.3.19', 
+	    /* fastjson */
+	    'com.alibaba:fastjson:1.2.29',
+	    /* dom4j */
+	    'dom4j:dom4j:1.6.1',
 	    "javax.servlet.jsp:javax.servlet.jsp-api:2.3.2-b02",
 	    
 		/* spring */

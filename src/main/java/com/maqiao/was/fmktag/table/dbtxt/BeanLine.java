@@ -3,13 +3,11 @@
  */
 package com.maqiao.was.fmktag.table.dbtxt;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
-import com.maqiao.was.fmktag.table.Consts;
 
 /**
  * @author Sunjian
@@ -18,31 +16,10 @@ import com.maqiao.was.fmktag.table.Consts;
  */
 public final class BeanLine {
 	HttpServletRequest request;
-	/** v最大值 如 v20 maxPointI=20 */
-	public static final int maxPointI = 20;
 	/** 在freemarker中的html里作属性标志时使用，属性值[FieldName]替换 */
 	static final String ACC_fmHtml_sign = "{@FieldName}";
-	String v0 = "";
-	String v1 = "";
-	String v2 = "";
-	String v3 = "";
-	String v4 = "";
-	String v5 = "";
-	String v6 = "";
-	String v7 = "";
-	String v8 = "";
-	String v9 = "";
-	String v10 = "";
-	String v11 = "";
-	String v12 = "";
-	String v13 = "";
-	String v14 = "";
-	String v15 = "";
-	String v16 = "";
-	String v17 = "";
-	String v18 = "";
-	String v19 = "";
-	String v20 = "";
+	/** value值串 */
+	List<String> list = new ArrayList<String>();
 
 	public BeanLine() {
 
@@ -55,18 +32,40 @@ public final class BeanLine {
 	public BeanLine(String... splitStr) {
 		set(splitStr);
 	}
-
 	/**
-	 * 自省，有多少个 v 单元
+	 * 构造(赋值)
+	 * @param parr com.alibaba.fastjson.JSONArray
+	 */
+	public BeanLine(com.alibaba.fastjson.JSONArray parr) {
+		set(parr);
+	}
+	/**
+	 * 长度
 	 * @return int
 	 */
 	public final int length() {
-		int sort = 0;
-		Class<?> userCla = (Class<?>) this.getClass();
-		Field[] fs = userCla.getFields();
-		for (int ii = 0, len = fs.length; ii < len; ii++)
-			if (fs[ii].getName().indexOf("v") == 0) sort++;
-		return sort;
+		return list.size();
+	}
+
+	/**
+	 * 依次向BeanLine对象中的各属性赋值
+	 * @param parr com.alibaba.fastjson.JSONArray
+	 */
+	public final void set(com.alibaba.fastjson.JSONArray parr) {
+		Object[] arrs = parr.toArray();
+		for (int i = 0; i < arrs.length; i++)
+			list.add(arrs[i].toString());
+	}
+
+	/**
+	 * 依次向BeanLine对象中的各属性赋值 以关键字对字符串进行分组赋值
+	 * @param str String
+	 * @param splitKey String
+	 */
+	public final void setSplit(String str, String splitKey) {
+		if (str == null || str.length() == 0 || splitKey == null) return;
+		String[] splitStr = str.split(splitKey);
+		set(splitStr);
 	}
 
 	/**
@@ -74,42 +73,14 @@ public final class BeanLine {
 	 * @param splitStr String[]
 	 */
 	public final void set(String... splitStr) {
-		final int len = splitStr.length;
-		/*
-		 * final int length = this.length();
-		 * int maxchange = len > length ? length : len;
-		 * if(maxchange==0)return;
-		 * Class<?> userCla = (Class<?>) this.getClass();
-		 * Field[] fs = userCla.getDeclaredFields();
-		 * try {
-		 * for(int i=0;i<maxchange;i++){
-		 * Field f = fs[i];
-		 * f.setAccessible(true);
-		 * f.set(this, splitStr[i]);
-		 * }
-		 * } catch (IllegalArgumentException e) {
-		 * LogMgr.writeErrorLog(e);
-		 * } catch (IllegalAccessException e) {
-		 * LogMgr.writeErrorLog(e);
-		 * }
-		 */
-
-		for (int i = 0; i < len && i <= maxPointI; i++) {
-			set(i, splitStr[i]);
-		}
-		/*
-		 * if (len > 0) v0 = splitStr[0];
-		 * if (len > 1) v1 = splitStr[1];
-		 * if (len > 2) v2 = splitStr[2];
-		 * if (len > 3) v3 = splitStr[3];
-		 * if (len > 4) v4 = splitStr[4];
-		 * if (len > 5) v5 = splitStr[5];
-		 * if (len > 6) v6 = splitStr[6];
-		 * if (len > 7) v7 = splitStr[7];
-		 * if (len > 8) v8 = splitStr[8];
-		 * if (len > 9) v9 = splitStr[9];
-		 * if (len > 10) v10 = splitStr[10];
-		 */
+		list = Arrays.asList(splitStr);
+	}
+	/**
+	 * 向list里添加单元
+	 * @param str String
+	 */
+	public final void setUnit(String str) {
+		list.add(str);
 	}
 
 	/**
@@ -125,40 +96,12 @@ public final class BeanLine {
 	public String SjFMBeanLineHtml(final String htmlBeanLine, final BeanLine e) {
 		if (htmlBeanLine == null || htmlBeanLine.length() == 0) return "";
 		String htmlStr = htmlBeanLine;
-		Class<?> classzz = (Class<?>) this.getClass();
-		Field[] fields = classzz.getFields();
-		try {
-			for (int i = 0, len = fields.length; i < len; i++) {
-				Field f = fields[i];
-				f.setAccessible(true);
-				Object obj = f.get(e);
-				String fieldsign = ACC_fmHtml_sign.replace("FieldName", f.getName());
-				htmlStr = htmlStr.replace(fieldsign, (obj == null) ? "" : obj.toString());
-			}
-		} catch (Exception ef) {
-		}
+		for (int i = 0, len = list.size(); i < len; i++) {
+			String fieldsign = ACC_fmHtml_sign.replace("FieldName", "v" + i);
+			htmlStr = htmlStr.replace(fieldsign, list.get(i));
 
+		}
 		return htmlStr;
-	}
-
-	/**
-	 * 给指定v 位置赋值
-	 * @param i int
-	 * @param obj Object
-	 * @return boolean
-	 */
-	public boolean set(int i, Object obj) {
-		if (!isSafeIndex(maxPointI)) {
-			new Exception("Define out of range!!!");
-			return false;
-		}
-		try {
-			long Offset = Consts.UNSAFE.objectFieldOffset(BeanLine.class.getDeclaredField("v" + i));
-			Consts.UNSAFE.putObject(this, Offset, obj);
-			return true;
-		} catch (Exception e) {
-		}
-		return false;
 	}
 
 	/**
@@ -167,7 +110,7 @@ public final class BeanLine {
 	 * @return boolean
 	 */
 	public boolean isSafeIndex(int index) {
-		return 0 <= index && index <= maxPointI;
+		return 0 <= index && index <= list.size();
 	}
 
 	/**
@@ -176,20 +119,10 @@ public final class BeanLine {
 	 * @return String
 	 */
 	public String get(int i) {
-		Class<?> userCla = (Class<?>) this.getClass();
-		Field[] fs = userCla.getDeclaredFields();
-		final String v = "v" + i;
-		for (int ii = 0, len = fs.length; ii < len; ii++) {
-			Field f = fs[ii];
-			if (!f.getName().equals(v)) continue;
-			f.setAccessible(true); /* 设置些属性是可以访问的 */
-			try {
-				return (String) f.get(this);
-			} catch (Exception e) {
-			}
-		}
-		return null;
+		return list.get(i);
 	}
+
+	private static final char jsonVkey = '"';
 
 	/**
 	 * 把BeanLine对象转成Json，并是否过滤空属性(null || "")
@@ -198,32 +131,22 @@ public final class BeanLine {
 	 */
 	public String exportJsonObject(final boolean delSpace) {
 		StringBuilder sb = new StringBuilder(20);
-		Class<?> userCla = (Class<?>) this.getClass();
-		Field[] fs = userCla.getDeclaredFields();
-		try {
-			String fieldString = null;
-			int jsoni = 0;
-			sb.append('{');
-			for (int i = 0, len = fs.length; i < len; i++) {
-				Field f = fs[i];
-				f.setAccessible(true);
-				fieldString = (String) f.get(this);
-				if (delSpace && (fieldString == null || fieldString.length() == 0)) continue;
-				if (jsoni > 0) sb.append(',');
-				jsoni++;
-				sb.append(f.getName());
-				sb.append(':');
-				if (fieldString == null) {
-					sb.append("null");
-				} else {
-					sb.append('"');
-					sb.append(fieldString);
-					sb.append('"');
-				}
+		if (list.size() == 0) return "";
+		sb.append('{');
+		for (int i = 0, len = list.size(); i < len; i++) {
+			String value = list.get(i);
+			if (delSpace && (value == null || value.length() == 0)) continue;
+			sb.append("v" + i);
+			sb.append(':');
+			if (value == null) {
+				sb.append("null");
+			} else {
+				sb.append(jsonVkey);
+				sb.append(value);
+				sb.append(jsonVkey);
 			}
-			sb.append('}');
-		} catch (Exception e) {
 		}
+		sb.append('}');
 		if (sb.length() < 3) return "";
 		return sb.toString();
 	}
@@ -234,192 +157,13 @@ public final class BeanLine {
 	 * @return String[]
 	 */
 	public final String[] getTransverseIndexOf(final String key) {
-		List<String> sb = new ArrayList<String>(4);
-		try {
-			Class<?> userCla = (Class<?>) this.getClass();
-			Field[] fs = userCla.getDeclaredFields();
-			for (int i = 0, len = fs.length; i < len; i++) {
-				Field f = fs[i];
-				/* 如果是静态属性则跳转 */
-				if (((f.getModifiers() & java.lang.reflect.Modifier.STATIC) == java.lang.reflect.Modifier.STATIC)) continue;
-				f.setAccessible(true);
-				Object obj = f.get(this);
-				if (obj == null || !(obj instanceof String)) continue;
-				String value = (String) obj;
-				if (value.indexOf(key) > -1) sb.add(value);
-			}
-		} catch (Exception e) {
+		List<String> newList = new ArrayList<String>(4);
+		for (int i = 0, len = list.size(); i < len; i++) {
+			String value = list.get(i);
+			if (value != null && value.indexOf(key) > -1) newList.add(value);
 		}
 		String[] t = {};
-		return sb.toArray(t);
-	}
-
-	public final String getV0() {
-		return v0;
-	}
-
-	public final void setV0(String v0) {
-		this.v0 = v0;
-	}
-
-	public final String getV1() {
-		return v1;
-	}
-
-	public final void setV1(String v1) {
-		this.v1 = v1;
-	}
-
-	public final String getV2() {
-		return v2;
-	}
-
-	public final void setV2(String v2) {
-		this.v2 = v2;
-	}
-
-	public final String getV3() {
-		return v3;
-	}
-
-	public final void setV3(String v3) {
-		this.v3 = v3;
-	}
-
-	public final String getV4() {
-		return v4;
-	}
-
-	public final void setV4(String v4) {
-		this.v4 = v4;
-	}
-
-	public final String getV5() {
-		return v5;
-	}
-
-	public final void setV5(String v5) {
-		this.v5 = v5;
-	}
-
-	public final String getV6() {
-		return v6;
-	}
-
-	public final void setV6(String v6) {
-		this.v6 = v6;
-	}
-
-	public final String getV7() {
-		return v7;
-	}
-
-	public final void setV7(String v7) {
-		this.v7 = v7;
-	}
-
-	public final String getV8() {
-		return v8;
-	}
-
-	public final void setV8(String v8) {
-		this.v8 = v8;
-	}
-
-	public final String getV9() {
-		return v9;
-	}
-
-	public final void setV9(String v9) {
-		this.v9 = v9;
-	}
-
-	public final String getV10() {
-		return v10;
-	}
-
-	public final void setV10(String v10) {
-		this.v10 = v10;
-	}
-
-	public final String getV11() {
-		return v11;
-	}
-
-	public final void setV11(String v11) {
-		this.v11 = v11;
-	}
-
-	public final String getV12() {
-		return v12;
-	}
-
-	public final void setV12(String v12) {
-		this.v12 = v12;
-	}
-
-	public final String getV13() {
-		return v13;
-	}
-
-	public final void setV13(String v13) {
-		this.v13 = v13;
-	}
-
-	public final String getV14() {
-		return v14;
-	}
-
-	public final void setV14(String v14) {
-		this.v14 = v14;
-	}
-
-	public final String getV15() {
-		return v15;
-	}
-
-	public final void setV15(String v15) {
-		this.v15 = v15;
-	}
-
-	public final String getV16() {
-		return v16;
-	}
-
-	public final void setV16(String v16) {
-		this.v16 = v16;
-	}
-
-	public final String getV17() {
-		return v17;
-	}
-
-	public final void setV17(String v17) {
-		this.v17 = v17;
-	}
-
-	public final String getV18() {
-		return v18;
-	}
-
-	public final void setV18(String v18) {
-		this.v18 = v18;
-	}
-
-	public final String getV19() {
-		return v19;
-	}
-
-	public final void setV19(String v19) {
-		this.v19 = v19;
-	}
-
-	public final String getV20() {
-		return v20;
-	}
-
-	public final void setV20(String v20) {
-		this.v20 = v20;
+		return newList.toArray(t);
 	}
 
 	public final HttpServletRequest getRequest() {
@@ -432,8 +176,16 @@ public final class BeanLine {
 
 	@Override
 	public String toString() {
-		return "BeanLine [v0=" + v0 + ", v1=" + v1 + ", v2=" + v2 + ", v3=" + v3 + ", v4=" + v4 + ", v5=" + v5 + ", v6=" + v6 + ", v7=" + v7 + ", v8=" + v8 + ", v9=" + v9 + ", v10=" + v10 + ", v11=" + v11 + ", v12=" + v12 + ", v13=" + v13
-				+ ", v14=" + v14 + ", v15=" + v15 + ", v16=" + v16 + ", v17=" + v17 + ", v18=" + v18 + ", v19=" + v19 + ", v20=" + v20 + "]";
+		return "BeanLine [" + (request != null ? "request=" + request + ", " : "") + (list != null ? "list=" + list : "") + "]";
+	}
+	/**
+	 * 截取含有中文的字符串
+	 * @param suffix int
+	 * @param size int
+	 * @return String
+	 */
+	public final String cut(int suffix,final int size) {
+		return cut(get(suffix),size);
 	}
 
 	/**
@@ -512,6 +264,7 @@ public final class BeanLine {
 		}
 		return resu;
 	}
+
 	/**
 	 * 通过3个字段得到正则结果字符串
 	 * @param urlIndex int

@@ -289,8 +289,8 @@ public final class DbtxtUtils {
 		}
 		return string;
 	}
+
 	/**
-	 * 
 	 * @param url String
 	 * @param regEx String
 	 * @param group int
@@ -325,6 +325,7 @@ public final class DbtxtUtils {
 	 * @return String
 	 */
 	public static final String getRegExUrl(URL Url, String regEx, int group) {
+		if (Url == null) return null;
 		try {
 			HttpURLConnection urlcon = (HttpURLConnection) Url.openConnection();
 			urlcon.setConnectTimeout(30000);

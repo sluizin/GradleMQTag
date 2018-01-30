@@ -30,7 +30,9 @@ sourceSets {
         }
     }
 }
+/*
 def projectUsePath ="D:/Eclipse/eclipse-oxygen/Workspaces/kuaigou/WebRoot/WEB-INF/lib"
+*/
 jar {
     manifest {  
         attributes ('Implementation-Title': 'GradleMQTag',  
@@ -42,14 +44,14 @@ jar {
     into('META-INF') {
         from 'META-INF'
     }
-    /* 拷贝jar文件到项目目录里 */
+    /* 拷贝jar文件到项目目录里 
     doLast {
         copy {
     		from( 'build/libs')  
     		into(projectUsePath)  
     		include('GradleMQTag-1.0.jar')
         }
-    }
+    }*/
 }
 
 

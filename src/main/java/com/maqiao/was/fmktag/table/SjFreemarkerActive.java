@@ -19,13 +19,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.maqiao.was.fmktag.table.dbtxt.BeanLine;
 import freemarker.core.Environment;
 import freemarker.template.SimpleScalar;
-import freemarker.template.TemplateBooleanModel;
 import freemarker.template.TemplateDirectiveBody;
 import freemarker.template.TemplateDirectiveModel;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateModel;
 import freemarker.template.TemplateModelException;
-import freemarker.template.TemplateNumberModel;
 import freemarker.template.WrappingTemplateModel;
 
 /**
@@ -45,7 +43,7 @@ public final class SjFreemarkerActive implements TemplateDirectiveModel {
 	 */
 	@Override
 	public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body) throws TemplateException, IOException {
-		String format=getString(params, "format");
+		String format = getString(params, "format");
 		/* 初步判断 */
 		if (format == null || format.length() == 0) {
 			body.render(env.getOut());
@@ -55,32 +53,46 @@ public final class SjFreemarkerActive implements TemplateDirectiveModel {
 		if (body == null) throw new RuntimeException("标签内部至少要加一个空格 missing body");
 		List<BeanLine> list = new ArrayList<BeanLine>();
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		if(format==null || format.length()==0 || "text".equals(format)) {
-			DBCharacterText dbCharachterText=new DBCharacterText(request,params);
-			list=dbCharachterText.getList();
-		}else {
-			
-			
-			
+		int attrcolumn = -1;
+		if (format == null || format.length() == 0 || "text".equals(format)) {
+			DBCharacterText dbCharachterText = new DBCharacterText(request, params);
+			list = dbCharachterText.getList();
+			attrcolumn = dbCharachterText.attrcolumn;
+		} else {
+			if ("json".equals(format)) {
+				DBCharacterJson dbCharacterJson = new DBCharacterJson(request, params);
+				list = dbCharacterJson.getList();
+				attrcolumn = dbCharacterJson.attrcolumn;
+			} else {
+				if ("xml".equals(format)) {
+					DBCharacterXml dbCharacterXml=new DBCharacterXml(request, params);
+					list = dbCharacterXml.getList();
+					attrcolumn = dbCharacterXml.attrcolumn;
+				}
+
+			}
 		}
 		/*
-		switch (type) {
-		case 0:
-			final String sourceDBPath = request.getSession().getServletContext().getRealPath("") + "/" + sourcefile;
-			list = DbtxtUtils.getBeanlineTxt(sourceDBPath, autochange);
-			break;
-		case 1:
-			//HttpServletRequest request2 = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-			list = DbtxtUtils.getBeanlineTxtUrl(request, sourcefile, isReadUtf8, autochange);
-			break;
-		default:
-			break;
-		}*/
+		 * switch (type) {
+		 * case 0:
+		 * final String sourceDBPath = request.getSession().getServletContext().getRealPath("") + "/" + sourcefile;
+		 * list = DbtxtUtils.getBeanlineTxt(sourceDBPath, autochange);
+		 * break;
+		 * case 1:
+		 * //HttpServletRequest request2 = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		 * list = DbtxtUtils.getBeanlineTxtUrl(request, sourcefile, isReadUtf8, autochange);
+		 * break;
+		 * default:
+		 * break;
+		 * }
+		 */
 		if (list != null && list.size() > 0) {
+			/* 排队属性行 */
+			if (attrcolumn > -1) list.remove(attrcolumn);
 			/* 排序 */
 			String orderby = getString(params, "orderby");
 			if (orderby != null && orderby.length() > 0 && orderby.matches(PARAM_OrderByExp)) list = orderby(list, orderby);
-			for(int i=0,len=list.size();i<len;i++)
+			for (int i = 0, len = list.size(); i < len; i++)
 				list.get(i).setRequest(request);
 			loopVars[0] = WrappingTemplateModel.getDefaultObjectWrapper().wrap(list);
 		}
@@ -103,7 +115,7 @@ public final class SjFreemarkerActive implements TemplateDirectiveModel {
 		else return list;
 		if (key == null || key.length() == 0) return list;
 		final int suffix = Integer.valueOf(key).intValue();
-		if (suffix > BeanLine.maxPointI) return list;
+		//if (suffix > ) return list;
 		boolean reverse = orderby.indexOf("desc") > 0;
 		/*
 		 * jdk1.8
@@ -114,6 +126,7 @@ public final class SjFreemarkerActive implements TemplateDirectiveModel {
 		 */
 		Collections.sort(list, new Comparator<BeanLine>() {
 			public int compare(BeanLine arg0, BeanLine arg1) {
+				if (arg0 == null || arg0.get(suffix) == null || arg1 == null || arg1.get(suffix) == null) return 0;
 				if (reverse) return arg1.get(suffix).compareTo(arg0.get(suffix));
 				return arg0.get(suffix).compareTo(arg1.get(suffix));
 			}
@@ -142,40 +155,6 @@ public final class SjFreemarkerActive implements TemplateDirectiveModel {
 	}
 
 	/**
-	 * 抽取Boolean
-	 * @param params Map
-	 * @param key String
-	 * @return boolean
-	 */
-	private static boolean getBoolean(Map params, String key) {
-		Object obj = getParams(params, key);
-		if (obj == null) return false;
-		try {
-			return ((TemplateBooleanModel) obj).getAsBoolean();
-		} catch (TemplateModelException e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-
-	/**
-	 * 抽取int 如果没有则直接返回-1
-	 * @param params Map
-	 * @param key String
-	 * @return int
-	 */
-	private static int getInt(Map params, String key) {
-		Object obj = getParams(params, key);
-		if (obj == null) return -1;
-		try {
-			return ((TemplateNumberModel) obj).getAsNumber().intValue();
-		} catch (TemplateModelException e) {
-			e.printStackTrace();
-			return -1;
-		}
-	}
-
-	/**
 	 * @param params Map
 	 * @param key String
 	 * @return Object
@@ -192,32 +171,6 @@ public final class SjFreemarkerActive implements TemplateDirectiveModel {
 	}
 
 	/**
-	 * @param params Map
-	 * @param key String
-	 * @param classzz Class&lt;?&gt;
-	 * @return Object
-	 */
-	public static final Object getParams(final Map params, final String key, Class<?> classzz) {
-		Iterator paramIter = params.entrySet().iterator();
-		while (paramIter.hasNext()) {
-			Map.Entry ent = (Map.Entry) paramIter.next();
-			String paramName = (String) ent.getKey();
-			TemplateModel paramValue = (TemplateModel) ent.getValue();
-			if (paramName.equals(key)) {
-				if (!(paramName != null && paramName.getClass() == classzz)) {
-					try {
-						throw new TemplateModelException("The \"" + key + "\" parameter " + "must be " + classzz.getName() + ".");
-					} catch (TemplateModelException e) {
-						e.printStackTrace();
-					}
-				}
-				return paramValue;
-			}
-		}
-		return null;
-	}
-
-	/**
 	 * 抽取某列的记录数
 	 * @param list List<BeanLine>
 	 * @param suffix int
@@ -229,7 +182,7 @@ public final class SjFreemarkerActive implements TemplateDirectiveModel {
 		if (list == null || list.size() == 0) return new ArrayList<BeanLine>();
 		final int len = list.size();
 		List<BeanLine> newList = new ArrayList<BeanLine>(len);
-		if (suffix < 0 || suffix > BeanLine.maxPointI) return newList;
+		if (suffix < 0) return newList;
 		if (arrs == null || arrs.length == 0) return newList;
 		/*
 		 * jdk1.8

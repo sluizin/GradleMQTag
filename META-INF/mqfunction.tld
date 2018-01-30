@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+	version="2.1">	
+	<description>MQPO 1.1 core library</description>
+	<display-name>MQPO core</display-name><!-- 
+	<large-icon>https://avatars1.githubusercontent.com/u/12670147?v=4&s=460</large-icon> -->
+	<tlib-version>1.1</tlib-version>
+	<short-name>mqfunc</short-name>
+	<uri>/MQFunc</uri>
+	<tag>
+		<description>通过网库商品地址得到商品图片地址</description>
+		<name>getWKPict</name>
+		<tag-class>com.maqiao.was.tag.function.MQWKGetPicFromProduct</tag-class>
+		<body-content>empty</body-content><!-- empty scriptless -->
+	
+	</tag>
+</taglib>

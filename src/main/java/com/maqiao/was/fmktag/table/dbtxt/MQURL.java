@@ -64,10 +64,11 @@ public class MQURL {
 	 * @return URL
 	 */
 	private static final URL getURLHttpServletRequest(HttpServletRequest request, String url) {
+		if(url==null || url.length()==0)return null;
 		String newurl = "";
 		String requestUrl = request.getRequestURL().toString();//得到请求的URL地址
 		String requestUri = request.getRequestURI();//得到请求的资源
-		if (url.substring(0, 1).equals("/")) {
+		if ("/".equals(url.substring(0, 1))) {
 			/* /abc/txt */
 			int lastInt = requestUrl.lastIndexOf(requestUri);
 			newurl = requestUrl.substring(0, lastInt) + url;
