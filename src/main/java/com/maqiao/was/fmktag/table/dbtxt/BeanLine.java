@@ -19,7 +19,7 @@ public final class BeanLine {
 	/** 在freemarker中的html里作属性标志时使用，属性值[FieldName]替换 */
 	static final String ACC_fmHtml_sign = "{@FieldName}";
 	/** value值串 */
-	List<String> list = new ArrayList<String>();
+	List<String> list = new ArrayList<String>(10);
 
 	public BeanLine() {
 
@@ -119,6 +119,7 @@ public final class BeanLine {
 	 * @return String
 	 */
 	public String get(int i) {
+		if(i<0 || i>=list.size())return null;
 		return list.get(i);
 	}
 

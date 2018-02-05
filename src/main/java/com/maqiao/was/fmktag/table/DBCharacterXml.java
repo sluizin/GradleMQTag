@@ -13,8 +13,8 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
 import com.maqiao.was.fmktag.table.dbtxt.BeanLine;
+
 /**
- * 
  * 数据源 Xml
  * 参数:
  * type: <br>
@@ -24,44 +24,48 @@ import com.maqiao.was.fmktag.table.dbtxt.BeanLine;
  * @author Sunjian
  * @version 1.0
  * @since jdk1.8
- *
  */
 @SuppressWarnings("rawtypes")
-public class DBCharacterXml extends DBCharacterAbstract {
+public class DBCharacterXml extends DBAbstractCharacter {
 
 	@Override
 	List<BeanLine> StringToBeanlineList(String content) {
 		if (content == null || content.length() == 0) return new ArrayList<BeanLine>(0);
-		List<BeanLine> list=new ArrayList<BeanLine>(0);
+		List<BeanLine> list = new ArrayList<BeanLine>(10);
 		try {
-			Document doc=DocumentHelper.parseText(content);
-            Element root = doc.getRootElement(); // 获取根节点
-            Iterator<?> rootIterator= root.elementIterator();
-            while (rootIterator.hasNext()) {
-                Element recordEle = (Element) rootIterator.next();
-                Iterator<?> iter2=recordEle.elementIterator();
-                if(!iter2.hasNext())continue;
-                BeanLine e=new BeanLine();
-                while (iter2.hasNext()) {
-                    Element recordEle2 = (Element) iter2.next();
-                    String title = recordEle2.getText();
-                    e.setUnit(title);
-                }
-                list.add(e);
-            }
+			Document doc = DocumentHelper.parseText(content);
+			Element root = doc.getRootElement(); // 获取根节点
+			Iterator<?> rootIterator = root.elementIterator();
+			while (rootIterator.hasNext()) {
+				Element recordEle = (Element) rootIterator.next();
+				Iterator<?> iter2 = recordEle.elementIterator();
+				if (!iter2.hasNext()) continue;
+				BeanLine e = new BeanLine();
+				while (iter2.hasNext()) {
+					Element recordEle2 = (Element) iter2.next();
+					String title = recordEle2.getText();
+					e.setUnit(title);
+				}
+				list.add(e);
+			}
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
-		
 		return list;
 	}
 
 	public DBCharacterXml() {
-		
+
 	}
+
 	public DBCharacterXml(HttpServletRequest request, Map params) {
 		this.request = request;
 		this.params = params;
+	}
+
+	@Override
+	void ProjectInitialization() {
+		
 	}
 
 }

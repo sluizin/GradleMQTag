@@ -18,7 +18,7 @@ import com.maqiao.was.fmktag.table.dbtxt.BeanLine;
  * @since jdk1.8
  */
 @SuppressWarnings("rawtypes")
-public class DBCharacterText extends DBCharacterAbstract {
+public class DBCharacterText extends DBAbstractCharacter {
 	/** 行标志 */
 	static final String rowSign = "\n";
 	/** 列标志 */
@@ -56,6 +56,11 @@ public class DBCharacterText extends DBCharacterAbstract {
 	public DBCharacterText(HttpServletRequest request, Map params) {
 		this.request = request;
 		this.params = params;
+	}
+
+	@Override
+	void ProjectInitialization() {
+		
 	}
 
 }

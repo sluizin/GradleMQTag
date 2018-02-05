@@ -5,14 +5,9 @@ package com.maqiao.was.fmktag.table;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -34,8 +29,6 @@ import freemarker.template.WrappingTemplateModel;
  */
 @SuppressWarnings("rawtypes")
 public final class SjFreemarkerActive implements TemplateDirectiveModel {
-	private static final String PARAM_OrderByExp = "^[\\s]?(v\\d+)[\\s]?([\\s]+((desc)|(asc))[\\s]?)?$";
-
 	/*
 	 * (non-Javadoc)
 	 * @see freemarker.template.TemplateDirectiveModel#execute(freemarker.core.Environment, java.util.Map, freemarker.template.TemplateModel[],
@@ -53,90 +46,30 @@ public final class SjFreemarkerActive implements TemplateDirectiveModel {
 		if (body == null) throw new RuntimeException("标签内部至少要加一个空格 missing body");
 		List<BeanLine> list = new ArrayList<BeanLine>();
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		int attrcolumn = -1;
-		if (format == null || format.length() == 0 || "text".equals(format)) {
-			DBCharacterText dbCharachterText = new DBCharacterText(request, params);
-			list = dbCharachterText.getList();
-			attrcolumn = dbCharachterText.attrcolumn;
-		} else {
-			if ("json".equals(format)) {
-				DBCharacterJson dbCharacterJson = new DBCharacterJson(request, params);
-				list = dbCharacterJson.getList();
-				attrcolumn = dbCharacterJson.attrcolumn;
-			} else {
-				if ("xml".equals(format)) {
-					DBCharacterXml dbCharacterXml=new DBCharacterXml(request, params);
-					list = dbCharacterXml.getList();
-					attrcolumn = dbCharacterXml.attrcolumn;
-				}
-
-			}
+		DBAbstract db = null;
+		if ("text".equals(format)) db = new DBCharacterText(request, params);
+		if (db == null && "json".equals(format)) db = new DBCharacterJson(request, params);
+		if (db == null && "xml".equals(format)) db = new DBCharacterXml(request, params);
+		if (db == null && ("xls".equals(format) ||"xlsx".equals(format))) db = new DBInputStreamExcel(request, params);
+		
+		if (db != null) list = db.getList();
+		if (list == null || list.size() == 0) {
+			body.render(env.getOut());
+			return;
 		}
-		/*
-		 * switch (type) {
-		 * case 0:
-		 * final String sourceDBPath = request.getSession().getServletContext().getRealPath("") + "/" + sourcefile;
-		 * list = DbtxtUtils.getBeanlineTxt(sourceDBPath, autochange);
-		 * break;
-		 * case 1:
-		 * //HttpServletRequest request2 = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		 * list = DbtxtUtils.getBeanlineTxtUrl(request, sourcefile, isReadUtf8, autochange);
-		 * break;
-		 * default:
-		 * break;
-		 * }
-		 */
-		if (list != null && list.size() > 0) {
-			/* 排队属性行 */
-			if (attrcolumn > -1) list.remove(attrcolumn);
-			/* 排序 */
-			String orderby = getString(params, "orderby");
-			if (orderby != null && orderby.length() > 0 && orderby.matches(PARAM_OrderByExp)) list = orderby(list, orderby);
-			for (int i = 0, len = list.size(); i < len; i++)
-				list.get(i).setRequest(request);
-			loopVars[0] = WrappingTemplateModel.getDefaultObjectWrapper().wrap(list);
-		}
+		/* 后期处理 过滤属性行、过滤下标组、排序 */
+		db.Postprocessing(list);	
+		for (int i = 0, len = list.size(); i < len; i++)
+			list.get(i).setRequest(request);
+		loopVars[0] = WrappingTemplateModel.getDefaultObjectWrapper().wrap(list);
 		body.render(env.getOut());
 	}
 
-	/**
-	 * 排序
-	 * @param list List<BeanLine>
-	 * @param orderby String
-	 * @return List<BeanLine>
-	 */
-	public static final List<BeanLine> orderby(List<BeanLine> list, final String orderby) {
-		if (list == null || list.size() == 0) return list;
-		if (orderby == null || orderby.length() == 0 || !orderby.matches(PARAM_OrderByExp)) return list;
-		String key = "";
-		Pattern pattern = Pattern.compile("\\d+");
-		Matcher matcher = pattern.matcher(orderby);
-		if (matcher.find()) key = matcher.group(0);
-		else return list;
-		if (key == null || key.length() == 0) return list;
-		final int suffix = Integer.valueOf(key).intValue();
-		//if (suffix > ) return list;
-		boolean reverse = orderby.indexOf("desc") > 0;
-		/*
-		 * jdk1.8
-		 * list.sort((BeanLine h1, BeanLine h2) -> h1.get(suffix).compareTo(h2.get(suffix)));
-		 */
-		/*
-		 * jdk1.2
-		 */
-		Collections.sort(list, new Comparator<BeanLine>() {
-			public int compare(BeanLine arg0, BeanLine arg1) {
-				if (arg0 == null || arg0.get(suffix) == null || arg1 == null || arg1.get(suffix) == null) return 0;
-				if (reverse) return arg1.get(suffix).compareTo(arg0.get(suffix));
-				return arg0.get(suffix).compareTo(arg1.get(suffix));
-			}
-		});
-		return list;
-	}
+
 
 	public static void main(String[] args) {
 		String orderby = " v000 asc ";
-		boolean t = orderby.matches(PARAM_OrderByExp);
+		boolean t = orderby.matches(DBAbstract.PARAM_OrderByExp);
 		System.out.println("Hello World!:" + t);
 	}
 

@@ -1,6 +1,8 @@
 package com.maqiao.was.fmktag.table.dbtxt;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 import javax.servlet.ServletRequest;
@@ -64,7 +66,7 @@ public class MQURL {
 	 * @return URL
 	 */
 	private static final URL getURLHttpServletRequest(HttpServletRequest request, String url) {
-		if(url==null || url.length()==0)return null;
+		if (url == null || url.length() == 0) return null;
 		String newurl = "";
 		String requestUrl = request.getRequestURL().toString();//得到请求的URL地址
 		String requestUri = request.getRequestURI();//得到请求的资源
@@ -86,6 +88,26 @@ public class MQURL {
 		} catch (Exception e1) {
 		}
 		return null;
+	}
+	/**
+	 * URL转成输入流，并且返回输入流
+	 * @param url URL
+	 * @return InputStream
+	 */
+	public static final InputStream getInputStream(URL url) {
+		try {
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			//设置超时间为3秒  
+			conn.setConnectTimeout(30 * 1000);
+			//防止屏蔽程序抓取而返回403错误  
+			conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+			//得到输入流  
+			InputStream is = conn.getInputStream();
+			return is;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

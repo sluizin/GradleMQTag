@@ -24,7 +24,7 @@ import com.maqiao.was.fmktag.table.dbtxt.BeanLine;
  *
  */
 @SuppressWarnings("rawtypes")
-public class DBCharacterJson  extends DBCharacterAbstract{
+public class DBCharacterJson  extends DBAbstractCharacter{
 	/** json头 */
 	static final String jsonValue = "jsonValues";
 	
@@ -58,6 +58,10 @@ public class DBCharacterJson  extends DBCharacterAbstract{
 	public DBCharacterJson(HttpServletRequest request, Map params) {
 		this.request = request;
 		this.params = params;
+	}
+
+	@Override
+	void ProjectInitialization() {		
 	}
 
 }

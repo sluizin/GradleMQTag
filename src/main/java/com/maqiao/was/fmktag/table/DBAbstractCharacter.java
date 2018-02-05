@@ -24,7 +24,7 @@ import com.maqiao.was.fmktag.table.dbtxt.MQURL;
  * @version 1.0
  * @since jdk1.8
  */
-public abstract class DBCharacterAbstract extends DBAbstract {
+public abstract class DBAbstractCharacter extends DBAbstract {
 	/* 来源类型 0:本地绝对地址 1:网络地址 */
 	int type = -1;
 	/* 数据源链接 */
@@ -33,6 +33,7 @@ public abstract class DBCharacterAbstract extends DBAbstract {
 	String autochange = null;
 	/* 读出是否进行utf-8编码 */
 	boolean isReadUtf8 = false;
+
 	/**
 	 * 初始化
 	 */
@@ -45,31 +46,41 @@ public abstract class DBCharacterAbstract extends DBAbstract {
 		/* 是否进行编码转换 */
 		autochange = getString("autochange");
 		/* 读出是否进行utf-8编码 */
-		isReadUtf8 = getBoolean("readutf8");		
+		isReadUtf8 = getBoolean("readutf8");
 	}
+
 	/**
 	 * 得到字符串 已经进行编码转换
 	 * @return String
 	 */
+	@SuppressWarnings("deprecation")
 	public String getContent() {
 		Initialization();
 		String outString = "";
 		switch (type) {
 		case 0:
-			String sourceDBPath = request.getSession().getServletContext().getRealPath("") + "/" + sourcefile;
-			outString = readFile(sourceDBPath, "\n", false).toString();
+			//String sourceDBPath = request.getSession().getServletContext().getRealPath("./") + "/" + sourcefile;
+			String sourceDBPath=new java.io.File(request.getRealPath(request.getRequestURI())).getParent() + "/"  + sourcefile;;
+			System.out.println("sourceDBPath:"+sourceDBPath);
+			StringBuilder sb = readFile(sourceDBPath, "\n", false);
+			if (sb == null) return "";
+			outString = sb.toString();
 		case 1:
-			outString = readFile(MQURL.getURL(request, sourcefile), isReadUtf8, "\n", false).toString();
+			StringBuilder sb2 = readFile(MQURL.getURL(request, sourcefile), isReadUtf8, "\n", false);
+			if (sb2 == null) return "";
+			outString = sb2.toString();
 		default:
 		}
 		return autoChange(outString, autochange);
 	}
+
 	@Override
 	public List<BeanLine> getList() {
 		String outString = this.getContent();
-		if(outString==null || outString.length()==0)return new ArrayList<BeanLine>();
+		if (outString == null || outString.length() == 0) return new ArrayList<BeanLine>();
 		return StringToBeanlineList(outString);
 	}
+
 	/**
 	 * 字符串转对象列表
 	 * @param content String
@@ -171,7 +182,6 @@ public abstract class DBCharacterAbstract extends DBAbstract {
 		return sb;
 	}
 
-
 	/**
 	 * 通过URL得到文件内容<br>
 	 * 是否过滤#右侧数据
@@ -183,7 +193,7 @@ public abstract class DBCharacterAbstract extends DBAbstract {
 	 */
 	static final StringBuilder readFile(final URL url, final boolean isReadUtf8, String enterStr, boolean delnotes) {
 		StringBuilder sb = new StringBuilder(20);
-		if(url==null)return sb;
+		if (url == null) return sb;
 		try {
 			HttpURLConnection urlcon = (HttpURLConnection) url.openConnection();
 			urlcon.setConnectTimeout(30000);

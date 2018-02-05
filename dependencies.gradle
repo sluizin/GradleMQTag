@@ -22,6 +22,11 @@ ext{
 	    'com.alibaba:fastjson:1.2.29',
 	    /* dom4j */
 	    'dom4j:dom4j:1.6.1',
+	    /* poi */
+	    'org.apache.poi:poi:3.17',
+	    'org.apache.poi:poi-ooxml:3.17',
+	    'org.apache.poi:poi-ooxml-schemas:3.17',
+	    'org.apache.poi:poi-scratchpad:3.17',
 	    "javax.servlet.jsp:javax.servlet.jsp-api:2.3.2-b02",
 	    
 		/* spring */
