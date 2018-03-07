@@ -49,11 +49,9 @@ public class DBInputStreamExcel extends DBAbstractInputStream {
 			Sheet sheet = getSheet(workbook);
 			if (sheet == null) return new ArrayList<BeanLine>(0);
 			System.out.println(sheet.getSheetName() + "  sheet");
-			//得到行的迭代器  
 			Iterator<Row> rowIterator = sheet.iterator();
 			while (rowIterator.hasNext()) {
-				//得到一行对象  
-				Row row = rowIterator.next();  //得到列对象 
+				Row row = rowIterator.next();
 				Iterator<Cell> cellIterator = row.cellIterator();
 				BeanLine e = new BeanLine();
 				while (cellIterator.hasNext()) {
@@ -104,12 +102,14 @@ public class DBInputStreamExcel extends DBAbstractInputStream {
 			return cell.getStringCellValue();
 		case NUMERIC:
 			if (HSSFDateUtil.isCellDateFormatted(cell)) {  //判断日期类型
-				//Date ee = cell.getDateCellValue();
-				//return ee.toString();
-				//double dd = cell.getNumericCellValue();
-				//return String.valueOf(dd);
-				//return (new DecimalFormat("#.######").format(cell.getNumericCellValue()));
-				//cellValue =    DateUtil.formatDateByFormat(cell.getDateCellValue(), "yyyy-MM-dd");
+				/*
+				 * Date ee = cell.getDateCellValue();
+				 * return ee.toString();
+				 * double dd = cell.getNumericCellValue();
+				 * return String.valueOf(dd);
+				 * return (new DecimalFormat("#.######").format(cell.getNumericCellValue()));
+				 * cellValue = DateUtil.formatDateByFormat(cell.getDateCellValue(), "yyyy-MM-dd");
+				 */
 				return convertCellToString(cell);
 			} else {
 				double dd = cell.getNumericCellValue();
