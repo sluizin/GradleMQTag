@@ -18,12 +18,14 @@ import com.maqiao.was.fmktag.table.dbtxt.BeanLine;
  * @since jdk1.8
  */
 @SuppressWarnings("rawtypes")
-public class DBCharacterText extends DBAbstractCharacter {
+public final class DBInputStreamCharText extends DBAbstractInputStreamCharacter implements InterfaceAccpetVal {
 	/** 行标志 */
 	static final String rowSign = "\n";
 	/** 列标志 */
 	static final String columnSign = "\t";
-
+	
+	
+	@Override
 	List<BeanLine> StringToBeanlineList(final String content) {
 		if (content == null || content.length() == 0) return new ArrayList<BeanLine>(0);
 		final String[] splitStr = content.split(rowSign);
@@ -44,23 +46,33 @@ public class DBCharacterText extends DBAbstractCharacter {
 		if (str == null || str.length() == 0) return null;
 		BeanLine bean = new BeanLine();
 		bean.setSplit(str, columnSign);
-		//String[] splitStr = str.split(columnSign);
-		//bean.set(splitStr);
 		return bean;
 	}
-
-	public DBCharacterText() {
-
-	}
-
-	public DBCharacterText(HttpServletRequest request, Map params) {
-		this.request = request;
-		this.params = params;
+	/**
+	 * 数据源text 构造函数
+	 * @param request HttpServletRequest
+	 * @param params Map
+	 */
+	public DBInputStreamCharText(HttpServletRequest request, Map params) {
+		super(request,params);
+		super.acceptVal();
+		acceptVal();
 	}
 
 	@Override
-	void ProjectInitialization() {
+	public void acceptVal() {
 		
+	}
+
+	@Override
+	void changeSourcefile() {
+		
+	}
+
+	@Override
+	String[] getAutoSearchFilesExt() {
+		String[] arr= {"txt"};
+		return arr;
 	}
 
 }

@@ -6,7 +6,8 @@ ext{
 	    }
 	}
 	dependencies {
-	    def springVersion = '3.1.2.RELEASE' 
+	    def springVersion = '5.2.1.RELEASE' 
+	    //def springVersion = '3.1.2.RELEASE' 
 	    compile(
 		'org.slf4j:slf4j-api:1.7.1',
 	    'jstl:jstl:1.2',   
@@ -39,8 +40,9 @@ ext{
 	    "org.springframework:spring-tx:${springVersion}",
 	    "org.springframework:spring-jdbc:${springVersion}",
 	    "org.springframework:spring-test:${springVersion}",
-	    "org.springframework:spring-jms:${springVersion}"
+	    "org.springframework:spring-jms:${springVersion}",
+	    'javax.servlet:servlet-api:2.5'
 	    )
-		providedCompile 'javax.servlet:servlet-api:2.5' //编译期
+		//providedCompile 'javax.servlet:servlet-api:2.5' //编译期
 	}
 }

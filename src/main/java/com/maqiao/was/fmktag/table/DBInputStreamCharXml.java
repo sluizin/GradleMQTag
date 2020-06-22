@@ -26,7 +26,7 @@ import com.maqiao.was.fmktag.table.dbtxt.BeanLine;
  * @since jdk1.8
  */
 @SuppressWarnings("rawtypes")
-public class DBCharacterXml extends DBAbstractCharacter {
+public final class DBInputStreamCharXml extends DBAbstractInputStreamCharacter  implements InterfaceAccpetVal{
 
 	@Override
 	List<BeanLine> StringToBeanlineList(String content) {
@@ -54,18 +54,32 @@ public class DBCharacterXml extends DBAbstractCharacter {
 		return list;
 	}
 
-	public DBCharacterXml() {
 
-	}
-
-	public DBCharacterXml(HttpServletRequest request, Map params) {
-		this.request = request;
-		this.params = params;
+	/**
+	 * 数据源XML 构造函数
+	 * @param request HttpServletRequest
+	 * @param params Map
+	 */
+	public DBInputStreamCharXml(HttpServletRequest request, Map params) {
+		super( request, params);
+		super.acceptVal();
+		acceptVal();
 	}
 
 	@Override
-	void ProjectInitialization() {
+	public void acceptVal() {
 		
+	}
+
+	@Override
+	void changeSourcefile() {
+		
+	}
+
+	@Override
+	String[] getAutoSearchFilesExt() {
+		String[] arr= {"xml"};
+		return arr;
 	}
 
 }

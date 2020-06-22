@@ -14,14 +14,16 @@ allprojects {
 	apply plugin: 'maven'
 	apply plugin: 'eclipse'
 	apply plugin: 'eclipse-wtp'
-	apply plugin: 'jetty'
+	//apply plugin: 'jetty'
+	//apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
 	group="com.maqiao.was.tag";
 	version = '1.0'  
 	sourceCompatibility = 1.8   // 设置 JDK 版本
 	targetCompatibility = 1.8
 	ext.vendor = 'Sunjian'
 }
-apply from:"dependencies.gradle"//项目依赖
+//apply from:"dependencies.gradle"//项目依赖
+apply from: "../General-Project/comm_dependencies.gradle"//项目依赖
 
 sourceSets {
     main {

@@ -26,6 +26,7 @@ public final class FreemarkertUtil {
 	 * @param templateEncoding 模板文件的编码方式
 	 * @param out 输出流
 	 */
+	@SuppressWarnings("deprecation")
 	public static void processTemplate(String templatePath, String templateName, String templateEncoding, Map<?, ?> root, Writer out) {
 		try {
 			Configuration config = new Configuration();

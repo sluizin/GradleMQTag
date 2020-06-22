@@ -17,6 +17,7 @@ import java.net.URL;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,8 +29,97 @@ import javax.servlet.http.HttpServletRequest;
  * @version 1.0
  * @since jdk1.7
  */
-public final class DbtxtUtils {
+public final class BeanLineUtils {
 
+	/**
+	 * 过滤掉无效的单元
+	 * @param list List&lt;BeanLine&gt;
+	 */
+	public static final void filterInvalid(List<BeanLine> list) {
+		int i=list.size();
+		while(--i>=0) {
+			BeanLine e=list.get(i);
+			if(!e.isValid())list.remove(i);
+		}
+	}
+	/**
+	 * 所有非null单元过滤两侧空格
+	 * @param list List&lt;BeanLine&gt;
+	 */
+	public static final void trim(List<BeanLine> list) {
+		for(BeanLine e:list)
+			e.trim();
+	}
+	
+	/**
+	 * 格式化表格 把null转成空字符串，并补齐缺少的单元，过滤掉空单元
+	 * @param list List&lt;BeanLine&gt;
+	 */
+	public static final void format(List<BeanLine> list) {
+		int max=getMaxLength(list);
+		int i=list.size();
+		while(--i>=0) {
+			BeanLine e=list.get(i);
+			if(e.isNull()) {
+				list.remove(i);
+				continue;
+			}
+			e.completion(max);
+		}
+		
+		
+	}
+	/**
+	 * 得到节点列表的最长宽度
+	 * @param list List&lt;BeanLine&gt;
+	 * @return int
+	 */
+	public static final int getMaxLength(List<BeanLine> list) {
+		int max=0;
+		for(BeanLine e:list) {
+			if(e==null)continue;
+			if(e.length()>max)max=e.length();
+		}
+		return max;		
+	}
+	/**
+	 * 把字符串中，所有在字符串末尾的数组中含有的全部清除<br>
+	 * ("a.0bc.00.0.000.0.0.0.0",".0",".00",".000") 结果:a.0bc ,
+	 * @param source String
+	 * @param arrs String[]
+	 * @return String
+	 */
+	public static final String removeEndsStr(String source, String... arrs) {
+		if (source == null || source.length() == 0 || arrs.length == 0) return source;
+		String key = null;
+		for (String e : arrs)
+			if (source.endsWith(e)) {
+				key = e;
+				break;
+			}
+		if (key == null) return source;
+		int index = source.lastIndexOf(key);
+		return removeEndsStr(source.substring(0, index), arrs);
+	}
+	
+	
+	
+	/**
+	 * 从字符串中得到某个变量组
+	 * @param Content String
+	 * @param regEx String
+	 * @param group int
+	 * @return String
+	 */
+	public static final String getRegExContent(String Content, String regEx, int group) {
+		if (Content == null) return null;
+		if (regEx == null) return null;
+		Pattern pat = Pattern.compile(regEx);
+		Matcher mat = pat.matcher(Content);
+		if (!mat.find()) return null;
+		if (group < 0 || group > mat.groupCount()) return null;
+		return mat.group(group);
+	}
 	/**
 	 * 得到url的文本文件内容<br>
 	 * 是否过滤#右侧数据
@@ -76,7 +166,7 @@ public final class DbtxtUtils {
 		try {
 			String outString = readFile(MQURL.getURL(request, http), isReadUtf8, "\n", false).toString();
 			//System.out.println("outString:"+outString);
-			return StringToBeanlineList(DbtxtUtils.autoChange(outString, autoChange));
+			return StringToBeanlineList(BeanLineUtils.autoChange(outString, autoChange));
 		} catch (Exception e) {
 			return new ArrayList<BeanLine>(0);
 		}
@@ -103,7 +193,7 @@ public final class DbtxtUtils {
 		if (pathfilename == null || pathfilename.length() == 0) return new ArrayList<BeanLine>(0);
 		try {
 			String outString = readFile(pathfilename, "\n", false).toString();
-			return StringToBeanlineList(DbtxtUtils.autoChange(outString, autoChange));
+			return StringToBeanlineList(BeanLineUtils.autoChange(outString, autoChange));
 		} catch (Exception e) {
 			return new ArrayList<BeanLine>(0);
 		}
@@ -120,7 +210,7 @@ public final class DbtxtUtils {
 		final String[] splitStr = content.split("\n");
 		BeanLine e = null;
 		for (int i = 0; i < splitStr.length; i++)
-			if ((e = DbtxtUtils.beanLineChange(splitStr[i])) != null) BeanLineList.add(e);
+			if ((e = BeanLineUtils.beanLineChange(splitStr[i])) != null) BeanLineList.add(e);
 		return BeanLineList;
 	}
 
@@ -350,19 +440,112 @@ public final class DbtxtUtils {
 	}
 
 	/**
-	 * 从字符串中得到某个变量组
-	 * @param Content String
-	 * @param regEx String
-	 * @param group int
+	 * 得到含有中文的字符串，进行截取
+	 * @param str String
+	 * @param pstart int
+	 * @param pend int
 	 * @return String
 	 */
-	public static final String getRegExContent(String Content, String regEx, int group) {
-		if (Content == null) return null;
-		if (regEx == null) return null;
-		Pattern pat = Pattern.compile(regEx);
-		Matcher mat = pat.matcher(Content);
-		if (!mat.find()) return null;
-		if (group < 0 || group > mat.groupCount()) return null;
-		return mat.group(group);
+	public static final String getSubString(final String str, final int pstart, final int pend) {
+		String resu = "";
+		int beg = 0, end = 0, count1 = 0;
+		int i, j, y, cont, count, len;
+		final int strlength = str.length();
+		final char[] temp = new char[strlength];
+		str.getChars(0, strlength, temp, 0);
+		boolean[] bol = new boolean[strlength];
+		for (i = 0, len = temp.length; i < len; i++)
+			if (bol[i] = ((int) temp[i] > 255)) count1++;
+			else bol[i] = false;
+		if (pstart > strlength + count1) resu = null;
+		if (pstart > pend) resu = null;
+		if (pstart < 1) beg = 0;
+		else beg = pstart - 1;
+		if (pend > strlength + count1) end = strlength + count1;
+		else end = pend;
+		if (resu != null) {
+			if (beg == end) {
+				if (beg == (count = 0)) if (bol[0] == true) return null;
+				else return new String(temp, 0, 1);
+				else {
+					len = beg;
+					for (y = 0; y < (len--); y++)
+						if (bol[y]) count++;
+					if (count == 0) if ((int) temp[beg] > 255) return null;
+					else return new String(temp, beg, 1);
+					else if ((int) temp[len + 1] > 255) return null;
+					else return new String(temp, len + 1, 1);
+				}
+			} else {
+				int temSt = beg;
+				int temEd = end - 1;
+				for (i = 0; i < temSt; i++)
+					if (bol[i]) temSt--;
+				for (j = 0; j < temEd; j++)
+					if (bol[j]) temEd--;
+				if (bol[temSt]) {
+					for (i = cont = 0; i <= temSt; i++)
+						if (bol[i]) cont += 2;
+						else cont++;
+					if (pstart == cont) temSt++;
+				}
+				if (bol[temEd]) {
+					for (i = cont = 0; i <= temEd; i++)
+						if (bol[i]) cont += 2;
+						else cont++;
+					if (pend < cont) temEd--;
+				}
+				if (temSt == temEd) return new String(temp, temSt, 1);
+				else if (temSt > temEd) return null;
+				else return str.substring(temSt, temEd + 1);
+			}
+		}
+		return resu;
+	}
+
+	/**
+	 * 判断字符串是否为整数 null或空则返回false
+	 * @param str String
+	 * @return boolean
+	 */
+	public static boolean isNumeric(String str) {
+		if (str == null || str.length() == 0) return false;
+		for (int i = str.length(); --i >= 0;) {
+			int chr = str.charAt(i);
+			if (chr < 48 || chr > 57) return false;
+		}
+		return true;
+	}
+
+	/**
+	 * BeanLine列表，按某个列进行升降序
+	 * @param source List&lt;BeanLine&gt;
+	 * @param suffix int
+	 * @param reverse boolean
+	 * @return List&lt;BeanLine&gt;
+	 */
+	public static final List<BeanLine> sortList(List<BeanLine> source, int suffix, boolean reverse) {
+		if (source == null || source.size() < 2) return source;
+		Comparator<BeanLine> comparator = (o1, o2) -> {
+			String v01 = o1.get(suffix);
+			String v02 = o2.get(suffix);
+			if (v01 == v02) return 0;
+			return Integer.valueOf(v01).compareTo(Integer.valueOf(v02));
+		};
+		source.sort(reverse ? comparator.reversed() : comparator);
+		return source;
+	}
+	/**
+	 * 判断list是否以纯数字进行排序
+	 * @param list List&lt;BeanLine&gt;
+	 * @param suffix int
+	 * @return boolean
+	 */
+	public static final boolean isNumericField(List<BeanLine> list, int suffix) {
+		for (BeanLine e : list) {
+			String asc = e.get(suffix);
+			if (!BeanLineUtils.isNumeric(asc)) return false;
+		}
+		return true;
 	}
 }

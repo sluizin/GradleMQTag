@@ -8,7 +8,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.maqiao.was.fmktag.table.dbtxt.DbtxtUtils;
+import com.maqiao.was.fmktag.table.dbtxt.BeanLineUtils;
 /**
  * 通过网库商品地址得到商品图片地址
  * @author Sunjian
@@ -43,7 +43,7 @@ public class MQWKGetPicFromProduct  extends SimpleTagSupport {
 			String line=arr[i];
 			line=line.replace('\"', ' ').trim();
 			System.out.println("["+i+"/"+arr.length+"]line:"+line);
-			String pic=DbtxtUtils.getRegExUrl(request, line, regEx, 1);
+			String pic=BeanLineUtils.getRegExUrl(request, line, regEx, 1);
 			//sb.append(line);
 			if(pic!=null) {
 				sb.append(pic+"<br/>");

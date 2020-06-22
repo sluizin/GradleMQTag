@@ -1,12 +1,977 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry path="bin" kind="output"/>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/"/>
-	<classpathentry exported="true" kind="con" path="org.springsource.ide.eclipse.gradle.classpathcontainer">
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.ow2.asm/asm-all/6.0_BETA/d1ce213dc9f28569f908355e7abd16db1f331943/asm-all-6.0_BETA-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.ow2.asm/asm-all/6.0_BETA/535f141f6c8fc65986a3469839a852a3266d1025/asm-all-6.0_BETA.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.esotericsoftware.reflectasm/reflectasm/1.09/38030a1dbf8fc887c347dbc7c8931fd5add134ed/reflectasm-1.09-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.esotericsoftware.reflectasm/reflectasm/1.09/6733a005d2fca661cb1bd6c4ffd48c778253ea6b/reflectasm-1.09.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.poi/poi/3.17/9d185f2c484774285585e76f5f1d887208482f93/poi-3.17-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.poi/poi/3.17/ae92292a2043888b40d418da97dc0b669fde326/poi-3.17.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.poi/poi-ooxml/3.17/c9967472b96ef92372352958dcfd3e8e0e5bd2d0/poi-ooxml-3.17-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.poi/poi-ooxml/3.17/7d8c44407178b73246462842bf1e206e99c8e0a/poi-ooxml-3.17.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.poi/poi-ooxml-schemas/3.17/890114bfa82f5b6380ea0e9b0bf49b0af797b414/poi-ooxml-schemas-3.17.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.poi/poi-scratchpad/3.17/3c712c08982db354bd4e3212e01bd6b7a7375a49/poi-scratchpad-3.17-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.poi/poi-scratchpad/3.17/85d86a0e26c7f5c0db4ee63e8c7728e51c5d64ce/poi-scratchpad-3.17.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.0-alpha1/fa4c07f58c6a4dd6e636c5595fb79d3f4b91dc59/slf4j-api-2.0.0-alpha1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.0-alpha1/e979781e847d44d3618c4479d438956593b6b080/slf4j-api-2.0.0-alpha1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.3.0-alpha4/3fc37f0a7551689aa55408442b3a93b8f5257633/logback-core-1.3.0-alpha4-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.3.0-alpha4/3ec023a0068a02e5d4697fce3435562348d3d478/logback-core-1.3.0-alpha4.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.3.0-alpha4/e497aefb0dc783527e7e2af623328e65c7ab9066/logback-classic-1.3.0-alpha4-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.3.0-alpha4/2cd967bc8fbd5e5ebbb93abd0b254b1eaf90e471/logback-classic-1.3.0-alpha4.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/ch.qos.logback/logback-access/1.3.0-alpha4/b6863b66d3ecdd100f2f377efd5233017b58d745/logback-access-1.3.0-alpha4-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/ch.qos.logback/logback-access/1.3.0-alpha4/6c1d70161562f7f19ee365f0ff26acb3a8eea658/logback-access-1.3.0-alpha4.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/net.sf.ucanaccess/ucanaccess/4.0.4/b1db2fbba06d1b1bfb1cefe828186f65b7976ab5/ucanaccess-4.0.4-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/net.sf.ucanaccess/ucanaccess/4.0.4/c9b08b27279a15e53957c1d3003a2d95153653a2/ucanaccess-4.0.4.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.healthmarketscience.jackcess/jackcess/3.0.0/caab8800820fd60c4acaaa4ef34a488dd41582b6/jackcess-3.0.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.healthmarketscience.jackcess/jackcess/3.0.0/b476318e9db7a9ec43d15cc382454cf712fcafea/jackcess-3.0.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.62/ddc73fc24155c7e75d660de78eda40311dab4522/fastjson-1.2.62-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.62/9243497a2f1f9d40d7d1d8d852f0abdc71955532/fastjson-1.2.62.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.10.1/a12ab35dd79cd21276603c0f43695774c4bfb23c/jackson-core-2.10.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.10.1/2c8b5e26ba40e5f91eb37a24075a2028b402c5f9/jackson-core-2.10.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.10.1/44bc509b5f453f2848ac7f1c281f30649a9b6b81/jackson-annotations-2.10.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.10.1/54d72475c0d6819f2d0e9a09d25c3ed876a4972f/jackson-annotations-2.10.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.10.1/ebb50922deb157028c54ff84bc9702804ae72545/jackson-databind-2.10.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.10.1/18eee15ffc662d27538d5b6ee84e4c92c0a9d03e/jackson-databind-2.10.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/net.sourceforge.htmlunit/htmlunit/2.36.0/b466d4497301b31c8b410ce74795c216f6645fd7/htmlunit-2.36.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/net.sourceforge.htmlunit/htmlunit/2.36.0/efe6df9c5bc1284cd1d7952434ea4f85c5a32f72/htmlunit-2.36.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.jsoup/jsoup/1.12.1/1ec738903bf781d7218455e314c6dc9831a2f9a6/jsoup-1.12.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.jsoup/jsoup/1.12.1/55819a28fc834c2f2bcf4dcdb278524dc3cf088f/jsoup-1.12.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/maven-storage/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1-sources.jar" kind="lib" path="E:/Service/maven-storage/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.dom4j/dom4j/2.1.1/a474d56a9ff9ec5973268cb1e80ded8414ffdd40/dom4j-2.1.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.dom4j/dom4j/2.1.1/3dce5dbb3571aa820c677fadd8349bfa8f00c199/dom4j-2.1.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/net.sourceforge.cpdetector/cpdetector/1.0.7/5e349fae815483768f6fd7596750f95840c74cb7/cpdetector-1.0.7-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/net.sourceforge.cpdetector/cpdetector/1.0.7/cd8bee9392c8d3937fcb4909d05623a43f69b751/cpdetector-1.0.7.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/285602cb687ffa3dc8221ba3a728115dfe2d79bf/antlr4-4.7.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/93058c41a6cbb7f5ca63edac837f42c002dbc556/antlr4-4.7.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-core/5.7.0/5cefbc06d13b129fa8265bbe86fdfd3a2b8e284/activemq-core-5.7.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-core/5.7.0/1e07c5849fbb28bac3bf2528a801758fc58db6af/activemq-core-5.7.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-broker/5.15.11/95ccbaccb752721e2ddeb8712869bd76027d1937/activemq-broker-5.15.11-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-broker/5.15.11/55758a807c6459be21e09bffca931691a86fa8d4/activemq-broker-5.15.11.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-client/5.15.11/43c273515e4b936542d608d998ab7a363a8197fd/activemq-client-5.15.11-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-client/5.15.11/4a33557ef70e185892371e63b8e5416f4dcef699/activemq-client-5.15.11.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-pool/5.15.11/bd18cdb42beef15e9be567e93583d4e0b4fed56c/activemq-pool-5.15.11-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-pool/5.15.11/167160c71dec8ab4bc600deb6d0bf9ada11c8c5e/activemq-pool-5.15.11.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-spring/5.15.11/e190876afe879ce55d6e71f2b03416a2b27ac554/activemq-spring-5.15.11-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-spring/5.15.11/d2c30637fd836874e9cb1f480ba1672cc0281851/activemq-spring-5.15.11.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-jaas/5.15.11/ae32dbf3d424f58fca7ae380502f6669133dc538/activemq-jaas-5.15.11-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-jaas/5.15.11/bdee2c8ab29e6fc309102eaeb66fe2d888e34db/activemq-jaas-5.15.11.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-mqtt/5.15.11/6c236ddc3d09582a16d279f3970395e736d52976/activemq-mqtt-5.15.11-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-mqtt/5.15.11/630512fbeaaec5d618853bf156bac887d9df897/activemq-mqtt-5.15.11.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.javassist/javassist/3.26.0-GA/61e272d124cd95493e7d621ca9db1d46e7e4bb17/javassist-3.26.0-GA-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.javassist/javassist/3.26.0-GA/bb2890849968d8d8311ffba8c37b0ce16ce284dc/javassist-3.26.0-GA.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.mybatis/mybatis/3.5.3/a5d657429d682e7ca9f4bec48a4cf36809458eaa/mybatis-3.5.3-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.mybatis/mybatis/3.5.3/941d248365b461a853f0c29c32752a0a290224bb/mybatis-3.5.3.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.mybatis/mybatis-spring/2.0.3/21ed91c7a24d01e04f729c48b349695faf65c2d0/mybatis-spring-2.0.3-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.mybatis/mybatis-spring/2.0.3/17472a85388c8d37c9ffefcc9ef0fc3edabcce02/mybatis-spring-2.0.3.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.mybatis.spring.boot/mybatis-spring-boot-starter/2.1.1/8f37962345ae7752f0fb1a831ae932a6b55326a7/mybatis-spring-boot-starter-2.1.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.mybatis.generator/mybatis-generator-core/1.4.0/8bc014cd1e3e40fd6668d9447f0d6113f638999b/mybatis-generator-core-1.4.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.mybatis.generator/mybatis-generator-core/1.4.0/d4f70e1ebfb057baecf1491d142920e1c8106f00/mybatis-generator-core-1.4.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Service/maven-storage/repository/mysql/mysql-connector-java/5.1.20/mysql-connector-java-5.1.20.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.freemarker/freemarker/2.3.29/89f6c30ecede4792e0b2aeffb6998f1d9340a983/freemarker-2.3.29-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.freemarker/freemarker/2.3.29/46005eeee02e4458520c85d0bcf5001467b053c3/freemarker-2.3.29.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.taglibs/taglibs-standard-impl/1.2.5/ff7d164b8b09beeb2676661a5ecdfea47e9325b8/taglibs-standard-impl-1.2.5-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.taglibs/taglibs-standard-impl/1.2.5/9b9783ccb2a323383e6e20e36d368f8997b71967/taglibs-standard-impl-1.2.5.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.quartz-scheduler/quartz/2.3.2/c22b720ab9a92367424cda3d628fea758dd7e4cf/quartz-2.3.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.quartz-scheduler/quartz/2.3.2/18a6d6b5a40b77bd060b34cb9f2acadc4bae7c8a/quartz-2.3.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.quartz-scheduler/quartz-jobs/2.3.2/26358986162924db92d4205754c37d213065f388/quartz-jobs-2.3.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.quartz-scheduler/quartz-jobs/2.3.2/b2223bd809ffc77d41a2739fde85b822e59be2fe/quartz-jobs-2.3.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/javax.validation/validation-api/2.0.1.Final/4b714a5167580122e46ead3317ffcdcdbd67c5f0/validation-api-2.0.1.Final-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/javax.validation/validation-api/2.0.1.Final/cb855558e6271b1b32e716d24cb85c7f583ce09e/validation-api-2.0.1.Final.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.hibernate.validator/hibernate-validator/6.1.0.Final/e904244b4f8f67c48d8eb88a0ce29477a0365f5f/hibernate-validator-6.1.0.Final-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.hibernate.validator/hibernate-validator/6.1.0.Final/a25ff01009dde1a2eb4ce84e0fd6c69970f35754/hibernate-validator-6.1.0.Final.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.5.10/b88c634257720718f33caebc6fc6ec52e4cce190/httpclient-4.5.10-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.5.10/7ca2e4276f4ef95e4db725a8cd4a1d1e7585b9e5/httpclient-4.5.10.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/net.sourceforge.javacsv/javacsv/2.0/8092b1ba2d4929f2ec27e58cd240502afdd6a9a7/javacsv-2.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/javax.media/jai_codec/1.1.3/34a67ba62097778e4695c951156bf189c2c8e016/jai_codec-1.1.3.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/javax.el/javax.el-api/3.0.1-b06/186eda4921326e53a4dad3156fde114736e3aea3/javax.el-api-3.0.1-b06-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/javax.el/javax.el-api/3.0.1-b06/9c4c2400f2d8e35c62d636c13012e1f68c370a00/javax.el-api-3.0.1-b06.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.github.sarxos/webcam-capture/0.3.12/4665d711ac798290574aa2fe18e6394f567502ef/webcam-capture-0.3.12-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.github.sarxos/webcam-capture/0.3.12/47b09a421def93b23397bc900ca9a0a31a4927f1/webcam-capture-0.3.12.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/QRCode/QRCode/3.0.0/42634eda3e5b5b46ed141a094ee7493ca65606dc/QRCode-3.0.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.google.zxing/core/3.4.0/392876e10bc1179c094f0b03cca80a79b8b338a7/core-3.4.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.google.zxing/core/3.4.0/5264296c46634347890ec9250bc65f14b7362bf8/core-3.4.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.google.android/android/4.1.1.4/d0b222ba86f4143dd837ece95f84f0cf220dd737/android-4.1.1.4-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.google.android/android/4.1.1.4/3fb039385e71e9aa2ba547ea9ea8caa34a4ffac7/android-4.1.1.4.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.jfree/jfreechart/1.5.0/2ce0d4602a285a5e34a9c2a6a179949f61116f4/jfreechart-1.5.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.jfree/jfreechart/1.5.0/bc7919249bac68c15c433ed51cb798a1bf8cd74e/jfreechart-1.5.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-core/8.3.0/2ecb8232ba352fed0286b0ff3896d7c3746b9c5b/lucene-core-8.3.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-core/8.3.0/e98c442fa8b041072d5a5fe2d417d78a8ce46eaf/lucene-core-8.3.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-memory/8.3.0/9a8255524789fccb9d17aa2dba4cf081636f3ec8/lucene-memory-8.3.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-memory/8.3.0/a556004c230704b7473031338f17cb65525b55bf/lucene-memory-8.3.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-expressions/8.3.0/6de46af442e5d2e99d20916165a9598bea0c74fe/lucene-expressions-8.3.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-expressions/8.3.0/f0ec4e678981db29d52e570321ee844668e49f65/lucene-expressions-8.3.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-grouping/8.3.0/7e7206c7250ef0082c418131be71848e1b3a659e/lucene-grouping-8.3.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-grouping/8.3.0/82a9aad0f3916369cbe8d70f8328b5a5f6cbe5eb/lucene-grouping-8.3.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-queryparser/8.3.0/18fbd8316bc5c7f102abfc81dbc6ceb7a234cb97/lucene-queryparser-8.3.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-queryparser/8.3.0/b10ceccf3a3ca92bc3a83d5930cac1244286dc60/lucene-queryparser-8.3.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-highlighter/8.3.0/81ccab09e322eca7f2de259f0d2e2ea7d74a6001/lucene-highlighter-8.3.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-highlighter/8.3.0/431f12cc7e968061d9cb8c98dff94dad830862f0/lucene-highlighter-8.3.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-analyzers/3.6.2/8adec163900e7f6325cfa3aa95f25a012adac758/lucene-analyzers-3.6.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-analyzers/3.6.2/3a083510dcb0d0fc67f8456cdac6f48aa0da2993/lucene-analyzers-3.6.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-analyzers-common/8.3.0/55d3a99d1c7294e025afff8e4b2fdc03d8459280/lucene-analyzers-common-8.3.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-analyzers-common/8.3.0/832806ff4af08d32e9974db75b0210c140f375fc/lucene-analyzers-common-8.3.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-analyzers-smartcn/8.3.0/e13079e3566a9444458ff1d9ec566893453e6606/lucene-analyzers-smartcn-8.3.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-analyzers-smartcn/8.3.0/a5466edb83298bea067a9495e3dc1a5f0f337ef7/lucene-analyzers-smartcn-8.3.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-smartcn/3.6.2/690716bfc7c2eef510afaa3b259b1e7d876d49dc/lucene-smartcn-3.6.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-smartcn/3.6.2/e86dfea83d8fa5062145025c1f06ca27f9a49cab/lucene-smartcn-3.6.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.janeluo/ikanalyzer/2012_u6/a44b905323929bf8ffa879bdec7f38fd296b957a/ikanalyzer-2012_u6-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.janeluo/ikanalyzer/2012_u6/1529f823ae7c3cbc2f14f3fd21e2362925ea9aeb/ikanalyzer-2012_u6.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-core/5.2.1.RELEASE/55e7202309d932c4d47ccec00500f98425406309/spring-core-5.2.1.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-core/5.2.1.RELEASE/32b265ff5c7c35257b5a242b9628dcd321a2b010/spring-core-5.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-aop/5.2.1.RELEASE/37720d061b744366e1e1faf5aa6838df99f3ec47/spring-aop-5.2.1.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-aop/5.2.1.RELEASE/34c11ad92e06753e592865c7c403b09ab884d862/spring-aop-5.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-context/5.2.1.RELEASE/43da4e562e25c4c5931e2dec04f2037f9d230391/spring-context-5.2.1.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-context/5.2.1.RELEASE/1d3e142adbdbd0810b19462fbd88d94cc51cce01/spring-context-5.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-context-support/5.2.1.RELEASE/51bbd8974243c7fd29ee6ec7c3807cdbc5b1be2d/spring-context-support-5.2.1.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-context-support/5.2.1.RELEASE/22fedda999e1b443be19bc3fb7ec326a6e0caf05/spring-context-support-5.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-beans/5.2.1.RELEASE/d2a036b0652391aa91828b00e87f9354822a2e70/spring-beans-5.2.1.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-beans/5.2.1.RELEASE/d05690257d8e8034b180db3893d5baf8250fb9d3/spring-beans-5.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-web/5.2.1.RELEASE/5247d73874757aa411626d2bf156360768005dc5/spring-web-5.2.1.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-web/5.2.1.RELEASE/4f1dfe592951c312b52de469f1940b1cb0455226/spring-web-5.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.2.1.RELEASE/3668f11c423b5fa6d442a0282151895dc81959ca/spring-webmvc-5.2.1.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.2.1.RELEASE/9c118e3a551fe4bf31eb9e395b5f8ef42cf14f42/spring-webmvc-5.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-tx/5.2.1.RELEASE/e13efee00643e55716f214a22e4f6a8fb8e3817/spring-tx-5.2.1.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-tx/5.2.1.RELEASE/eea31b77780487a188af44d9a1bacf717a68da72/spring-tx-5.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-jdbc/5.2.1.RELEASE/5b790943095dbb4c26a43d00415be88c8e8bbae1/spring-jdbc-5.2.1.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-jdbc/5.2.1.RELEASE/b33c907cbaff98fdfe7d8707ce046e595805c795/spring-jdbc-5.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-test/5.2.1.RELEASE/628dee8555b5010b926ebd880f7b108140520c71/spring-test-5.2.1.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-test/5.2.1.RELEASE/939bbeb098b3944f3f5323d6c3703cb9b78f5de2/spring-test-5.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-jms/5.2.1.RELEASE/dd2319297d08bc156031cd171d00764e8ce6906/spring-jms-5.2.1.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-jms/5.2.1.RELEASE/928adefad0ee7012b89526e582917e0d75fb3415/spring-jms-5.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-messaging/5.2.1.RELEASE/775b6f5e05f865b4a2cd1f57d43faee8f19dd0ca/spring-messaging-5.2.1.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-messaging/5.2.1.RELEASE/22658566238766b8ba1f9a39707ac0e58ab3083e/spring-messaging-5.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.2.1.RELEASE/44a612127342efee296f5a4c04004e6c0f622899/spring-security-web-5.2.1.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.2.1.RELEASE/9e43c2d8d2dffc60bfba8ac95a106d30e9593106/spring-security-web-5.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.10/1853e1e74e4963a316bd16aa21ce3e9a8c139efe/lombok-1.18.10-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.10/625fc0055674dff70dbc76efa36d0f2c89b04a24/lombok-1.18.10.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/javax.mail/javax.mail-api/1.6.2/d29b882add0b3fefb9c06958da53912176b2daf1/javax.mail-api-1.6.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/javax.mail/javax.mail-api/1.6.2/17a8151bab44f9c94f34c10db70d95ba3c830eda/javax.mail-api-1.6.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-email/1.5/dbe951d1b89eb9472b4b2c8f618b8bc9783b6623/commons-email-1.5-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-email/1.5/e8e677c6362eba14ff3c476ba63ccb83132dbd52/commons-email-1.5.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-dbcp2/2.7.0/40e49625e8ccfb008f99cd4bc9babcf43756bac3/commons-dbcp2-2.7.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-dbcp2/2.7.0/ac3c5077659b4b9140e8fa63e855e0437fe94357/commons-dbcp2-2.7.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-collections4/4.4/6260e416ff273ee938b31b0a8e512a367b1ee500/commons-collections4-4.4-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-collections4/4.4/62ebe7544cb7164d87e0637a2a6a2bdc981395e8/commons-collections4-4.4.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-csv/1.7/ec726da54e382e22892af13bd99b52fc412702ee/commons-csv-1.7-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-csv/1.7/cb5d05520f8fe1b409aaf29962e47dc5764f8f39/commons-csv-1.7.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-compress/1.19/9c242093f81288289bc433e383c8a8de89489406/commons-compress-1.19-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-compress/1.19/7e65777fb451ddab6a9c054beb879e521b7eab78/commons-compress-1.19.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-math3/3.6.1/8fab23986ea8886af34818daf32a718e81dc98ba/commons-math3-3.6.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-math3/3.6.1/e4ba98f1d4b3c80ec46392f25e094a6a2e58fcbf/commons-math3-3.6.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-text/1.8/79ddc6e7b5ea247f5553f4e948863708dbdd5316/commons-text-1.8-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-text/1.8/879a6bde4c0537a25504c72ec7a94ba4099f469c/commons-text-1.8.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-pool2/2.7.0/d4eabcd9a2ddb810f0417b0e3c67c3dbb5734ad0/commons-pool2-2.7.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-pool2/2.7.0/7f9ccfaaf76b0ba8b4200480971a170364a9c361/commons-pool2-2.7.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-configuration2/2.6/9fa75ed24ee85514f63046a39697509c78f425cd/commons-configuration2-2.6-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-configuration2/2.6/d2641f980c21cbe67e54c127d8ae8f4e7e037464/commons-configuration2-2.6.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-vfs2/2.4.1/7a8f46ba636106c51512cb319c782fcdf242c009/commons-vfs2-2.4.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-vfs2/2.4.1/2b041628c3cb436d8eee25f78603f04eb5e817a5/commons-vfs2-2.4.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-jexl/2.1.1/6819924664fe02ff8da255f665be6e4dedf95e18/commons-jexl-2.1.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-jexl/2.1.1/6ecc181debade00230aa1e17666c4ea0371beaaa/commons-jexl-2.1.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.9/8f1cb192e229bc4cd1c900c51171d96706e6d195/commons-lang3-3.9-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.9/122c7cee69b53ed4a7681c03d4ee4c0e2765da5/commons-lang3-3.9.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/commons-io/commons-io/2.6/2566800dc841d9d2c5a0d34d807e45d4107dbbdf/commons-io-2.6-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/commons-io/commons-io/2.6/815893df5f31da2ece4040fe0a12fd44b577afaf/commons-io-2.6.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/commons-fileupload/commons-fileupload/1.4/d50ee98902746c6a351662fa8b728189d1a30e90/commons-fileupload-1.4-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/commons-fileupload/commons-fileupload/1.4/f95188e3d372e20e7328706c37ef366e5d7859b0/commons-fileupload-1.4.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/maven-storage/repository/commons-logging/commons-logging/1.2/commons-logging-1.2-sources.jar" kind="lib" path="E:/Service/maven-storage/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/commons-codec/commons-codec/1.13/226247b40160f2892fa4c7851b5b913d5d10912d/commons-codec-1.13-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/commons-codec/commons-codec/1.13/3f18e1aa31031d89db6f01ba05d501258ce69d2c/commons-codec-1.13.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/commons-beanutils/commons-beanutils/1.9.4/f00e0ba867d1810f255876631ab440e0725a9af0/commons-beanutils-1.9.4-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/commons-beanutils/commons-beanutils/1.9.4/d52b9abcd97f38c81342bb7e7ae1eee9b73cba51/commons-beanutils-1.9.4.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.6.0-M1/8bf1b8cd955768d34b9a36c8d99e5769eb5ffa9d/junit-jupiter-api-5.6.0-M1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.6.0-M1/876361abf395adf5f0f6b7d6f7095327a7c569dd/junit-jupiter-api-5.6.0-M1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.6.0-M1/c5c3f368266a89bdca21308cbe0bd3371a51cc5f/junit-jupiter-engine-5.6.0-M1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.6.0-M1/e383e81f9de9becd39830917d0ea8668a94b7000/junit-jupiter-engine-5.6.0-M1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-params/5.6.0-M1/5b3ab1a08033837a61ac7facfdcc68e569496145/junit-jupiter-params-5.6.0-M1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-params/5.6.0-M1/6aabe6535947d25d12bd7bcfdff3fcc2fa24703b/junit-jupiter-params-5.6.0-M1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-migrationsupport/5.6.0-M1/61b39881d85a6edca12c275d09bb96ea67a85f4c/junit-jupiter-migrationsupport-5.6.0-M1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-migrationsupport/5.6.0-M1/fbbc9049edc376c96070b155f705faeef7f17c71/junit-jupiter-migrationsupport-5.6.0-M1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/javax.servlet.jsp.jstl/jstl-api/1.2/b7b976db29290621db582b38c1db9c22ff439f89/jstl-api-1.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/javax.servlet.jsp.jstl/jstl-api/1.2/f9a034c1ca1f79c03bb461805a688f944544d138/jstl-api-1.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/maven-storage/repository/javax/servlet/servlet-api/2.5/servlet-api-2.5-sources.jar" kind="lib" path="E:/Service/maven-storage/repository/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.swt/org.eclipse.swt.win32.win32.x86_64/4.3/eaa75b95f18a7dabb8fc1986ab980973ce50c007/org.eclipse.swt.win32.win32.x86_64-4.3-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.swt/org.eclipse.swt.win32.win32.x86_64/4.3/94fc38c538f9bf264d6a9078c711f122f79acd63/org.eclipse.swt.win32.win32.x86_64-4.3.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.github.virtuald/curvesapi/1.04/5c01708d122c6a61e90716e931b58226d8261312/curvesapi-1.04-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.github.virtuald/curvesapi/1.04/3386abf821719bc89c7685f9eaafaf4a842f0199/curvesapi-1.04.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.xmlbeans/xmlbeans/2.6.0/29e80d2dd51f9dcdef8f9ffaee0d4dc1c9bbfc87/xmlbeans-2.6.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.sun.mail/javax.mail/1.6.0/835d0bd1271818612c2d6f33764e1687e8a59a41/javax.mail-1.6.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.sun.mail/javax.mail/1.6.0/a055c648842c4954c1f7db7254f45d9ad565e278/javax.mail-1.6.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.hsqldb/hsqldb/2.3.1/7c634bdb7ee7a8eca0aaeb189f95ba5ff7360c27/hsqldb-2.3.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.hsqldb/hsqldb/2.3.1/bd7153caa30958e1c64a3dd38b93e5a7442d9a0e/hsqldb-2.3.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/xalan/xalan/2.7.2/fe9c3d37a49238fac9d4d6c4f5bbd8c334da787a/xalan-2.7.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/xalan/xalan/2.7.2/d55d3f02a56ec4c25695fe67e1334ff8c2ecea23/xalan-2.7.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.5.9/cbc3c82c8d1d0f865865fdca6d22ce435c243c5f/httpmime-4.5.9-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.5.9/c5302bb51f3316b96c0111254ce26994358fb1cc/httpmime-4.5.9.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/net.sourceforge.htmlunit/htmlunit-core-js/2.36.0/fea632b6677b574497912631a4180660e849d672/htmlunit-core-js-2.36.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/net.sourceforge.htmlunit/htmlunit-core-js/2.36.0/47bc8cf3a812169a4ce283515604c6cbab4aa13f/htmlunit-core-js-2.36.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/net.sourceforge.htmlunit/neko-htmlunit/2.36.0/5f4217a693f89388f760bcb1dc896352c872ea29/neko-htmlunit-2.36.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/net.sourceforge.htmlunit/neko-htmlunit/2.36.0/6e999678a3b2813ea71fac4ebc5996b1406e954d/neko-htmlunit-2.36.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/net.sourceforge.htmlunit/htmlunit-cssparser/1.5.0/c9aad26b4740faea3dfc1df50f1b3e6af95baf2e/htmlunit-cssparser-1.5.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/net.sourceforge.htmlunit/htmlunit-cssparser/1.5.0/7e40e04f32622e63a30e92ac158f799f67d8ddf0/htmlunit-cssparser-1.5.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/commons-net/commons-net/3.6/961dc27eabbe71bf32478baffe0e1be915ce7689/commons-net-3.6-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/commons-net/commons-net/3.6/b71de00508dcb078d2b24b5fa7e538636de9b3da/commons-net-3.6.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.brotli/dec/0.1.2/c04c22a0f5a84e985bd04d2129638e590c1e5edc/dec-0.1.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.brotli/dec/0.1.2/c26a897ae0d524809eef1c786cc6183b4ddcc3b/dec-0.1.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.jetty.websocket/websocket-client/9.4.20.v20190813/3ea400bbf3b816630791f73ff04fe500e9a0a0fd/websocket-client-9.4.20.v20190813-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.jetty.websocket/websocket-client/9.4.20.v20190813/6575537348092bc18e065fa9fe5bb333cae6e842/websocket-client-9.4.20.v20190813.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Service/maven-storage/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/net.sourceforge.jchardet/jchardet/1.0/fb9dcaf21914d93122f614886ac98a594ed7f767/jchardet-1.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/net.sourceforge.jargs/jargs/1.0/538de9ed8521382b30c405d972b98cca834f7675/jargs-1.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/net.sourceforge.jargs/jargs/1.0/d062ad6bbd25607d5aac1d212ff98f5802a161b0/jargs-1.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/14fff5b9b6c84f3b3a1fe0980e8560a555df07c0/antlr4-runtime-4.7.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/5214ea45dd20d3a2e4caa6f1ad2248ad107e0daf/antlr-runtime-3.5.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.antlr/ST4/4.1/a0024699bf2a3daa79d75d67295f45761076058a/ST4-4.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/98d31576a54fd48dabf1fcf67a311dd9f0e4f66e/org.abego.treelayout.core-1.0.3-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/ef782abad0d3f1d30644c4023a6bbc6fe371e23a/javax.json-1.0.4-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/df1b5d109cd3734abc5ea028b48c67b5a1a44365/icu4j-61.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Service/maven-storage/repository/org/apache/geronimo/specs/geronimo-jms_1.1_spec/1.1.1/geronimo-jms_1.1_spec-1.1.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/kahadb/5.7.0/5f588e9c10a3253a2e70a106e66fd99012a6e5a1/kahadb-5.7.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/kahadb/5.7.0/c45eff4b78ca1f5f7469e4f4e094dbd4c8038adf/kahadb-5.7.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq.protobuf/activemq-protobuf/1.1/1a999c15504cdf0911f7fb333fdb1db6876020a0/activemq-protobuf-1.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq.protobuf/activemq-protobuf/1.1/26682eb801f70563511f7c424dc10e8b3e66340e/activemq-protobuf-1.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Service/maven-storage/repository/org/apache/geronimo/specs/geronimo-j2ee-management_1.1_spec/1.0.1/geronimo-j2ee-management_1.1_spec-1.0.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.jasypt/jasypt/1.9.0/7345fb69a07951acddfd3e0a0989aac52f9f655/jasypt-1.9.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.jasypt/jasypt/1.9.0/857a1a55a81641c31b2a9b4b292120c1d4432bd/jasypt-1.9.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-openwire-legacy/5.15.11/cf8a1413ddc9140cce770263b50f60a5cac4c38f/activemq-openwire-legacy-5.15.11-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-openwire-legacy/5.15.11/1ed155a410f159ea95cf93e0144a4edf8b7dd3cd/activemq-openwire-legacy-5.15.11.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.fusesource.hawtbuf/hawtbuf/1.11/8218f5081b357c4c79a426bae93933584ed59f0d/hawtbuf-1.11-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.fusesource.hawtbuf/hawtbuf/1.11/8f0e50ad8bea37b84b698ec40cce09e47714a63e/hawtbuf-1.11.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-jms-pool/5.15.11/8cc61def3c0f2f889d9afb7096e131e0c1f53a25/activemq-jms-pool-5.15.11-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.activemq/activemq-jms-pool/5.15.11/bf8fdbc8efe1279ca3503f0c4e868f5cc2cbbf76/activemq-jms-pool-5.15.11.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1/a84978fba1f1916bf2931e44d961705a9e64aec7/geronimo-jta_1.1_spec-1.1.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1/aabab3165b8ea936b9360abbf448459c0d04a5a4/geronimo-jta_1.1_spec-1.1.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.xbean/xbean-spring/4.14/6b71d152e0c4e3569a290eaecb239ec0e2bf136b/xbean-spring-4.14-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.xbean/xbean-spring/4.14/5bf7825775ac819997b5e05a9eef863a9bfb0318/xbean-spring-4.14.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.fusesource.hawtdispatch/hawtdispatch-transport/1.22/7ec05cd015ce92ef9123cc9248187327e8c87042/hawtdispatch-transport-1.22-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.fusesource.hawtdispatch/hawtdispatch-transport/1.22/84ab770edbaff2d2063aab6ee0123537059d4e91/hawtdispatch-transport-1.22.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter/2.1.9.RELEASE/f847e2698c8a0a08e83b9e2debfff91e427d1c9/spring-boot-starter-2.1.9.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter/2.1.9.RELEASE/45d7afa2d9aab4b2984f2c330f507797fbcf501f/spring-boot-starter-2.1.9.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jdbc/2.1.9.RELEASE/563fb17ef680ac719356acd98978f17142935db7/spring-boot-starter-jdbc-2.1.9.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jdbc/2.1.9.RELEASE/3f7d1d67669dfa0ea4ff9216afbeef5bc6a58ecb/spring-boot-starter-jdbc-2.1.9.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.mybatis.spring.boot/mybatis-spring-boot-autoconfigure/2.1.1/e4bdd2f1ec22f683168788ecad9a4989cf00f48c/mybatis-spring-boot-autoconfigure-2.1.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.mybatis.spring.boot/mybatis-spring-boot-autoconfigure/2.1.1/50d8f44c3073af0b18184c5211cb1fb17b2117a6/mybatis-spring-boot-autoconfigure-2.1.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.mchange/c3p0/0.9.5.4/c3bebeb3a803901e8bb0707cb85abe22232fee9a/c3p0-0.9.5.4-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.mchange/c3p0/0.9.5.4/a21a1d37ae0b59efce99671544f51c34ed1e8def/c3p0-0.9.5.4.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.mchange/mchange-commons-java/0.2.15/dbcfc59448950a4899d9ad88f0a916d5f1e420a0/mchange-commons-java-0.2.15-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.mchange/mchange-commons-java/0.2.15/6ef5abe5f1b94ac45b7b5bad42d871da4fda6bbc/mchange-commons-java-0.2.15.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.zaxxer/HikariCP-java7/2.4.13/fc995c9e7945c5d9efa11fdbb5cbf10606409cd5/HikariCP-java7-2.4.13-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.zaxxer/HikariCP-java7/2.4.13/3e441eddedb374d4de8e3abbb0c90997f51cc97b/HikariCP-java7-2.4.13.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/jakarta.validation/jakarta.validation-api/2.0.2/ef429a7f3bc2d2d1784a1135668a857a6aaedf31/jakarta.validation-api-2.0.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/jakarta.validation/jakarta.validation-api/2.0.2/5eacc6522521f7eacb081f95cee1e231648461e7/jakarta.validation-api-2.0.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.3.2.Final/a44f0f22bbd9ccb96952806e73f6cc16ef7d2f67/jboss-logging-3.3.2.Final-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.3.2.Final/3789d00e859632e6c6206adc0c71625559e6e3b0/jboss-logging-3.3.2.Final.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.fasterxml/classmate/1.3.4/d5aa53c93626884209c1e82fdf44d2ccdaf8e9c2/classmate-1.3.4-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.fasterxml/classmate/1.3.4/3d5f48f10bbe4eb7bd862f10c0583be2e0053c6/classmate-1.3.4.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.4.12/8b6f2545070a53107665c1e390e690a859bd2266/httpcore-4.4.12-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.4.12/21ebaf6d532bc350ba95bd81938fa5f0e511c132/httpcore-4.4.12.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.nativelibs4java/bridj/0.7.0/a766ea858f114581e67a42516138ad4324a3ef23/bridj-0.7.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.nativelibs4java/bridj/0.7.0/461c40ed578c92106579e370838ed4e224d0289e/bridj-0.7.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.khronos/opengl-api/gl1.1-android-2.1_r1/3d04a959a571d615f4c96a7dd954af18df9da799/opengl-api-gl1.1-android-2.1_r1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.khronos/opengl-api/gl1.1-android-2.1_r1/8827d279add29cf9115820671e7879de7bf80390/opengl-api-gl1.1-android-2.1_r1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/xerces/xmlParserAPIs/2.6.2/65acede1e5305bd2b92213d7b5761328c6f4fd9/xmlParserAPIs-2.6.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/xpp3/xpp3/1.1.4c/8dd0ddee19fe6ed0182b18e0e621d1c8b4d8d56/xpp3-1.1.4c-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/xpp3/xpp3/1.1.4c/9b988ea84b9e4e9f1874e390ce099b8ac12cfff5/xpp3-1.1.4c.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/maven-storage/repository/org/json/json/20080701/json-20080701-sources.jar" kind="lib" path="E:/Service/maven-storage/repository/org/json/json/20080701/json-20080701.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.ow2.asm/asm-commons/5.1/81e81bd6c20b965f88d0462e2559f8759fc6c26d/asm-commons-5.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.ow2.asm/asm-commons/5.1/25d8a575034dd9cfcb375a39b5334f0ba9c8474e/asm-commons-5.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-queries/8.3.0/759859ff8678b660d11f3933445315615d6de2bf/lucene-queries-8.3.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-queries/8.3.0/a2b2cf250d5377da5ee22bb25626bf3e0dc4c5ca/lucene-queries-8.3.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-sandbox/8.3.0/eb34068579eda64cfd1521396899eb46f8e0fb15/lucene-sandbox-8.3.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.lucene/lucene-sandbox/8.3.0/e381b9095f0946f0328e70216149cb28f0f926b2/lucene-sandbox-8.3.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-jcl/5.2.1.RELEASE/19db06922c966feb4948282f51d7b5e960e0d013/spring-jcl-5.2.1.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-jcl/5.2.1.RELEASE/a9f6e0b98cd3980b25ab6ead1e59ced0d294d67/spring-jcl-5.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-expression/5.2.1.RELEASE/896e15320e8e21b87e93622d984e0afc52fdb26/spring-expression-5.2.1.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework/spring-expression/5.2.1.RELEASE/499e91096320f7e6fcfd6920e66d5ed5f0ecfee9/spring-expression-5.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/5.2.1.RELEASE/1ffd134e0a23a0564b44616daf401bbc7918275b/spring-security-core-5.2.1.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/5.2.1.RELEASE/f1265ecdd4636a2038768c2ab9da4b79961a3465/spring-security-core-5.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/maven-storage/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2-sources.jar" kind="lib" path="E:/Service/maven-storage/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.1.0/f3c15fe970af864390c8d0634c9f16aca1b064a8/apiguardian-api-1.1.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.1.0/fc9dff4bb36d627bdc553de77e1f17efd790876c/apiguardian-api-1.1.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.2.0/41d55b3c2254de9837b4ec8923cbd371b8a7eab5/opentest4j-1.2.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.2.0/28c11eb91f9b6d8e200631d46e20a7f407f2a046/opentest4j-1.2.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.6.0-M1/ba3c307272097adec1ba311370c02617718f3c6/junit-platform-commons-1.6.0-M1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.6.0-M1/74e96239c30fb6c99243f7160284215a246cbea/junit-platform-commons-1.6.0-M1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.6.0-M1/538e29b23b3d4181b6d96d946f72f24e0e93fc44/junit-platform-engine-1.6.0-M1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.6.0-M1/aaa8dd6d28a918b1ee3a934d03c64eec66539d98/junit-platform-engine-1.6.0-M1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/maven-storage/repository/junit/junit/4.12/junit-4.12-sources.jar" kind="lib" path="E:/Service/maven-storage/repository/junit/junit/4.12/junit-4.12.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/maven-storage/repository/javax/servlet/jsp/jsp-api/2.1/jsp-api-2.1-sources.jar" kind="lib" path="E:/Service/maven-storage/repository/javax/servlet/jsp/jsp-api/2.1/jsp-api-2.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Service/maven-storage/repository/stax/stax-api/1.0.1/stax-api-1.0.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/xalan/serializer/2.7.2/fe9c3d37a49238fac9d4d6c4f5bbd8c334da787a/serializer-2.7.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/xalan/serializer/2.7.2/24247f3bb052ee068971393bdb83e04512bb1c3c/serializer-2.7.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/xerces/xercesImpl/2.12.0/826f6fc0619cb459bd21964688223d816f2f78a7/xercesImpl-2.12.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/xerces/xercesImpl/2.12.0/f02c844149fd306601f20e0b34853a670bef7fa2/xercesImpl-2.12.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-client/9.4.20.v20190813/fba3b9a18670af007361686da020fa955dd546ac/jetty-client-9.4.20.v20190813-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-client/9.4.20.v20190813/dcee62915067cba0b3ed331d14f75e5d753c566d/jetty-client-9.4.20.v20190813.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-xml/9.4.20.v20190813/fd0cf300f7665f9fcbb6caa4b11343e6621bb707/jetty-xml-9.4.20.v20190813-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-xml/9.4.20.v20190813/212d5f1fbc45c25ce0995ea861448918a0397338/jetty-xml-9.4.20.v20190813.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-util/9.4.20.v20190813/2827925d01d95f42d02adf177d2474fbc8a3d5e0/jetty-util-9.4.20.v20190813-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-util/9.4.20.v20190813/8ee753d673a124ba2880361871ab13f6863b2d40/jetty-util-9.4.20.v20190813.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-io/9.4.20.v20190813/d12619b4df0d202847096a8429b0f96f123c7c77/jetty-io-9.4.20.v20190813-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-io/9.4.20.v20190813/b246c5e350d0aa1b310c07ec362755c34a1cc8cb/jetty-io-9.4.20.v20190813.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.jetty.websocket/websocket-common/9.4.20.v20190813/371442e2c05700bf624d470841da9c7708126cd0/websocket-common-9.4.20.v20190813-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.jetty.websocket/websocket-common/9.4.20.v20190813/2ab33f93662c7270ec0dea205c47f7b40e9a060b/websocket-common-9.4.20.v20190813.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.fusesource.hawtdispatch/hawtdispatch/1.22/d81f025c076b1cca1f1652d6cf2110754f2864a9/hawtdispatch-1.22-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.fusesource.hawtdispatch/hawtdispatch/1.22/e2d9eac51cad0e75e7ed95c5183c9b655390cdd6/hawtdispatch-1.22.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/2.1.9.RELEASE/cd8b0aab7b0b079e113dfe627113b65887455068/spring-boot-2.1.9.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/2.1.9.RELEASE/b18e7287a82ee06c6bb4e79423c25c05b8303dc1/spring-boot-2.1.9.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/2.1.9.RELEASE/21593725f2642e18c995a6c12fca31b7e90ba248/spring-boot-autoconfigure-2.1.9.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/2.1.9.RELEASE/aa6d5e0fef585bec64543b9b8f944a94060e710a/spring-boot-autoconfigure-2.1.9.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-logging/2.1.9.RELEASE/675afc0f9d37af68bc52552c94c46492f36a197e/spring-boot-starter-logging-2.1.9.RELEASE-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-logging/2.1.9.RELEASE/802b562b0c602ae9242b659a28b9bf89ca689b2d/spring-boot-starter-logging-2.1.9.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.3.2/65dfd2c47380bf72ec62a5b8c4ceb78a4eda1a53/javax.annotation-api-1.3.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.3.2/934c04d3cfef185a8008e7bf34331b79730a9d43/javax.annotation-api-1.3.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.23/1186bcf89d33080275bab74a0b0f495af5c812ef/snakeyaml-1.23-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.23/ec62d74fe50689c28c0ff5b35d3aebcaa8b5be68/snakeyaml-1.23.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.zaxxer/HikariCP/3.2.0/214ae6e5db95b776e38493ca5808e3a7c4a574e8/HikariCP-3.2.0-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.zaxxer/HikariCP/3.2.0/6c66db1c636ee90beb4c65fe34abd8ba9396bca6/HikariCP-3.2.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-http/9.4.20.v20190813/3e187c60d578c529f4baa3bbfc727d4b7ca7b93c/jetty-http-9.4.20.v20190813-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-http/9.4.20.v20190813/edda2fd904a881114aba79e2f881c6f4004e8148/jetty-http-9.4.20.v20190813.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.jetty.websocket/websocket-api/9.4.20.v20190813/2399481c35bb8344dfb63e7b8bdf17e06dd5cf76/websocket-api-9.4.20.v20190813-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.eclipse.jetty.websocket/websocket-api/9.4.20.v20190813/8d608b5dce8e7b3188fde38d908494788e47f55d/websocket-api-9.4.20.v20190813.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-to-slf4j/2.11.2/5b26345d96fce28b017316c5840484e0e929fa33/log4j-to-slf4j-2.11.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-to-slf4j/2.11.2/6d37bf7b046c0ce2669f26b99365a2cfa45c4c18/log4j-to-slf4j-2.11.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.slf4j/jul-to-slf4j/1.7.28/38e319ad85f5b34c10429493902c25c8859ab9b2/jul-to-slf4j-1.7.28-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.slf4j/jul-to-slf4j/1.7.28/c6f06c420ad62d3824b38a06dfdce9fb55ba81ef/jul-to-slf4j-1.7.28.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.11.2/a11bdc0e8f95da31527b4f34f1a35c23e197498d/log4j-api-2.11.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.11.2/f5e9a2ffca496057d6891a3de65128efc636e26e/log4j-api-2.11.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.google.guava/guava/28.0-jre/2d1dca555245ef4bacb35f25299f323d8dd10b27/guava-28.0-jre-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.google.guava/guava/28.0-jre/54fed371b4b8a8cce1e94a9abd9620982d3aa54b/guava-28.0-jre.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.1/1d064e61aad6c51cc77f9b59dc2cccc78e792f5a/failureaccess-1.0.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.1/1dcf1de382a0bf95a3d8b0849546c88bac1292c9/failureaccess-1.0.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.checkerframework/checker-qual/2.8.1/4b07e85f804e861360ee09ddd4550bc6b3fcfcad/checker-qual-2.8.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.checkerframework/checker-qual/2.8.1/eb2e8ab75598548cc8acf9a1ca227e480e01881e/checker-qual-2.8.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.fusesource.mqtt-client/mqtt-client/1.15/370deac29893729f1283a9820e8a3977a9f6c4da/mqtt-client-1.15-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.fusesource.mqtt-client/mqtt-client/1.15/8fbb2db12bba18f672fa20864c6bff3cdd4a02d6/mqtt-client-1.15.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.ow2.asm/asm/5.1/81e81bd6c20b965f88d0462e2559f8759fc6c26d/asm-5.1-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.ow2.asm/asm/5.1/5ef31c4fe953b1fd00b8a88fa1d6820e8785bb45/asm-5.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/maven-storage/repository/javax/activation/activation/1.1/activation-1.1-sources.jar" kind="lib" path="E:/Service/maven-storage/repository/javax/activation/activation/1.1/activation-1.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/maven-storage/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3-sources.jar" kind="lib" path="E:/Service/maven-storage/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/xml-apis/xml-apis/1.4.01/5502da0c4c0a7916a604356ef19394ccfa30cd4b/xml-apis-1.4.01-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/xml-apis/xml-apis/1.4.01/3789d9fada2d3d458c4ba2de349d48780f381ee3/xml-apis-1.4.01.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/b19b5927c2c25b6c70f093767041e641ae0b1b35/jsr305-3.0.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.3.2/6e986bccd3d116d8bc1aaac8534d068ea8edd2ae/error_prone_annotations-2.3.2-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.3.2/d1a0c5032570e0f64be6b4d9c90cdeb103129029/error_prone_annotations-2.3.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/1.3/d26c56180205cbb50447c3eca98ecb617cf9f58b/j2objc-annotations-1.3-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/1.3/ba035118bc8bac37d7eff77700720999acd9986d/j2objc-annotations-1.3.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.codehaus.mojo/animal-sniffer-annotations/1.17/8fb5b5ad9c9723951b9fccaba5bb657fa6064868/animal-sniffer-annotations-1.17-sources.jar" kind="lib" path="E:/Service/gradle-4.7/caches/modules-2/files-2.1/org.codehaus.mojo/animal-sniffer-annotations/1.17/f97ce6decaea32b36101e37979f8b647f00681fb/animal-sniffer-annotations-1.17.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Service/custom-libs/Access_JDBC30.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 </classpath>
