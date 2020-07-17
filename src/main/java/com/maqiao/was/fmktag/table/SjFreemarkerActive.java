@@ -67,13 +67,15 @@ public final class SjFreemarkerActive implements TemplateDirectiveModel {
 			return;
 		}
 		if (db != null) list = db.getList();
-		System.out.println("list.size:"+list.size());
+		//System.out.println("db Object:"+db.toString());
+		//System.out.println("list.size:"+list.size());
 		if(list.size()>0) {
 			/* 后期处理 过滤属性行、过滤下标组、排序 */
 			db.Postprocessing(list);
+			/*
 			for(int i=0;i<list.size()/10;i++) {
 				System.out.println("==["+i+"]=>"+list.get(i).toString());
-			}
+			}*/
 			for (int i = 0, len = list.size(); i < len; i++)
 				list.get(i).setRequest(request);
 		}

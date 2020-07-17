@@ -154,7 +154,18 @@ public final class BeanLine {
 		}
 		return null;
 	}
-
+	/**
+	 * 判断值与对象是否相同，是否忽略大小写
+	 * @param i int
+	 * @param val String
+	 * @param ignoreCase boolean
+	 * @return boolean
+	 */
+	public final boolean equalsValue(int i,String val,boolean ignoreCase) {
+		String v=get(i);
+		if(v==null)return false;
+		if(ignoreCase)return v.equalsIgnoreCase(val);else return v.equals(val);
+	}
 	/**
 	 * 得到vI的值，多列查找<br>
 	 * 如果没有查找，则返回null
@@ -304,6 +315,16 @@ public final class BeanLine {
 	 */
 	public final int length() {
 		return list.size();
+	}
+	/**
+	 * 移除某列
+	 * @param index int
+	 * @return boolean
+	 */
+	public final boolean removeCol(int index) {
+		if(index<0 || index>=list.size())return false;
+		list.remove(index);
+		return true;
 	}
 
 	public final void set(ResultSet rs) {

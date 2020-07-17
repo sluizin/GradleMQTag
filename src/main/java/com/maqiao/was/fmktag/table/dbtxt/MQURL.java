@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -234,6 +236,7 @@ public class MQURL {
 	}
 
 	private static final String ACC_FileHead = "file://";
+
 	/**
 	 * 通过source字符串判断文件的属性并得到相应的InputStream<br>
 	 * source:<br>
@@ -250,12 +253,13 @@ public class MQURL {
 		source = source.trim();
 		if (source.length() == 0) return null;
 		String file = null;
-		/* 本地绝对地址 以file://为开头 
+		/*
+		 * 本地绝对地址 以file://为开头
 		 * 例:file://c:/words/a1.doc
-		 * */
+		 */
 		if (source.startsWith(ACC_FileHead)) file = source.substring(ACC_FileHead.length(), source.length());
 		if (source.startsWith("/")) {
-			if(request==null)return null;
+			if (request == null) return null;
 			file = Utils.getWebBasePath(request) + source;
 		}
 		if (file != null) {
@@ -272,4 +276,32 @@ public class MQURL {
 		return MQURL.getInputStream(url);
 	}
 
+	public static boolean isTopURL(String str) {
+		if (str == null || str.trim().length() == 0) return false;
+		str = str.trim().toLowerCase();
+		String domainRules = "com.cn|dunet.cn|org.cn|gov.cn|com.hk|公司|中国zhi|网络|com|net|org|int|edu|gov|mil|arpa|Asia|biz|info|name|pro|coop|aero|museum|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cf|cg|ch|ci|ck|cl|cm|cn|co|cq|cr|cu|cv|cx|cy|cz|de|dj|dk|dm|do|dz|ec|ee|eg|eh|es|et|ev|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gh|gi|gl|gm|gn|gp|gr|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|in|io|iq|ir|is|it|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|ml|mm|mn|mo|mp|mq|mr|ms|mt|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nt|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|pt|pw|py|qa|re|ro|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sk|sl|sm|sn|so|sr|st|su|sy|sz|tc|td|tf|tg|th|tj|tk|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|va|vc|ve|vg|vn|vu|wf|ws|ye|yu|za|zm|zr|zw";
+		String protocols = "https|http|ftp|rtsp|mms";
+		for (String e : protocols.split("\\|"))
+			if (str.startsWith(e + "://")) return true;
+		String regex = "^((" + protocols + ")?://)" + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" //ftp的user@
+				+ "(([0-9]{1,3}\\.){3}[0-9]{1,3}" // IP形式的URL- 199.194.52.184
+				+ "|" // 允许IP和DOMAIN（域名）
+				+ "(([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]+\\.)?" // 域名- www.
+				+ "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\\." // 二级域名
+				+ "(" + domainRules + "))" // first level domain- .com or .museum
+				+ "(:[0-9]{1,4})?" // 端口- :80
+				+ "((/?)|" // a slash isn't required if there is no file name
+				+ "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher isUrl = pattern.matcher(str);
+		return isUrl.matches();
+	}
+
+	public static void main(String[] args) {
+		String[] arr = { "ftp://abccc", "/def/abc.doc", "abc.zip", "http://www.sina.com/deff", "http://127.0.0.1/def.doc", "http://127.0.0.1:80/def.doc"
+
+		};
+		for (String e : arr)
+			System.out.println(e + ":\t" + isTopURL(e));
+	}
 }

@@ -90,11 +90,13 @@ public abstract class DBAbstractInputStream extends DBAbstract  implements Inter
 		switch (type) {
 		case 0:
 			String sourceDBPath = getBasicPath() + sourcefile;
+			sourceDBPath=Utils.groomingPath(sourceDBPath);
 			System.out.println("sourceDBPath:" + sourceDBPath);
 			try {
-				sourceDBPath=Utils.getBasicAutoFile(sourceDBPath, getAutoSearchFilesExt(), autosearch, autosearchid);//getBasicFile(sourceDBPath);
-				if(sourceDBPath==null)return null;
-				return new FileInputStream(new File(sourceDBPath));
+				if(autosearch)sourceDBPath=Utils.getBasicAutoFile(sourceDBPath, getAutoSearchFilesExt(), autosearch, autosearchid);//getBasicFile(sourceDBPath);
+				if(sourceDBPath==null)			return null;
+				File f=new File(sourceDBPath);
+				return new FileInputStream(f);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 				return null;

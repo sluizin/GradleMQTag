@@ -20,20 +20,20 @@ import com.maqiao.was.fmktag.table.dbtxt.BeanLine;
 @SuppressWarnings("rawtypes")
 public final class DBInputStreamCharText extends DBAbstractInputStreamCharacter implements InterfaceAccpetVal {
 	/** 行标志 */
-	static final String rowSign = "\n";
+	String rowsign = "\n";
 	/** 列标志 */
-	static final String columnSign = "\t";
+	String columnsign = "\t";
 	
 	
 	@Override
 	List<BeanLine> StringToBeanlineList(final String content) {
 		if (content == null || content.length() == 0) return new ArrayList<BeanLine>(0);
-		final String[] splitStr = content.split(rowSign);
+		final String[] splitStr = content.split(rowsign);
 		BeanLine e = null;
 		int len = splitStr.length;
 		final List<BeanLine> BeanLineList = new ArrayList<BeanLine>(len);
 		for (int i = 0; i < len; i++)
-			if ((e = beanLineChange(splitStr[i])) != null) BeanLineList.add(e);
+			if ((e = beanLineChange(splitStr[i],columnsign)) != null) BeanLineList.add(e);
 		return BeanLineList;
 	}
 
@@ -42,10 +42,10 @@ public final class DBInputStreamCharText extends DBAbstractInputStreamCharacter 
 	 * @param str String
 	 * @return beanLine
 	 */
-	public static final BeanLine beanLineChange(final String str) {
+	public static final BeanLine beanLineChange(final String str,final String columnsign) {
 		if (str == null || str.length() == 0) return null;
 		BeanLine bean = new BeanLine();
-		bean.setSplit(str, columnSign);
+		bean.setSplit(str, columnsign);
 		return bean;
 	}
 	/**
@@ -61,7 +61,8 @@ public final class DBInputStreamCharText extends DBAbstractInputStreamCharacter 
 
 	@Override
 	public void acceptVal() {
-		
+		rowsign=getStringDef("\n","rowsign");
+		columnsign=getStringDef("\t","columnsign");
 	}
 
 	@Override

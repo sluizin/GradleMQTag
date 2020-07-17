@@ -15,15 +15,16 @@ import com.maqiao.was.fmktag.table.dbtxt.BeanLine;
 import com.maqiao.was.fmktag.table.dbtxt.BeanLineUtils;
 
 /**
- * 
  * @author Sunjian
  * @version 1.0
  * @since jdk1.8
  */
 @SuppressWarnings("rawtypes")
-public abstract class DBAbstract extends AbstractParams implements InterfaceAccpetVal{
+public abstract class DBAbstract extends AbstractParams implements InterfaceAccpetVal {
 	/** 属性列如果为小于0则无，如果大于等于，则某行记录为属性列 */
 	int attrcolumn = -1;
+	/** 过滤下标的列组 */
+	int[] filtercolumnsuffix = {};
 	/** 过滤下标数组 */
 	int[] filtersuffix = {};
 	/** 进行排序 */
@@ -36,6 +37,7 @@ public abstract class DBAbstract extends AbstractParams implements InterfaceAccp
 	boolean distinct = false;
 	/** 非null单元过滤两侧空格 */
 	boolean istrim = false;
+
 	/**
 	 * 得到结果数据
 	 * @return List<BeanLine>
@@ -51,9 +53,11 @@ public abstract class DBAbstract extends AbstractParams implements InterfaceAccp
 		super(request, params);
 		super.acceptVal();
 	}
+
 	@Override
 	public void acceptVal() {
-		attrcolumn = getInt(-1,"attrcolumn");
+		attrcolumn = getInt(-1, "attrcolumn");
+		filtercolumnsuffix = Utils.arrayOrder(getArrayInteger("filtercolumnsuffix"));
 		filtersuffix = Utils.arrayOrder(getArrayInteger("filtersuffix"));
 		orderby = getString("orderby");
 		comple = getBoolean("comple");
@@ -61,6 +65,7 @@ public abstract class DBAbstract extends AbstractParams implements InterfaceAccp
 		distinct = getBoolean("distinct");
 		istrim = getBoolean("istrim");
 	}
+
 	/**
 	 * 得到服务器上当前绝对路径 c:/aaa/root/ 即发布目录
 	 * @return String
@@ -76,20 +81,35 @@ public abstract class DBAbstract extends AbstractParams implements InterfaceAccp
 	public final void Postprocessing(List<BeanLine> list) {
 		if (list == null || list.size() == 0) return;
 		/* 移除排队属性行 */
-		if(attrcolumn>-1)removeAttributeRow(list);
+		if (attrcolumn > -1) removeAttributeRow(list);
+		/* 移除过滤列 */
+		if (filtercolumnsuffix.length > 0) removeFiltersuffixCol(list);
 		/* 移除过滤行 */
-		if(filtersuffix.length>0)removeFiltersuffixRow(list);
+		if (filtersuffix.length > 0) removeFiltersuffixRow(list);
 		/* 非null单元过滤两侧空格 */
-		if(istrim)BeanLineUtils.trim(list);
+		if (istrim) BeanLineUtils.trim(list);
 		/* 排序 */
 		orderby(list);
 		/* 自动格式化 */
-		if(comple)BeanLineUtils.format(list);
+		if (comple) BeanLineUtils.format(list);
 		/* 是否过滤无效节点 */
-		if(filterinvalid)BeanLineUtils.filterInvalid(list);
+		if (filterinvalid) BeanLineUtils.filterInvalid(list);
 		/* 去掉重复的节点 */
-		if(distinct) {
-			 list = list.stream().distinct().collect(Collectors.toList());
+		if (distinct) {
+			list = list.stream().distinct().collect(Collectors.toList());
+		}
+	}
+
+	/**
+	 * 移除属性列
+	 * @param list List<BeanLine>
+	 */
+	private final void removeFiltersuffixCol(List<BeanLine> list) {
+		if (list == null || list.size() == 0 || filtercolumnsuffix == null) return;
+		for (int index : filtercolumnsuffix) {
+			if (index < 0) continue;
+			for (BeanLine e : list)
+				e.removeCol(index);
 		}
 	}
 
@@ -108,9 +128,9 @@ public abstract class DBAbstract extends AbstractParams implements InterfaceAccp
 	 */
 	private final void removeFiltersuffixRow(List<BeanLine> list) {
 		if (list == null || list.size() == 0 || filtersuffix == null) return;
-		int i=list.size();
-		while(--i>=0) {
-			if(Utils.isExist(filtersuffix, i))list.remove(i);
+		int i = list.size();
+		while (--i >= 0) {
+			if (Utils.isExist(filtersuffix, i)) list.remove(i);
 		}
 	}
 

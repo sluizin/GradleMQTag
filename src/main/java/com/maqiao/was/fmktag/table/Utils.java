@@ -49,7 +49,7 @@ import freemarker.template.TemplateModelException;
  * @version 1.0
  * @since jdk1.8
  */
-@SuppressWarnings({"deprecation","rawtypes"})
+@SuppressWarnings({"rawtypes"})
 public final class Utils {
 	/**
 	 * 利用正则表达式判断字符串是否是数字
@@ -443,6 +443,11 @@ public final class Utils {
 			if (file.isDirectory()) getFileList(fileExt,list, file.getAbsolutePath());
 		}
 	}
+	/**
+	 * 得到链接的扩展名
+	 * @param filename String
+	 * @return String
+	 */
 	public static final String getFileExtName(String filename) {
 		if(filename==null || filename.length()==0)return "";
 		int index=filename.lastIndexOf('.');
@@ -455,27 +460,6 @@ public final class Utils {
 		}
 		return right;
 	}
-	public static void main(String[] args) {
-		//int[] arr3 = { 22, 11, 12, 0, 5, 9, -1, 2, 1, 12, 0 };
-		//Arrays.stream(arrayOrder(arr3)).forEach(System.out::println); // 将结果数组输出
-		//System.out.println("#############################################################");
-		String[] arr= {
-				"hyttp://aac.cc/aaa/ee.aa.txt$$",
-				null,
-				"",
-				" ",
-				".",
-				".text",
-				"hyttp://aac.cc/aaa/ee.aa.txt",
-				"hyttp://aac.cc/aaa/ee.aa.#",
-				"hyttp://aac.cc/aaa/ee.aa.txt#",
-				
-		};
-		for(String e:arr) {
-			System.out.println("e:"+getFileExtName(e));
-		};
-	}
-
 
 	static final boolean getStaticBoolean(Map params,boolean def,String...arrs) {
 		Object obj = getStaticObject(params,arrs);
@@ -596,7 +580,12 @@ public final class Utils {
 	 */
 	public static final String getWebBasePath(HttpServletRequest request) {
 		if(request==null)return "";
-		return new File(request.getRealPath(request.getRequestURI())).getParent() + "/";
+		//System.out.println("request.getRequestURI():"+request.getRequestURI());
+		//System.out.println("request.getRealPath(request.getRequestURI()):"+request.getRealPath(request.getRequestURI()));
+		//return new File(request.getRealPath(request.getRequestURI())).getParent() + "/";
+		String root=request.getSession().getServletContext().getRealPath("/");
+		System.out.println("root:"+root);
+		return root;
 	}
 	/**
 	 * 得到本地一个文件，如果没有，则试着检索出一个，用自动检索<br>
@@ -629,4 +618,39 @@ public final class Utils {
 		if(autosearchid>-1 && autosearchid<list.size())	return list.get(autosearchid);
 		return list.get(0);
 	}
+	/**
+	 * 整理路径
+	 * @param path String
+	 * @return String
+	 */
+	public static final String groomingPath(String path) {
+		if(path==null|| path.length()==0)return path;
+		path=path.replace('\\', '/');
+		path=path.replaceAll("//", "/");	
+		return path;
+	}
+
+	public static void main(String[] args) {
+		//int[] arr3 = { 22, 11, 12, 0, 5, 9, -1, 2, 1, 12, 0 };
+		//Arrays.stream(arrayOrder(arr3)).forEach(System.out::println); // 将结果数组输出
+		//System.out.println("#############################################################");
+		String[] arr= {
+				"hyttp://aac.cc/aaa/ee.aa.txt$$",
+				null,
+				"",
+				" ",
+				".",
+				".text",
+				"hyttp://aac.cc/aaa/ee.aa.txt",
+				"hyttp://aac.cc/aaa/ee.aa.#",
+				"hyttp://aac.cc/aaa/ee.aa.txt#",
+				
+		};
+		for(String e:arr) {
+			System.out.println("e:"+getFileExtName(e));
+		};
+		String sourceDBPath="D:\\Eclipse\\eclipse-oxygen\\Workspaces\\was-zt-web\\WebContent\\/latform/2020_618/2020_618.txt";
+		System.out.println("sourceDBPath:" + Utils.groomingPath(sourceDBPath));
+	}
+
 }
