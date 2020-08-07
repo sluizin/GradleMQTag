@@ -1,6 +1,7 @@
 package com.maqiao.was.fmktag.table;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -81,11 +82,11 @@ public abstract class DBAbstract extends AbstractParams implements InterfaceAccp
 	public final void Postprocessing(List<BeanLine> list) {
 		if (list == null || list.size() == 0) return;
 		/* 移除排队属性行 */
-		if (attrcolumn > -1) removeAttributeRow(list);
+		if (attrcolumn > -1) BeanLineUtils.removeAttrRow(list,attrcolumn);
 		/* 移除过滤列 */
-		if (filtercolumnsuffix.length > 0) removeFiltersuffixCol(list);
+		if (filtercolumnsuffix.length > 0) BeanLineUtils.removeColSuffix(list, filtercolumnsuffix);
 		/* 移除过滤行 */
-		if (filtersuffix.length > 0) removeFiltersuffixRow(list);
+		if (filtersuffix.length > 0)BeanLineUtils.removeRowSuffix(list,filtersuffix);
 		/* 非null单元过滤两侧空格 */
 		if (istrim) BeanLineUtils.trim(list);
 		/* 排序 */
@@ -95,43 +96,7 @@ public abstract class DBAbstract extends AbstractParams implements InterfaceAccp
 		/* 是否过滤无效节点 */
 		if (filterinvalid) BeanLineUtils.filterInvalid(list);
 		/* 去掉重复的节点 */
-		if (distinct) {
-			list = list.stream().distinct().collect(Collectors.toList());
-		}
-	}
-
-	/**
-	 * 移除属性列
-	 * @param list List<BeanLine>
-	 */
-	private final void removeFiltersuffixCol(List<BeanLine> list) {
-		if (list == null || list.size() == 0 || filtercolumnsuffix == null) return;
-		for (int index : filtercolumnsuffix) {
-			if (index < 0) continue;
-			for (BeanLine e : list)
-				e.removeCol(index);
-		}
-	}
-
-	/**
-	 * 移除属性行
-	 * @param list List<BeanLine>
-	 */
-	private final void removeAttributeRow(List<BeanLine> list) {
-		if (list == null || list.size() == 0) return;
-		if (attrcolumn > -1) list.remove(attrcolumn);
-	}
-
-	/**
-	 * 移除过滤行 过滤行为指定行
-	 * @param list List<BeanLine>
-	 */
-	private final void removeFiltersuffixRow(List<BeanLine> list) {
-		if (list == null || list.size() == 0 || filtersuffix == null) return;
-		int i = list.size();
-		while (--i >= 0) {
-			if (Utils.isExist(filtersuffix, i)) list.remove(i);
-		}
+		if (distinct) BeanLineUtils.distinct(list);
 	}
 
 	/** 排序验证 */

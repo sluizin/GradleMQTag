@@ -17,12 +17,17 @@ import java.net.URL;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.maqiao.was.fmktag.table.Utils;
 
 /**
  * @author Sunjian
@@ -81,6 +86,56 @@ public final class BeanLineUtils {
 			if(e.length()>max)max=e.length();
 		}
 		return max;		
+	}
+
+
+	/**
+	 * 移除多个属性列，属性列下标，可以任意<br>
+	 * 程序中对属性列下标进行降序排序
+	 * @param list List&lt;BeanLine&gt;
+	 * @param suffixs int[]
+	 */
+	public static final void removeColSuffix(List<BeanLine> list,int...suffixs) {
+		if (list == null || list.size() == 0 || suffixs == null || suffixs.length==0) return;
+		/* int数组转成Integer数组 */
+		Integer[] arr=Arrays.stream(suffixs).boxed().toArray(Integer[]::new);
+		/* 降序排列 */
+		Arrays.sort(arr,Collections.reverseOrder());
+		for (int index : arr) {
+			if (index < 0) continue;
+			for (BeanLine e : list)
+				e.removeCol(index);
+		}
+	}
+
+	/**
+	 * 移除过滤行 过滤行为指定行
+	 * @param list List&lt;BeanLine&gt;
+	 * @param suffixs int[]
+	 */
+	public static final void removeRowSuffix(List<BeanLine> list,int...suffixs) {
+		if (list == null || list.size() == 0 || suffixs == null) return;
+		int i = list.size();
+		while (--i >= 0) {
+			if (Utils.isExist(suffixs, i)) list.remove(i);
+		}
+	}
+	/**
+	 * 去重复
+	 * @param list List&lt;BeanLine&gt;
+	 */
+	public static final void distinct(List<BeanLine> list) {
+		list = list.stream().distinct().collect(Collectors.toList());
+	}
+
+	/**
+	 * 移除属性行
+	 * @param list &lt;BeanLine&gt;
+	 * @param attrRow int
+	 */
+	public static final void removeAttrRow(List<BeanLine> list,int attrRow) {
+		if (list == null || list.size() == 0 || attrRow>=list.size() || attrRow < 0) return;
+		if (attrRow > -1) list.remove(attrRow);
 	}
 	/**
 	 * 把字符串中，所有在字符串末尾的数组中含有的全部清除<br>

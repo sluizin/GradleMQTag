@@ -78,7 +78,7 @@ public final class Utils {
 	 * @param index int
 	 * @return boolean
 	 */
-	static final boolean isExist(int[] arrs,int index) {
+	public static final boolean isExist(int[] arrs,int index) {
 		for (int e : arrs)
 			if (e == index) return true;
 		return false;
